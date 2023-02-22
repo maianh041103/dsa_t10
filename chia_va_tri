@@ -1,0 +1,799 @@
+//merge sort
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+void merger(int a[], int l, int r, int m) {
+	vector<int>v1(a + l, a + m + 1);
+	vector<int>v2(a + m + 1, a + r + 1);
+	int i = 0, j = 0;
+	while (i < v1.size() && j < v2.size()) {
+		if (v1[i] < v2[j]) {
+			a[l] = v1[i];
+			l++; i++;
+		}
+		else {
+			a[l] = v2[j];
+			l++; j++;
+		}
+	}
+	while (i < v1.size()) {
+		a[l] = v1[i];
+		l++; i++;
+	}
+	while (j < v2.size()) {
+		a[l] = v2[j];
+		l++; j++;
+	}
+}
+void mergerSort(int a[], int l,int r) {
+	if (l < r) {
+		int m = (l + r) / 2;
+		mergerSort(a, l, m);
+		mergerSort(a, m + 1, r);
+		merger(a, l, r, m);
+	}
+}
+int main() {
+	int n; cin >> n;
+	int a[10000];
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	mergerSort(a, 0, n - 1);
+	for (int i = 0; i < n; i++)
+		cout << a[i] << " ";
+}
+*/
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll lt(ll n, ll k) {
+	ll res = 1;
+	while (k != 0) {
+		if (k % 2 != 0) {
+			res *= n;
+			res %= MOD;
+		}
+		n *= n;
+		n %= MOD;
+		k /= 2;
+	}
+	return res;
+}
+int main() {
+	ll n, k; cin >> n >> k;
+	cout << lt(n, k);
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll lt(ll n, ll k) {
+	ll res = 1;
+	while (k != 0) {
+		if (k % 2 != 0) {
+			res *= n;
+			res %= MOD;
+		}
+		n *= n;
+		n %= MOD;
+		k /= 2;
+	}
+	return res;
+}
+ll dao(ll n) {
+	string s = to_string(n);
+	reverse(s.begin(), s.end());
+	return stoll(s);
+}
+int main() {
+	ll n; cin >> n;
+	ll k = dao(n);
+	cout << lt(n, k);
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll powmod(ll n, ll k) {
+	ll res = 1;
+	while (k!=0) {
+		if (k % 2 != 0) {
+			res *= n;
+			res %= MOD;
+		}
+		n *= n;
+		n %= MOD;
+		k /= 2;
+	}
+	return res;
+}
+int main() {
+	ll k; cin >> k;
+	cout << powmod(2, k - 1);
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll cs[51];
+void dem() {
+	cs[1] = 1;
+	for (int i = 2; i <= 50; i++) {
+		cs[i] = cs[i - 1] * 2 + 1;
+	}
+}
+ll find(ll n ,ll k) {
+	dem();
+	if (k == cs[n-1] + 1) // phan tu nam giua
+		return n;
+	if (k > cs[n - 1])
+		k -= cs[n - 1] + 1;
+	return find(n - 1, k);
+}
+
+int main() {
+	ll n, k; cin >> n >> k;
+	cout << find(n, k);
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll find(ll n, ll k) {
+	if (k == pow(2, n - 1)) // phan tu o giua
+		return n;
+	else if (k < pow(2, n - 1))
+		return find(n - 1, k);
+	else
+		return find(n - 1, k - pow(2, n - 1));
+}
+int main() {
+	ll n, k; cin >> n >> k;
+	cout << find(n, k);
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+ll cs[93];
+void sinh() {
+	cs[1] = cs[2] = 1;
+	for (int i = 3; i < 93; i++) {
+		cs[i] = cs[i - 1] + cs[i - 2];
+	}
+}
+char find(int k, int n) {
+	sinh();
+	if (n == 1)
+		return 'A';
+	else if (n == 2)
+		return 'B';
+	if (k <= cs[n - 2]) {
+		find(k, n - 2);
+	}
+	else {
+		find(k - cs[n - 2], n - 1);
+	}
+}
+int main() {
+	int n, k; cin >> n >> k;
+	cout << find(k, n);
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int n;
+ll tinh(ll a[]) {
+	ll sum1 = 0, sum2 = 0;
+	for (int i = 0; i < n; i++) {
+		sum1 += a[i];
+		sum2 = max(sum2, sum1);
+		if (sum1 < 0)
+			sum1 = 0;
+	}
+	return sum2;
+}
+int main() {
+	cin >> n;
+	ll a[100001];
+	for (int i = 0; i < n; i++)cin >> a[i];
+	cout << tinh(a);
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll crosssum(ll a[], ll l, ll r, ll m) {
+	ll sum = 0;
+	ll left = -1e18;
+	for (ll i = m; i >= l; i--) {
+		sum += a[i];
+		left = max(left, sum);
+	}
+	sum = 0;
+	ll right = -1e18;
+	for (ll i = m + 1; i < r; i++) {
+		sum += a[i];
+		right = max(right, sum);
+	}
+	return max({ left,right,left + right });
+}
+ll solve(ll a[],ll l,ll r) {
+	if (l > r)return 0;
+	if (l == r) return a[l];
+	int m = (l + r) / 2;
+	return max({ solve(a,l,m),solve(a,m + 1,r),crosssum(a,l,r,m) });
+}
+int main() {
+	ll n; cin >> n;
+	ll a[1000001];
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	cout<<solve(a, 0, n);
+}
+*/
+//Bai 7
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll a[100001];
+ll n, x;
+int main() {
+	cin >> n >> x;
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	auto it = upper_bound(a, a + n, x);
+	it--;
+	if (it != a - 1 )
+		cout << *it << endl;
+	else
+		cout << "-1" << endl;
+}
+*/
+//Bai 8
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int a[10001], b[10001], c[20002];
+int n, m, k;
+int sapxep(int a[10001], int b[10001]) {
+	int i = 1, j = 1;
+	int l = 1;
+	while (i <= n && j <= m) {
+		if (a[i] < b[j]) {
+			c[l] = a[i];
+			l++; i++;
+		}
+		else {
+			c[l] = b[j];
+			l++; j++;
+		}
+	}
+	while (i <= n) {
+		c[l] = a[i];
+		l++; i++;
+	}
+	while (j <= m) {
+		c[l] = b[j];
+		l++; j++;
+	}
+	return c[k];
+}
+int main() {
+	cin >> n >> m >> k;
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	for (int i = 1; i <= m; i++)
+		cin >> b[i];
+	cout << sapxep(a, b);
+}
+*/
+//Bai 9
+/*
+#include<iostream>
+#include<map>
+#include<algorithm>
+#include<map>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	map<int, int>mp;
+	int a[100001], b[100001];
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+		mp[a[i]]++;
+	}
+	for (int i = 0; i < n - 1; i++) {
+		cin >> b[i];
+		mp[b[i]]--;
+	}
+	int cnt = 0;
+	for (auto it : mp) {
+		cnt++;
+		if (it.second != 0) {
+			cout << cnt << endl;
+		}
+	}
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	int* a = new int[n];
+	int* b = new int[n];
+	for (int i = 0; i < n; i++) cin >> a[i];
+	for (int i = 0; i < n - 1; i++)cin >> b[i];
+	int l = 0;
+	while (l < n) {
+		if (a[l] == b[l])
+			l++;
+		else {
+			cout << l + 1 << endl;
+			return 0;
+		}
+	}
+}
+*/
+//Bai 10
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	int* a = new int[n];
+	int cnt = 0;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+		if (a[i] == 0)
+			cnt++;
+	}
+	cout << cnt << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	int* a = new int[n];
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	int l = 0;
+	while (a[l] == 0) {
+		l++;
+	}
+	cout << l << endl;
+}
+*/
+//Bai 11
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int main() {
+	int n, k; cin >> n >> k;
+	int* a = new int[n];
+	for (int i = 0; i < n; i++)cin >> a[i];
+	auto x = lower_bound(a, a + n, k);
+	if (*x == k)
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<map>
+using namespace std;
+int main() {
+	int n, k; cin >> n >> k;
+	int* a = new int[n];
+	map<int, int>mp;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+		mp[a[i]]++;
+	}
+	if (mp[k] != 0)
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+/*
+#include<iostream>
+#include<algorithm>
+#include<math.h>
+using namespace std;
+int n, k;
+void binary_search(int a[],int l,int r) {
+	while (l <= r) {
+		int m = (l + r) / 2;
+		if (a[m] == k) {
+			cout << "YES" << endl;
+			return;
+		}
+		else if (a[m] < k) {
+			l = m + 1;
+		}
+		else
+			r = m - 1;
+	}
+	cout << "NO" << endl;
+}
+int main() {
+	cin >> n >> k;
+	int* a = new int[n];
+	for (int i = 0; i < n; i++)cin >> a[i];
+	binary_search(a, 0, n - 1);
+}
+*/
+//Bai 12
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll c[2][2];
+void nhan(ll a[2][2], ll b[2][2]) {
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
+			c[i][j] = 0;
+			for (int k = 0; k < 2; k++) {
+				c[i][j] += a[i][k] * b[k][j];
+				c[i][j] %= MOD;
+			}
+		}
+	}
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
+			a[i][j] = c[i][j];
+		}
+	}
+}
+void lt(ll n) {
+	ll res[2][2] = { {1,1},{1,0} };
+	ll a[2][2] = { {1,1},{1,0} };
+	while (n != 0) {
+		if (n % 2 != 0)
+			nhan(res, a);
+		nhan(a, a);
+		n /= 2;
+	}
+	cout << res[0][1];
+}
+int main() {
+	ll n; cin >> n;
+	lt(n - 1);
+}
+*/
+//Bai 13
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll fibo[93];
+void sinh() {
+	fibo[1] = fibo[2] = 1;
+	for (int i = 3; i <= 92; i++)
+		fibo[i] = fibo[i - 2] + fibo[i - 1];
+}
+char find(int k,int n) {
+	sinh();
+	if (n == 1)
+		return '0';
+	if (n == 2)
+		return '1';
+	if (k <= fibo[n - 2])
+		return find(k, n - 2);
+	else
+		return find(k - fibo[n - 2], n - 1);
+}
+int main() {
+	int n, k;
+	cin >> n >> k;
+	cout << find(k, n);
+}
+*/
+//Bai 14
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+void nhan(ll a[2][2], ll b[2][2]) {
+	ll c[2][2];
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
+			c[i][j] = 0;
+			for (int k = 0; k < 2; k++) {
+				c[i][j] += a[i][k] * b[k][j];
+				c[i][j] %= MOD;
+			}
+		}
+	}
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++)
+			a[i][j] = c[i][j];
+	}
+}
+void powmod(int n) {
+	ll a[2][2] = { {1,1},{1,0} };
+	ll res[2][2] = { {1,0},{0,1} };
+	while (n != 0) {
+		if (n % 2 != 0) {
+			nhan(res, a);
+		}
+		nhan(a, a);
+		n /= 2;
+	}
+	cout << res[1][0];
+}
+int main() {
+	int n; cin >> n;
+	powmod(n);
+}
+*/
+//Bai 15
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll n, k;
+ll a[11][11];
+ll c[11][11];
+void nhan(ll a[11][11], ll b[11][11]) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			c[i][j] = 0;
+			for (int k = 0; k < n; k++) {
+				c[i][j] += a[i][k] * b[k][j];
+				c[i][j] %= MOD;
+			}
+		}
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			a[i][j] = c[i][j];
+		}
+	}
+}
+void lt(ll k) {
+	ll res[11][11];
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (i == j)
+				res[i][j] = 1;
+			else
+				res[i][j] = 0;
+		}
+	}
+	while (k != 0) {
+		if (k % 2 != 0) {
+			nhan(res, a);
+		}
+		nhan(a, a);
+		k /= 2;
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++)
+			cout << res[i][j] << " ";
+		cout << endl;
+	}
+}
+int main() {
+	cin >> n >> k;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			cin >> a[i][j];
+		}
+	}
+	lt(k);
+}
+*/
+//Bai 16
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll n, k; 
+ll MOD = 1e9 + 7;
+void nhan(ll a[11][11], ll b[11][11]) {
+	ll c[11][11];
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			c[i][j] = 0;
+			for (int k = 0; k < n; k++) {
+				c[i][j] += a[i][k] * b[k][j];
+				c[i][j] %= MOD;
+			}
+		}
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			a[i][j] = c[i][j];
+		}
+	}
+}
+void powmod(ll a[11][11],ll k) {
+	ll res[11][11];
+	for (int i = 0; i< n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (i == j)
+				res[i][j] = 1;
+			else
+				res[i][j] = 0;
+		}
+
+	}
+	while (k != 0) {
+		if (k % 2 != 0)
+			nhan(res, a);
+		nhan(a, a);
+		k /= 2;
+	}
+	ll sum = 0;
+	for (int i = 0; i < n; i++) {
+		sum += res[i][n - 1];
+		sum %= MOD;
+	}
+	cout << sum << endl;
+}
+int main() {
+	cin >> n >> k;
+	ll a[11][11];
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++)
+			cin >> a[i][j];
+	}
+	powmod(a, k);
+}
+*/
+//Bai 17 *
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+typedef long long ll;
+ll merge(ll a[], ll l, ll m, ll r) {
+	vector<ll>v1(a + l, a + m + 1);
+	vector<ll>v2(a + m + 1, a + r + 1);
+	int i = 0, j = 0;
+	ll ans = 0;
+	while (i < v1.size() && j < v2.size()) {
+		if (v1[i] <= v2[j]) {
+			a[l] = v1[i];
+			l++; i++;
+		}
+		else {
+			// v1[i] > v2[j] -> v1[i] den v1[m] deu lon hon v2[j]
+			ans += v1.size() - i;
+			a[l] = v2[j];
+			l++; j++;
+		}
+	}
+	while (i < v1.size()) {
+		a[l] = v1[i];
+		l++; i++;
+	}
+	while (j < v2.size()) {
+		a[l] = v2[j];
+		l++; j++;
+	}
+	return ans;
+}
+ll mergeSort(ll a[], ll l, ll r) {
+	if (l >= r) return 0;
+	ll m = (l + r) / 2;
+	ll ans = 0;
+	ans += mergeSort(a, l, m);
+	ans += mergeSort(a, m + 1, r);
+	ans += merge(a, l, m, r);
+	return ans;
+}
+int main() {
+	ll n; cin >> n;
+	ll* a = new ll[n + 2];
+	for (ll i = 0; i < n; i++) cin >> a[i];
+	cout << mergeSort(a, 0, n - 1);
+}
+*/
+//Bai 18
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+typedef long long ll;
+vector<ll>v;
+void init(ll n) {
+	ll tmp = log2(n);
+	for (ll i = 0; i <= tmp; i++)
+		v.push_back(pow(2, i));
+}
+ll find(ll pos,ll n, ll idx) {
+	if (pos % 2 != 0) return 1;
+	if (pos == v[idx]) return n % 2;
+	else if (pos < v[idx])
+		return find(pos, n / 2, idx - 1);
+	else
+		return find(2 * v[idx] - pos, n / 2, idx - 1);
+}
+int main() {
+	ll n, l, r; cin >> n >> l >> r;
+	ll ans = 0;
+	init(n);
+	ll idx = v.size() - 1;
+	for (ll i = l; i <= r; i++)
+		ans += find(i, n, idx);
+	cout << ans << endl;
+}
