@@ -1,0 +1,1810 @@
+//Tao cay nhi phan
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+struct Node {
+	int val;
+	Node* left;
+	Node* right;
+	Node(int x) {
+		val = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(Node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new Node(v);
+	else
+		root->right = new Node(v);
+}
+void insertNode(Node* root, int u, int v, char c) {
+	if (root == NULL) return; // Di sai nhanh
+	if (root->val == u) {
+		makeRoot(root, u, v, c);
+	}
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+
+int main() {
+	Node* root = NULL;
+	int n; cin >> n;
+	for (int i = 0; i < n; i++) {
+		int u, v; char c;
+		cin >> u >> v >> c;
+		if (root == NULL) {
+			root = new Node(u);
+			makeRoot(root, u, v, c);
+		}
+		else {
+			insertNode(root, u, v, c);
+		}
+	}
+}
+*/
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+#include<vector>
+using namespace std;
+//Khoi tao cay
+struct node {
+	int data;
+	node* left;
+	node* right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL) return; //Sai nhanh
+	if (root->data == u) {
+		makeRoot(root, u, v, c);
+	}
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+void Inorder(node* root) {
+	if (root != NULL) {
+		Inorder(root->left);
+		cout << root->data << " ";
+		Inorder(root->right);
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	Inorder(root);
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+struct node {
+	int data;
+	node* left;
+	node* right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL) return; // sai nhanh
+	if (root->data == u)
+		makeRoot(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+void Preorder(node* root) {
+	if (root != NULL) {
+		cout << root->data << " ";
+		Preorder(root->left);
+		Preorder(root->right);
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	Preorder(root);
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+//Khoi tao cay
+struct node {
+	int data;
+	node* left;
+	node* right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL) return; // Di sai nhanh
+	if (root->data == u) {
+		makeRoot(root, u, v, c);
+	}
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+void Postorder(node* root) {
+	if (root != NULL) {
+		Postorder(root->left);
+		Postorder(root->right);
+		cout << root->data << " ";
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	Postorder(root);
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+#include<vector>
+using namespace std;
+//Khoi tao cay
+struct Node {
+	int data;
+	Node* left;
+	Node* right;
+	Node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeNode(Node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new Node(v);
+	else
+		root->right = new Node(v);
+}
+void insertNode(Node* root, int u, int v, char c) {
+	if (root == NULL) return;
+	if (root->data == u)
+		makeNode(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+//Dem la
+int cnt = 0;
+int tmp = 0;
+void count(Node* root) {
+	if (root == NULL) {
+		tmp++;
+		if (tmp == 2) cnt++;
+	}
+	else {
+		tmp = 0;
+		count(root->right);
+		count(root->left);
+	}
+}
+int main() {
+	int n; cin >> n;
+	Node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new Node(a);
+			makeNode(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	count(root);
+	cout << cnt << endl;
+}
+*/
+//Dem la
+/*
+int cnt = 0;
+void count(Node* root) {
+	if(root != NULL) {
+		if (root->left == NULL && root->rigth == NULL)
+			cnt++;
+		count(root->right);
+		count(root->left);
+	}
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+//Khoi tao cay
+int cnt = 0, mcnt = 0;
+struct Node {
+	int data;
+	Node* left;
+	Node* right;
+	Node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(Node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new Node(v);
+	else
+		root->right = new Node(v);
+}
+void insertNode(Node* root, int u, int v, char c) {
+	if (root == NULL) return;
+	if (root->data == u) {
+		makeRoot(root, u, v, c);
+	}
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+void count(Node* root, int cnt) {
+	if(root != NULL) {
+		count(root->left,cnt + 1);
+		mcnt = max(mcnt, cnt);
+		count(root->right,cnt + 1);
+		mcnt = max(cnt, mcnt);
+	}
+}
+int main() {
+	int n; cin >> n;
+	Node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new Node(a);
+			makeRoot(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	count(root,0);
+	cout << mcnt << endl;
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+//Khoi tao cay
+struct node {
+	int data;
+	node* left;
+	node* right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL) return;
+	if (root->data == u)
+		makeRoot(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+bool ok = true;
+void check(node* root) {
+	if (root != NULL) {
+		if ((root->left != NULL && root->right == NULL) || (root->left == NULL && root->right != NULL))
+			ok = false;
+		check(root->left);
+		check(root->right);
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	check(root);
+	if (ok == true) cout << "YES" << endl;
+	else cout << "NO" << endl;
+}
+*/
+//Bai 7
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+//Khoi tao cay
+struct node {
+	int data;
+	node* left;
+	node* right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root,int u,int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL) return; // Di sai nhanh
+	if (root->data == u)
+		makeRoot(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+int tmp = 0;
+int mtmp = 0;
+bool ok = false;
+int ans = 0;
+void check(node* root,int tmp) {
+	if (root != NULL) {
+		if (root->left == NULL && root->right == NULL) {// nut la
+			if (ok == false) {
+				mtmp = tmp;
+				ok = true;
+			}
+			if (ok == true && mtmp != tmp) {
+				ans = 1;
+			}
+			
+		}
+		check(root->left, tmp + 1);
+		check(root->right, tmp + 1);
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	check(root, NULL);
+	if (ans == 1) cout << "NO" << endl;
+	else cout << "YES" << endl;
+}
+*/
+//Bai 8
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+#include<vector>
+using namespace std;
+//Khoi tao cay 
+struct Node {
+	int data;
+	Node* left;
+	Node* right;
+	Node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeNode(Node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new Node(v);
+	else
+		root->right = new Node(v);
+}
+void insertNode(Node* root, int u, int v, char c) {
+	if (root == NULL) return;//Sai nhanh
+	if (root->data == u)
+		makeNode(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+void bfs(Node* root) {
+	queue<Node*>q;
+	q.push(root);
+	cout << root->data << " ";
+	while (!q.empty()) {
+		Node*tmp = q.front();
+		q.pop();
+		if (tmp->left != NULL) {
+			q.push(tmp->left);
+			cout << tmp->left->data << " ";
+		}
+		if(tmp->right != NULL) {
+			q.push(tmp->right);
+			cout << tmp->right->data << " ";
+		}
+	}
+}
+int main() {
+	int x; cin >> x;
+	Node* root = NULL;
+	while (x--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new Node(a);
+			makeNode(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	bfs(root);
+}
+*/
+//Bai 9
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<stack>
+using namespace std;
+//Khoi tao node
+struct node {
+	int data;
+	node* left;
+	node* right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL) return;
+	if (root->data == u)
+		makeRoot(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+void xoan_oc(node* root) {
+	stack<node*>st1, st2;
+	st1.push(root);
+	while (!st1.empty() || !st2.empty()) {
+		while (!st1.empty()) {
+			node* tmp = st1.top();
+			st1.pop();
+			cout << tmp->data << " ";
+			if (tmp->right != NULL) {
+				st2.push(tmp->right);
+			}
+			if (tmp->left != NULL)
+				st2.push(tmp->left);
+		}
+		while (!st2.empty()) {
+			node* tmp = st2.top();
+			st2.pop();
+			cout << tmp->data << " ";
+			if (tmp->left != NULL)
+				st1.push(tmp->left);
+			if (tmp->right != NULL)
+				st1.push(tmp->right);
+		}
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	xoan_oc(root);
+}
+*/
+//Bai 10
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+//Khoi tao node
+struct node {
+	int data;
+	node* left;
+	node* right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL) return;
+	if (root->data == u)
+		makeRoot(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+int mtmp = 0;
+bool ok = false;
+bool ans = 0;
+void check(node* root,int tmp) {
+	if (root != NULL) {
+		if ((root->left != NULL && root->right == NULL) || (root->left == NULL && root->right != NULL)) {
+			ans = 1;
+			return;
+		}
+		if (root->left == NULL && root->right == NULL) {
+			if (ok == false && mtmp != tmp) {
+				mtmp = tmp;
+				ok = true;
+			}
+			if (ok == true && mtmp != tmp)
+				ans = 1;
+		}
+		check(root->left, tmp + 1);
+		check(root->right, tmp + 1);
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	check(root, 0);
+	if (ans == 1) cout << "NO" << endl;
+	else cout << "YES" << endl;
+}
+*/
+//Bai 11 : Khong hieu T.T
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+
+struct Node{
+	int val;
+	Node *left, *right;
+	Node(int x) {
+		val = x;
+		left = right = NULL;
+	}
+};
+
+void makeNode(Node *root, int u, int v, char c) {
+	if (c == 'L') root->left = new Node(v);
+	else root->right = new Node(v);
+}
+
+void insert(Node *root, int u, int v, char c) {
+	if (root == NULL) return;
+	if (root->val == u) makeNode(root, u, v, c);
+	insert(root->left, u, v, c);
+	insert(root->right, u, v, c);
+}
+
+int find(int in[], int n, int x) {
+	for (int i=0;i<n;i++) {
+		if (in[i] == x) return i;
+	}
+	return -1;
+}
+
+void solve(int in[], int pre[], int n) {
+	int search = find(in, n, pre[0]);
+	if (search != 0) {
+		solve(in, pre + 1, search);
+	}
+	if (search != n-1) {
+		solve(in + search + 1, pre + search + 1, n - search - 1);
+	}
+	cout << pre[0] << " ";
+}
+
+int main()
+{
+	int n; cin >> n;
+	int pre[n], in[n];
+	for (int i=0;i<n;i++) {
+		cin >> pre[i];
+	}
+	for (int i=0;i<n;i++) {
+		cin >> in[i];
+	}
+	solve(in, pre, n);
+	return 0;
+}
+*/
+//Bai 12
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+//Khoi tao cay
+vector<int>v1;
+vector<int>v2;
+struct node {
+	int data;
+	node* left;
+	node* right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root,int u,int v,char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL)
+		return;
+	if (root->data == u)
+		makeRoot(root, u, v, c); 
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+void inorder1(node* root) {
+	if (root != NULL) {
+		inorder1(root->left);
+		v1.push_back(root->data);
+		inorder1(root->right);
+	}
+}
+void inorder2(node* root) {
+	if (root != NULL) {
+		inorder2(root->left);
+		v2.push_back(root->data);
+		inorder2(root->right);
+	}
+}
+bool check() {
+	for (int i = 0; i < v1.size(); i++) {
+		if (v1[i] != v2[i])
+			return false;
+	}
+	return true;
+}
+int main() {
+	int n; cin >> n;
+	node* root1 = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root1 == NULL) {
+			root1 = new node(a);
+			makeRoot(root1, a, b, c);
+		}
+		else {
+			insertNode(root1, a, b, c);
+		}
+	}
+	inorder1(root1);
+	int m; cin >> m;
+	node* root2 = NULL;
+	while (m--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root2 == NULL) {
+			root2 = new node(a);
+			makeRoot(root2, a, b, c);
+		}
+		else {
+			insertNode(root2, a, b, c);
+		}
+	}
+	inorder2(root2);
+	if (check()) 
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 13
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+//Khoi tao node
+struct node {
+	int data;
+	node* left, * right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL) return;
+	if (root->data == u)
+		makeRoot(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+void dfs(node* root) {
+	if (root != NULL) {
+		cout << root->data << " ";
+		dfs(root->right);
+		dfs(root->left);
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else {
+			insertNode(root, a, b, c);
+		}
+	}
+	dfs(root);
+}
+*/
+//Bai 14
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+#include<vector>
+using namespace std;
+//Khoi tao node
+struct node {
+	int data;
+	node* left, * right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL) return;
+	if (root->data == u)
+		makeRoot(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+vector<pair<int, int>>v;
+void count(node* root, int cnt) {
+	if (root != NULL) {
+		v.push_back({ root->data,cnt });
+		count(root->left, cnt + 1);
+		count(root->right, cnt + 1);
+	}
+}
+int cmp(pair<int, int>a, pair<int, int>b) {
+	return a.second < b.second;
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else
+			insertNode(root, a, b, c);
+	}
+	count(root, 0);
+	sort(v.begin(), v.end(), cmp);
+	for (auto i : v) {
+		cout << i.second << " ";
+	}
+}
+*/
+//Bai 15
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+#include<vector>
+using namespace std;
+vector<pair<int, int>>v;
+//Khoi tao cay
+struct node {
+	int data;
+	node* left, *right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+void makeRoot(node* root, int u, int v, char c) {
+	if (c == 'L')
+		root->left = new node(v);
+	else
+		root->right = new node(v);
+}
+void insertNode(node* root, int u, int v, char c) {
+	if (root == NULL)
+		return;
+	if (root->data == u)
+		makeRoot(root, u, v, c);
+	else {
+		insertNode(root->left, u, v, c);
+		insertNode(root->right, u, v, c);
+	}
+}
+void count(node* root, int cnt) {
+	if (root != NULL) {
+		v.push_back({ root->data, cnt });
+		count(root->left, cnt + 1);
+		count(root->right, cnt + 1);
+	}
+}
+int cmp(pair<int, int>a, pair<int, int>b) {
+	return a.second < b.second;
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int a, b; char c;
+		cin >> a >> b >> c;
+		if (root == NULL) {
+			root = new node(a);
+			makeRoot(root, a, b, c);
+		}
+		else
+			insertNode(root, a, b, c);
+	}
+	count(root, 0);
+	int cnt = 0;
+	sort(v.begin(), v.end(), cmp);
+	int max = v[v.size() - 1].second;
+	for (auto i : v) {
+		if (i.second == max)
+			cnt++;
+	}
+	cout << cnt << endl;
+}
+*/
+//Bai 16
+/*
+#include<iostream>
+#include<algorithm>
+#include<math.h>
+#include<queue>
+#include<vector>
+using namespace std;
+struct node {
+	int data;
+	node* left, * right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+node* insertNode(node* root, int key) {
+	if (root == NULL)
+		return new node(key);
+	else if (key < root->data)
+		root->left = insertNode(root->left, key);
+	else
+		root->right = insertNode(root->right, key);
+	return root;
+}
+void inorder(node* root) {
+	if (root != NULL) {
+		inorder(root->left);
+		cout << root->data << ' ';
+		inorder(root->right);
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int x; cin >> x;
+		root = insertNode(root, x);
+	}
+	inorder(root);
+}
+*/
+//Bai 17
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+//Khoi tao node
+struct node {
+	int data;
+	node* left, * right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+node* insertNode(node*root,int key) {
+	if (root == NULL) {
+		return new node(key);
+	}
+	if (key < root->data)
+		root->left = insertNode(root->left, key);
+	else
+		root->right = insertNode(root->right, key);
+	return root;
+}
+void Preorder(node* root) {
+	if (root != NULL) {
+		cout << root->data << " ";
+		Preorder(root->left);
+		Preorder(root->right);
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int x;
+		cin >> x;
+		root = insertNode(root, x);
+	}
+	Preorder(root);
+}
+*/
+//Bai 18
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+struct node {
+	int data;
+	node* left, * right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+node* insertNode(node* root, int key) {
+	if (root == NULL)
+		return new node(key);
+	if (root->data > key)
+		root->left = insertNode(root->left, key);
+	else
+		root->right = insertNode(root->right, key);
+	return root;
+}
+void Postorder(node* root) {
+	if (root != NULL) {
+		Postorder(root->left);
+		Postorder(root->right);
+		cout << root->data << ' ';
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int x; cin >> x;
+		root = insertNode(root, x);
+	}
+	Postorder(root);
+}
+*/
+//Bai 19
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+struct node {
+	int data;
+	node* left, * right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+node* insertNode(node* root, int key) {
+	if (root == NULL)
+		return new node(key);
+	if (key < root->data)
+		root->left = insertNode(root->left, key);
+	else
+		root->right = insertNode(root->right, key);
+	return root;
+}
+void min(node* root) {
+	if (root != NULL) {
+		if (root->left != NULL && root != NULL) {
+			min(root->left);
+		}
+		else
+			cout << root->data << " ";
+	}
+}
+void max(node* root) {
+	if (root != NULL) {
+		if (root->right != NULL)
+			max(root->right);
+		else
+			cout << root->data << " ";
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int x; cin >> x;
+		root = insertNode(root, x);
+	}
+	max(root);
+	min(root);
+}
+*/
+//Bai 20
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+struct node {
+	int data;
+	node* left, * right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+node* insertNode(node*root,int key) {
+	if (root == NULL) return new node(key);
+	if (key < root->data) {
+		root->left = insertNode(root->left, key);
+	}
+	else
+		root->right = insertNode(root->right, key);
+	return root;
+}
+bool search(node* root, int key) {
+	if (root == NULL)
+		return false;
+	if (key < root->data) {
+		return search(root->left, key);
+	}
+	else if (key > root->data)
+		return search(root->right, key);
+	else
+		return true;
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int x; cin >> x;
+		if (root == NULL)
+			root = new node(x);
+		else 
+			insertNode(root,x);
+	}
+	int key; cin >> key;
+	if (search(root, key))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 21
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+//Khoi tao cay
+struct node {
+	int data;
+	node* left, *right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+node* insertNode(node* root, int key) {
+	if (root == NULL)
+		return new node(key);
+	if (key < root->data) {
+		root->left = insertNode(root->left, key);
+	}
+	else if (key > root->data) {
+		root->right = insertNode(root->right, key);
+	}
+	return root;
+}
+node* findMin(node* root) {
+	node* temp = root;
+	while (temp != NULL && temp->left != NULL)
+		temp = temp->left;
+	return temp;
+}
+node* deleteNode(node* root, int key) {
+	if (root == NULL)
+		return root;
+	if (key < root->data) {
+		root->left = deleteNode(root->left, key);
+	}
+	else if (key > root->data) {
+		root->right = deleteNode(root->right, key);
+	}
+	else {
+		//node can xoa la node la
+		if (root->left == NULL && root->right == NULL) {
+			return NULL;
+		}
+		//Node can xoa chi co 1 con ben trai hoac ben phai
+		else if (root->left == NULL) {
+			node* tmp = root->right;
+			delete root;
+			return tmp;
+		}
+		else if (root->right == NULL) {
+			node* tmp = root->left;
+			delete root;
+			return tmp;
+		}
+		//Node can xoa la node trung gian co 2 node con
+		else {
+			node* tmp = findMin(root->right);
+			root->data = tmp->data;
+			root->right = deleteNode(root->right, tmp->data);
+		}
+	}
+	return root;
+}
+void Inorder(node* root) {
+	if (root != NULL) {
+		Inorder(root->left);
+		cout << root->data << " ";
+		Inorder(root->right);
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int x; cin >> x;
+		if (root == NULL)
+			root = new node(x);
+		else
+			insertNode(root, x);
+	}
+	int tmp; cin >> tmp;
+	root = deleteNode(root, tmp);
+	Inorder(root);
+}
+*/
+//Bai 22
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+//Khoi tao cay
+struct node {
+	int data;
+	node* left, * right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+node*insertNode(node* root, int key) {
+	if (root == NULL)
+		return new node(key);
+	if (key < root->data) {
+		root->left = insertNode(root->left, key);
+	}
+	if (key > root->data)
+		root->right = insertNode(root->right, key);
+	return root;
+}
+void postorder(node* root) {
+	if (root != NULL) {
+		postorder(root->left);
+		postorder(root->right);
+		cout << root->data << " ";
+	}
+}
+int main() {
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int x; cin >> x;
+		if (root == NULL)
+			root = new node(x);
+		else
+			insertNode(root, x);
+	}
+	postorder(root);
+}
+*/
+//Bai 23
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+//khoi tao cay
+vector<int>v;
+struct node {
+	int data;
+	node* left, * right;
+	node(int x) {
+		data = x;
+		left = right = NULL;
+	}
+};
+node* insertNode(node* root, int x) {
+	if (root == NULL) 
+		return new node(x);
+	if (x < root->data)
+		root->left = insertNode(root->left, x);
+	if (x > root->data)
+		root->right = insertNode(root->right, x);
+	return root;
+}
+void inorder(node* root) {
+	if (root != NULL) {
+		v.push_back(root->data);
+		inorder(root->left);
+		inorder(root->right);
+	}
+}
+bool check(vector<int>v1, vector<int>v2) {
+	for (int i = 0;i< v1.size();i++) {
+		if (v1[i] != v2[i])
+			return false;
+	}
+	return true;
+}
+int main() {
+	vector<int>v2;
+	int n; cin >> n;
+	node* root = NULL;
+	while (n--) {
+		int x; cin >> x;
+		v2.push_back(x);
+		if (root == NULL)
+			root = new node(x);
+		else
+			insertNode(root,x);
+	}
+	inorder(root);
+	if (check(v, v2))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//<-------SEGMENT TREE------->
+//Xay dung cay phan doan truy van tong
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int t[40000]; // t[i] luu tong cac chi so tu l den r
+int a[10000];
+//Build
+void build(int v, int l, int r) {
+	if (l == r) // node la
+		t[v] = a[l];
+	else {
+		int m = (l + r) / 2;
+		build(2 * v, l, m);
+		build(2 * v + 1, m + 1, r);
+		t[v] = t[2 * v] + t[2 * v + 1]; // Cap nhat cho node cha
+	}
+}
+//Query
+int sum(int v, int tl, int tr, int l, int r) {
+	if (l > r) return 0;
+	if (tl == l && tr == r)
+		return t[v];
+	else {
+		int tm = (tl + tr) / 2;
+		//Chia day tu l->r thanh cac thanh cac day nho hon
+		return sum(2 * v, tl, tm, l, min(r, tm)) + sum(2 * v + 1, tm + 1, tr, max(tm + 1, l), r);
+	}
+}
+//Update
+void update(int v, int l, int r, int pos, int val) {
+	if (l == r)
+		t[v] = val;
+	else {
+		int m = (l + r) / 2;
+		if (pos <= m) 
+			update(2*v, l, m, pos, val);
+		else
+			update(2*v + 1, m + 1, r, pos, val);
+		t[v] = t[2 * v] + t[2 * v + 1]; // Cap nhat node cha
+	}
+}
+int main() {
+	int n; cin >> n;
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	build(1, 0, n - 1);
+	for (int i = 1; i <= 4 * n; i++)
+		cout << t[i] << ' ';
+	cout << endl;
+	int l, r; cin >> l >> r;
+	cout << sum(1, 0, n - 1, l, r) << endl;
+	int pos, val;
+	cin >> pos >> val;
+	update(1, 0, n - 1, pos, val);
+	for (int i = 1; i <= 4 * n; i++)
+		cout << t[i] << ' ';
+	cout << endl;
+}
+*/
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+//Xay dung cay
+typedef long long ll;
+ll a[1000005];
+ll t[4000005];
+void build(int v, int l,int r) {
+	if (l == r)
+		t[v] = a[l];
+	else {
+		int m = (l + r) / 2;
+		build(2 * v, l, m);
+		build(2 * v + 1, m + 1, r);
+		t[v] = t[2 * v] + t[2 * v + 1];
+	}
+}
+ll query(int v, int tl, int tr, int l, int r) {
+	if (l > r)
+		return 0;
+	if (tl == l && tr == r)
+		return t[v];
+	else {
+		int tm = (tl + tr) / 2;
+		return (long) query(2*v, tl, tm, l, min(tm, r)) + query(2*v+1, tm + 1, tr, max(tm + 1, l), r);
+	}
+}
+
+int main() {
+	int n, q; cin >> n >> q;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	build(1, 0, n - 1);
+	while (q--) {
+		int l, r; cin >> l >> r;
+		cout <<(long) query(1, 0, n - 1, l - 1, r - 1) << endl;
+	}
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+typedef long long ll;
+ll a[1000005];
+ll t[4000005];
+void build(int v, int l, int r) {
+	if (l == r)//Node la
+		t[v] = a[l];
+	else {
+		int m = (l + r) / 2;
+		build(2 * v, l, m);
+		build(2 * v + 1, m + 1, r);
+		t[v] = min(t[2 * v], t[2 * v + 1]);
+	}
+}
+ll tmin(int v, int tl, int tr, int l, int r) {
+	if (l > r)
+		return 1e9 + 7;
+	if (tl == l && tr == r)
+		return t[v];
+	else {
+		int tm = (tl + tr) / 2;
+		return min(tmin(2 * v, tl, tm, l, min(r, tm)), tmin(2 * v + 1, tm + 1, tr, max(l, tm + 1), r));
+	}
+}
+int main() {
+	int n, q; cin >> n >> q;
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	build(1, 0, n - 1);
+	while (q--) {
+		int l, r; cin >> l >> r;
+		cout << (long)tmin(1, 0, n - 1, l - 1, r - 1) << endl;
+	}
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll a[200005];
+ll t[800005];
+void build(int v, int l, int r) {
+	if (l == r)
+		t[v] = a[l];
+	else {
+		int m = (l + r) / 2;
+		build(2 * v, l, m);
+		build(2 * v + 1, m + 1, r);
+		t[v] = t[2 * v] + t[2 * v + 1];
+	}
+}
+ll sum(int v, int tl, int tr, int l, int r) {
+	if (l > r) return 0;
+	if (tl == l && tr == r)
+		return t[v];
+	else {
+		int tm = (tl + tr) / 2;
+		return sum(2 * v, tl, tm, l, min(r, tm)) + sum(2 * v + 1, tm + 1, tr, max(l, tm + 1), r);
+	}
+}
+void update(int v, int l, int r, int pos, int val) {
+	if (l == r)
+		t[v] = val;
+	else {
+		int m = (l + r) / 2;
+		if (pos <= m)
+			update(2 * v, l, m, pos, val);
+		else
+			update(2 * v + 1, m + 1, r, pos, val);
+		t[v] = t[2 * v] + t[2 * v + 1]; // Cap nhat node cha
+	}
+}
+
+int main() {
+	int n, q; cin >> n >> q;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	build(1, 0, n - 1);
+	while (q--) {
+		int x, y, z;
+		cin >> x >> y >> z;
+		if (x == 1) {
+			update(1, 0, n - 1, y - 1, z);
+		}
+		else {
+			cout << sum(1, 0, n - 1, y - 1, z - 1) << endl;
+		}
+	}
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll a[200005];
+ll t[800005];
+void build(int v, int l, int r) {
+	if (l == r) //Not la
+		t[v] = a[l];
+	else {
+		int m = (l + r) / 2;
+		build(2 * v, l, m);
+		build(2 * v + 1, m + 1, r);
+		t[v] = min(t[2 * v], t[2 * v + 1]);
+	}
+}
+ll tmin(int v, int tl, int tr, int l, int r) {
+	if (l > r) 
+		return 1e9 + 7;
+	if (tr == r && tl == l)
+		return t[v];
+	else {
+		int tm = (tl + tr) / 2;
+		return min(tmin(2*v, tl, tm, l, min(r, tm)), tmin(2*v +1,  tm + 1, tr, max(l, tm + 1), r));
+	}
+}
+void update(int v, int l, int r, int pos, int val) {
+	if (l == r)//da tim duoc pos
+		t[v] = val;
+	else {
+		int m = (l + r) / 2;
+		if (pos <= m)
+			update(2 * v, l, m, pos, val);
+		else
+			update(2 * v + 1, m + 1, r, pos, val);
+		t[v] = min(t[2 * v], t[2 * v + 1]);
+	}
+}
+int main() {
+	int n, q;
+	cin >> n >> q;
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	build(1, 0, n - 1);
+	while (q--) {
+		int x, y, z; cin >> x >> y >> z;
+		if (x == 1) {
+			update(1, 0, n - 1, y - 1, z);
+		}
+		else {
+			cout << tmin(1, 0, n - 1, y - 1, z - 1) << endl;
+		}
+	}
+}
+*/
+//Bai 5 : Rtl
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll a[200005];
+ll d[200005];
+int main() {
+	int n, q; cin >> n >> q;
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i];
+	}
+	d[1] = a[1];
+	for (int i = 2; i <= n; i++)
+		d[i] = a[i] - a[i - 1];
+	while (q--) {
+		int x; cin >> x;
+		if (x == 1) {
+			int l, r, v; cin >> l >> r >> v;
+			d[l] += v;
+			d[r + 1] -= v;
+			a[1] = d[1];
+			for (int i = 2; i <= n; i++) {
+				a[i] = a[i - 1] + d[i];
+			}
+		}
+		else {
+			int u; cin >> u;
+			cout << a[u] << endl;
+		}
+	}
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+using namespace std;
+//Xay dung cay
+typedef long long ll;
+ll a[1000005];
+ll t[4000005];
+void build(int v, int l, int r) {
+	if (l == r)
+		t[v] = a[l];
+	else {
+		int m = (l + r) / 2;
+		build(2 * v, l, m);
+		build(2 * v + 1, m + 1, r);
+		t[v] = t[2 * v] ^ t[2 * v + 1];
+	}
+}
+ll query(int v, int tl, int tr, int l, int r) {
+	if (l > r)
+		return 0;
+	if (tl == l && tr == r)
+		return t[v];
+	else {
+		int tm = (tl + tr) / 2;
+		return (long)query(2 * v, tl, tm, l, min(tm, r)) ^ query(2 * v + 1, tm + 1, tr, max(tm + 1, l), r);
+	}
+}
+
+int main() {
+	int n, q; cin >> n >> q;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	build(1, 0, n - 1);
+	while (q--) {
+		int l, r; cin >> l >> r;
+		cout << (long)query(1, 0, n - 1, l - 1, r - 1) << endl;
+	}
+}
+*/
