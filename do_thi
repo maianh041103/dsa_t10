@@ -1,0 +1,2206 @@
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int main() {
+    int n, m; cin >> n >> m;
+    vector<int>a[1001];
+    for (int i = 0; i < m; i++) {
+        int x, y; cin >> x >> y;
+        // Them x vao danh sach ke cua y
+        a[y].push_back(x);
+        // Them y vao danh sach ke cua x
+        a[x].push_back(y);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(a[i].begin(), a[i].end());
+        cout << i << " : ";
+        for (int j = 0; j < a[i].size(); j++) {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<string>
+#include<sstream>
+using namespace std;
+int main() {
+    int n; cin >> n;
+    vector<pair<int,int>>v;
+    cin.ignore();
+    for (int i = 1; i <= n; i++) {
+        string s;
+        getline(cin, s);
+        stringstream ss(s);
+        string tmp;
+        while (ss >> tmp) {
+            if (stoi(tmp) > i)
+                v.push_back({ i, stoi(tmp) });
+        }
+    }
+    for (int i = 0; i < v.size(); i++)
+        cout << v[i].first << " " << v[i].second << endl;
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main() {
+    vector<int>v[1001];
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;//x->y
+        //Them y vao danh sach ke cua x
+        v[x].push_back(y);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(v[i].begin(), v[i].end());
+        cout << i << " : ";
+        for (int j = 0; j < v[i].size(); j++) {
+            cout << v[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<string>
+#include<sstream>
+using namespace std;
+bool cmp(pair<int, int>a, pair<int, int>b) {
+    if (a.first == b.first)
+        return a.second < b.second;
+    return a.first < b.first;
+}
+int main() {
+    int n; cin >> n;
+    cin.ignore();
+    vector<pair<int, int>>v;
+    for (int i = 1; i <= n; i++) {
+        string s; getline(cin, s);
+        stringstream ss(s);
+        string tmp;
+        while (ss >> tmp) {
+            if (tmp != " ") {
+                v.push_back({ i,stoi(tmp) });
+            }
+        }
+    }
+    sort(v.begin(), v.end(), cmp);
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i].first << " " << v[i].second << endl;
+    }
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+#include<vector>
+using namespace std;
+int a[1005][1005];
+int main() {
+    int n; cin >> n;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++)
+            cin >> a[i][j];
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            if (a[i][j] == 1)
+                cout << i << " " << j << endl;
+        }
+    }
+    cout << endl;
+    for (int i = 1; i <= n; i++) {
+        cout << i << " : ";
+        for (int j = 1; j <= n; j++) {
+            if (a[i][j] == 1)
+                cout << j << " ";
+        }
+        cout << endl;
+    }
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int a[1005][1005];
+int main() {
+    int n; cin >> n;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++)
+            cin >> a[i][j];
+    }
+    // Danh sach canh
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (a[i][j] == 1)
+                cout << i << " " << j << endl;
+        }
+    }
+    cout << endl;
+    // Danh sach ke
+    for (int i = 1; i <= n; i++) {
+        cout << i << " : ";
+        for (int j = 1; j <= n; j++) {
+            if (a[i][j] == 1)
+                cout << j << " ";
+        }
+        cout << endl;
+    }
+}
+*/
+//Bai 7
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int a[1005][1005];
+int main() {
+    int n, m; cin >> n >> m;
+    for (int i = 0; i < m; i++) {
+        int x, y;
+        cin >> x >> y;
+        a[x][y] = 1;
+        a[y][x] = 1;
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+*/
+//Bai 8
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+int a[1005][1005];
+using namespace std;
+int main() {
+    int n; cin >> n;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            cin >> a[i][j];
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (a[i][j] != 0 && i <= j)
+                cout << i << " " << j << " " << a[i][j] << endl;
+        }
+    }
+}
+*/
+//Bai 9
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+bool visited[1005];
+vector<int> ke[1005];
+void dfs(int u) {
+    visited[u] = true;
+    cout << u << " ";
+    for (int x : ke[u]) {
+        if (!visited[x]) {
+            dfs(x);
+        }
+    }
+}
+int main() {
+    int n, m, z; cin >> n >> m >> z;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        //Them y vao x
+        ke[x].push_back(y);
+        //Them x vao y
+        ke[y].push_back(x);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(ke[i].begin(), ke[i].end());
+    }
+    dfs(z);
+}
+
+*/
+//Bai 10
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+bool visited[1005];
+vector<int>ke[1005];
+void dfs(int u) {
+    visited[u] = true;
+    cout << u << " ";
+    for (int i : ke[u]) {
+        if (!visited[i]) {
+            dfs(i);
+        }
+    }
+}
+int main() {
+    int n, m, z;
+    cin >> n >> m >> z;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        //Them y vao x
+        ke[x].push_back(y);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(ke[i].begin(), ke[i].end());
+    }
+    dfs(z);
+}
+
+*/
+//Bai 11
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+queue<int>q;
+void bfs(int u) {
+    q.push(u);
+    visited[u] = true;
+    while (!q.empty()) {
+        int x = q.front();
+        cout << x << " ";
+        q.pop();
+        for (int y : ke[x]) {
+            if (!visited[y]) {
+                q.push(y);
+                visited[y] = true;
+            }
+        }
+    }
+}
+int main() {
+    int n, m, z; cin >> n >> m >> z;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        //Them y vao ds ke cua x
+        ke[x].push_back(y);
+        //Them x vao ds ke cua y
+        ke[y].push_back(x);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(ke[i].begin(), ke[i].end());
+    }
+    bfs(z);
+}
+*/
+//Bai 12
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+queue<int>q;
+void bfs(int u) {
+    q.push(u);
+    while (!q.empty()) {
+        int x = q.front();
+        cout << x << " ";
+        q.pop();
+        visited[u] = true;
+        for (int y : ke[x]) {
+            if (!visited[y]) {
+                q.push(y);
+                visited[y] = true;
+            }
+        }
+    }
+}
+int main() {
+    int n, m, z; cin >> n >> m >> z;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        //Them y vao ds ke x
+        ke[x].push_back(y);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(ke[i].begin(), ke[i].end());
+    }
+    bfs(z);
+}
+*/
+//Bai 13
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+void dfs(int u) {
+    visited[u] = true;
+    for (int i : ke[u]) {
+        if (!visited[i]) {
+            dfs(i);
+        }
+    }
+}
+int main() {
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        //Them x vap ds ke y
+        ke[y].push_back(x);
+        //Them y vao ds ke x
+        ke[x].push_back(y);
+    }
+    int cnt = 0;
+    for (int i = 1; i <= n; i++) {
+        if (visited[i] == false) {
+            dfs(i);
+            cnt++;
+        }
+    }
+    cout << cnt << endl;
+}
+*/
+//Bai 14
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+vector<int>res;
+int p[1005];
+int t;
+void dfs(int s) {
+    visited[s] = true;
+    for (int i : ke[s]) {
+        if (!visited[i]) {
+            p[i] = s;
+            dfs(i);
+        }
+    }
+}
+int main() {
+    int n, m, s; cin >> n >> m >> s >> t;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        ke[x].push_back(y);
+        ke[y].push_back(x);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(ke[i].begin(), ke[i].end());
+    }
+    dfs(s);
+    if (!visited[t]) cout << "-1" << endl;
+    else {
+        while (s != t) {
+            res.push_back(t);
+            t = p[t];
+        }
+        res.push_back(s);
+        reverse(res.begin(), res.end());
+        for (int i : res)
+            cout << i << " ";
+    }
+}
+*/
+//Bai 15
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+queue<int>q;
+vector<int>ke[1005];
+bool visited[1005];
+int p[1005];
+void bfs(int u) {
+    q.push(u);
+    while (!q.empty()) {
+        int x = q.front();
+        q.pop();
+        visited[u] = true;
+        for (int i : ke[x]) {
+            if (!visited[i]) {
+                visited[i] = true;
+                q.push(i);
+                p[i] = x;
+            }
+        }
+    }
+}
+int main() {
+    int n, m, s, t; cin >> n >> m >> s >> t;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        ke[x].push_back(y);
+        ke[y].push_back(x);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(ke[i].begin(), ke[i].end());
+    }
+    bfs(s);
+    if (!visited[t])
+        cout << "-1";
+    else {
+        vector<int>res;
+        while (s != t) {
+            res.push_back(t);
+            t = p[t];
+        }
+        res.push_back(s);
+        reverse(res.begin(), res.end());
+        for (int i : res) {
+            cout << i << ' ';
+        }
+    }
+}
+*/
+//Bai 16
+/*
+* #include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+int parent[1005];
+int n, m, s, t;
+void dfs(int u) {
+    visited[u] = true;
+    for (int i : ke[u]) {
+        if (!visited[i]) {
+            parent[i] = u;
+            dfs(i);
+        }
+    }
+}
+int main() {
+    cin >> n >> m >> s >> t;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        //Them y vao ds ke cua x
+        ke[x].push_back(y);
+    }
+    for (int i = 1; i <= n; i++) 
+        sort(ke[i].begin(), ke[i].end());
+    dfs(s);
+    if (!visited[t])
+        cout << "-1" << endl;
+    else {
+        vector<int>res;
+        while (s != t) {
+            res.push_back(t);
+            t = parent[t];
+        }
+        res.push_back(s);
+        reverse(res.begin(), res.end());
+        for (auto it : res)
+            cout << it << " ";
+    }
+}
+
+*/
+//Bai 17
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+queue<int>q;
+vector<int>ke[1005];
+bool visited[1005];
+int parent[1005];
+int n, m, s, t;
+void bfs(int u) {
+    q.push(u);
+    visited[u] = true;
+    while (!q.empty()) {
+        int x = q.front();
+        q.pop();
+        for (auto i : ke[x]) {
+            if (!visited[i]) {
+                q.push(i);
+                visited[i] = true;
+                parent[i] = x;
+            }
+        }
+    }
+}
+int main() {
+    cin >> n >> m >> s >> t;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        ke[x].push_back(y);
+    }
+    for (int i = 1; i <= n; i++)
+        sort(ke[i].begin(), ke[i].end());
+    bfs(s);
+    if (!visited[t])
+        cout << "-1" << endl;
+    else {
+        vector<int>v;
+        while (s != t) {
+            v.push_back(t);
+            t = parent[t];
+        }
+        v.push_back(s);
+        reverse(v.begin(), v.end());
+        for (auto it : v)
+            cout << it << " ";
+    }
+}
+*/
+//Bai 18
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+int parent[1005];
+int n, m, s, t;
+int res[1005][1005];
+void dfs(int u) {
+    visited[u] = true;
+    for (int i : ke[u]) {
+        if (!visited[i]) {
+            parent[i] = u;
+            dfs(i);
+        }
+    }
+}
+int main() {
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        ke[y].push_back(x);
+        ke[x].push_back(y);
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int k = 1; k <= n; k++) {
+            visited[k] = false;
+        }
+        dfs(i);
+        for (int j = 1; j <= n; j++) {
+            if (i == j)
+                res[i][j] = -1;
+            else {
+                if (!visited[j])
+                    res[i][j] = -1;
+                else
+                    res[i][j] = 1;
+            }
+        }
+    }
+    int q; cin >> q;
+    while (q--) {
+        int x, y; cin >> x >> y;
+        cout << res[x][y] << endl;
+    }
+}
+*/
+//Bai 19
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+bool visited[1005];
+vector<int>ke[1005];
+void dfs(int u) {
+    visited[u] = true;
+    for (int i : ke[u]) {
+        if (!visited[i])
+            dfs(i);
+    }
+}
+int main() {
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        ke[x].push_back(y);
+        ke[y].push_back(x);
+    }
+    for (int i = 1; i <= n; i++)
+        sort(ke[i].begin(), ke[i].end());
+    // Dem so thanh phan lien thong ban dau
+    int cnt = 0;
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i]) {
+            cnt++;
+            dfs(i);
+        }
+    }
+    int res = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            visited[j] = false;
+        }
+        visited[i] = true;
+        int dem = 0;
+        for (int j = 1; j <= n; j++) {
+            if (!visited[j]) {
+                dem++;
+                dfs(j);
+            }
+        }
+        if (dem > cnt)
+            res++;
+    }
+    cout << res << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, m, timer = 0;
+int disc[1005], low[1005];
+vector<int>adj[1005];
+bool visited[1005];
+bool AP[1005];//Luu dinh tru
+void nhap() {
+    cin >> n >> m;
+    for (int i = 0; i < m; i++) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+}
+void dfs(int u,int par) {
+    visited[u] = true;
+    disc[u] = low[u] = ++timer;
+    int child = 0;
+    for (int i : adj[u]) {
+        if (i == par)
+            continue;
+        if (!visited[i]) {
+            dfs(i, u);
+            child++;
+            low[u] = min(low[u], low[i]);
+            if (par != -1 && disc[u] <= low[i])
+                AP[u] = true;
+        }
+        else {
+            low[u] = min(low[u], disc[i]);
+        }
+    }
+    if (par == -1 && child > 1)
+        AP[u] = true;
+}
+int main() {
+    nhap();
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i])
+            dfs(i, -1);
+    }
+    int ans = 0;
+    for (int i = 1; i <= n; i++) {
+        if (AP[i])
+            ans++;
+    }
+    cout << ans << endl;
+}
+*/
+//Bai 20
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+int n, m;
+vector<pair<int, int>>v;
+void dfs(int u, int x, int y) {
+    visited[u] = true;
+    for (int i : ke[u]) {
+        if ((i == x && u == y) || (i == y && u == x)) {
+            continue;
+        }
+        if (!visited[i]) {
+            dfs(i, x, y);
+        }
+    }
+}
+int main() {
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        ke[x].push_back(y);
+        ke[y].push_back(x);
+        v.push_back({ x,y });
+    }
+    int tplt = 0;
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i]) {
+            tplt++;
+            dfs(i, -1, - 1);
+        }
+    }
+    int ans = 0;
+    for (auto it : v) {
+        int x = it.first;
+        int y = it.second;
+        int dem = 0;
+        for (int i = 1; i <= n; i++) {
+            visited[i] = false;
+        }
+        for (int i = 1; i <= n; i++) {
+            if (!visited[i]) {
+                dem++;
+                dfs(i, x, y);
+            }
+        }
+        if (dem > tplt)
+            ans++;
+    }
+    cout << ans;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+#include<vector>
+using namespace std;
+typedef pair<int, int>ii;
+int n, m, timer = 0;
+vector<int>adj[1005];
+bool visited[1005];
+int disc[1005], low[1005];
+vector<ii>bridge;
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+}
+void DFS(int u, int par) {
+    visited[u] = true;
+    disc[u] = low[u] = ++timer;
+    for (int i : adj[u]) {
+        if (i == par)
+            continue;
+        if (!visited[i]) {
+            DFS(i, u);
+            low[u] = min(low[u], low[i]);
+            if (disc[u] < low[i]) {
+                bridge.push_back({ u,i });
+            }
+        }
+        else {
+            low[u] = min(low[u], disc[i]);
+        }
+    }
+}
+int main() {
+    nhap();
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i])
+            DFS(i, -1);
+    }
+    cout << bridge.size();
+}
+*/
+//Bai 21
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<stack>
+#include<cstring>
+using namespace std;
+int n, m;
+bool visited[1005];
+vector<int>adj[1005], t_adj[1005];
+stack<int>st;
+void nhap() {
+    cin >> n >> m;
+    while (m--) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        t_adj[y].push_back(x);
+    }
+}
+void DFS1(int u) {
+    visited[u] = true;
+    for (int i : adj[u]) {
+        if (!visited[i]) {
+            DFS1(i);
+        }
+    }
+    st.push(u);
+}
+void DFS2(int u) {
+    visited[u] = true;
+    for (int i : t_adj[u]) {
+        if (!visited[i])
+            DFS2(i);
+    }
+}
+void Kosaraju() {
+    DFS1(1);
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i]) {
+            cout << "0" << endl;
+            return;
+        }
+    }
+    int check = 0;
+    memset(visited, false, sizeof(visited));
+    while (!st.empty()) {
+        int u = st.top(); st.pop();
+        if (!visited[u]) {
+            check++;
+            DFS2(u);
+        }
+    }
+    if (check > 1)
+        cout << "0" << endl;
+    else
+        cout << "1" << endl;
+}
+int main() {
+    nhap();
+    Kosaraju();
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+int parent[1005];
+queue<int>q;
+bool bfs(int u) {
+    q.push(u);
+    visited[u] = true;
+    while (!q.empty()) {
+        int v = q.front();
+        q.pop();
+        for (int x : ke[v]) {
+            if (!visited[x]) {
+                visited[x] = true;
+                q.push(x);
+                parent[x] = v;
+            }
+            else if (x != parent[v])
+                return true;
+        }
+    }
+    return false;
+}
+int main() {
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        ke[x].push_back(y);
+        ke[y].push_back(x);
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++)
+            visited[j] = false;
+        if (bfs(i)) {
+            cout << "1" << endl;
+            return 0;
+        }
+    }
+    cout << "0" << endl;
+}
+*/
+//Bai 22
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+int parent[1005];
+queue<int>q;
+bool bfs(int u) {
+    q.push(u);
+    visited[u] = true;
+    while (!q.empty()) {
+        int v = q.front();
+        q.pop();
+        for (int x : ke[v]) {
+            if (!visited[x]) {
+                visited[x] = true;
+                q.push(x);
+                parent[x] = v;
+            }
+            else if (x != parent[v])
+                return true;
+        }
+    }
+    return false;
+}
+int main() {
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        ke[x].push_back(y);
+        ke[y].push_back(x);
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++)
+            visited[j] = false;
+        if (bfs(i)) {
+            cout << "1" << endl;
+            return 0;
+        }
+    }
+    cout << "0" << endl;
+}
+*/
+//Bai 23
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+void dfs(int u) {
+    visited[u] = true;
+    for (int i : ke[u]) {
+        if (!visited[i]) {
+            dfs(i);
+        }
+    }
+}
+int main() {
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        //Them y vao ds ke cua x
+        ke[x].push_back(y);
+    }
+    for (int i = 1; i <= n; i++) {
+        dfs(i);
+        for (int j = 1; j <= n; j++) {
+            if (visited[j] == false) {
+                cout << "0";
+                return 0;
+            }
+        }
+        for (int j = 1; j <= n; j++) {
+            visited[j] = false;
+        }
+    }
+    cout << "1" << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<stack>
+#include<cstring>
+using namespace std;
+int n, m;
+bool visited[1005];
+vector<int>adj[1005], t_adj[1005];
+stack<int>st;
+void nhap() {
+    cin >> n >> m;
+    while (m--) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        t_adj[y].push_back(x);
+    }
+}
+void DFS1(int u) {
+    visited[u] = true;
+    for (int i : adj[u]) {
+        if (!visited[i]) {
+            DFS1(i);
+        }
+    }
+    st.push(u);
+}
+void DFS2(int u) {
+    visited[u] = true;
+    for (int i : t_adj[u]) {
+        if (!visited[i])
+            DFS2(i);
+    }
+}
+void Kosaraju() {
+    DFS1(1);
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i]) {
+            cout << "0" << endl;
+            return;
+        }
+    }
+    int check = 0;
+    memset(visited, false, sizeof(visited));
+    while (!st.empty()) {
+        int u = st.top(); st.pop();
+        if (!visited[u]) {
+            check++;
+            DFS2(u);
+        }
+    }
+    if (check > 1)
+        cout << "0" << endl;
+    else
+        cout << "1" << endl;
+}
+int main() {
+    nhap();
+    Kosaraju();
+}
+*/
+//Bai 24
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+vector<int>ke[1005];
+bool visited[1005];
+int ans = 0;
+void dfs(int u, int par) {
+    visited[u] = 1;
+    for (int i : ke[u]) {
+        if (!visited[i])
+            dfs(i, u);
+        else {
+            if (i != par) {
+                ans = 1;
+                return;
+            }
+        }
+    }
+}
+int main() {
+    int n, m; cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        ke[x].push_back(y);
+        ke[y].push_back(x);
+    }
+    if (n - 1 != m) {
+        cout << "0" << endl;
+        return 0;
+    }
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i])
+            dfs(i, -1);
+    }
+    if (ans == 1)
+        cout << "0" << endl;
+    else
+        cout << "1" << endl;
+}
+*/
+//Bai 25
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+char a[1005][1005];
+int ans = 0;
+bool visited[1005][1005];
+int dx[4] = { -1,1,0,0 };
+int dy[4] = { 0,0,1,-1 };
+int n, m;
+void dfs(int i,int j) {
+    visited[i][j] = true;
+    for (int k = 0; k < 4; k++) {
+        int imoi = i + dx[k];
+        int jmoi = j + dy[k];
+        if (imoi >= 0 && imoi < n && jmoi >= 0 && jmoi < m && visited[imoi][jmoi] == false && a[imoi][jmoi] == '.') {
+            dfs(imoi, jmoi);
+        }
+    }
+}
+int main() {
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> a[i][j];
+            if (a[i][j] == '#')
+                visited[i][j] = true;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (!visited[i][j]) {
+                ans++;
+                dfs(i, j);
+            }
+        }
+    }
+    cout << ans << endl;
+}
+*/
+//Bai 26
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, m;
+bool visited[1005];
+vector<int>adj[1005];
+int cnt = 0;
+vector<int>res;
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+}
+void dfs(int u) {
+    visited[u] = true;
+    for (int i : adj[u]) {
+        if (!visited[i])
+            dfs(i);
+    }
+}
+int main() {
+    nhap();
+    for (int i = 1; i <= n; i++) {
+        visited[i] = false;
+    }
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i]) {
+            cnt++;
+            res.push_back(i);
+            dfs(i);
+        }
+    }
+    cout << cnt - 1 << endl;
+    for (auto i = 0; i < res.size() - 1; i++) {
+        cout << res[i] << " " << res[i + 1] << endl;
+    }
+}
+*/
+//Bai 27
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, m;
+bool visited[1005];
+vector<int>adj[1005];
+int res = 0;
+int dem = 0;
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+}
+void dfs(int u) {
+    dem++;
+    res = max(dem, res);
+    visited[u] = true;
+    for (int i : adj[u]) {
+        if (!visited[i])
+            dfs(i);
+    }
+}
+int main() {
+    nhap();
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i]) {
+            dem = 0;
+            dfs(i);
+        }
+    }
+    cout << res << endl;
+}
+*/
+//Bai 28
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, m;
+int child[1005];
+bool visited[1005];
+vector<int>adj[1005];
+vector<int>res;
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+        child[x]++;
+        child[y]++;
+    }
+    for (int i = 1; i <= n; i++) {
+        if (child[i] == 0)
+            child[i] = 1;
+    }
+}
+int par = 0;
+void dfs(int u) {
+    if (child[par] < child[u])
+        par = u;
+    if (child[par] == child[u]) {
+        if (par > u)
+            par = u;
+    }
+    visited[u] = true;
+    for (int i : adj[u]) {
+        if (!visited[i]) {
+            dfs(i);
+        }
+    }
+}
+int main() {
+    nhap();
+    for (int i = 1; i <= n; i++) {
+        par = 0;
+        if (!visited[i]) {
+            dfs(i);
+            res.push_back(par);
+        }
+    }
+    sort(res.begin(), res.end());
+    for (int i : res)
+        cout << i << " ";
+}
+*/
+//Bai 29
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+int n, s, t, u, v;
+int a[1005][1005];
+int d[1005][1005];
+int dx[8] = { -1,0,1,1,1,0,-1,-1 };
+int dy[8] = { -1,-1,-1,0,1,1,1,0 };
+typedef pair<int, int>ii;
+bool visited[1005][1005];
+queue<ii>q;
+void nhap() {
+    cin >> n >> s >> t >> u >> v;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++)
+            cin >> a[i][j];
+    }
+}
+void bfs() {
+    visited[s][t] = true;
+    q.push({ s,t });
+    while (!q.empty()) {
+        ii top = q.front();
+        q.pop();
+        int i = top.first;
+        int j = top.second;
+        for (int k = 0; k < 8; k++) {
+            int i1 = i + dx[k];
+            int j1 = j + dy[k];
+            if (i1 >= 1 && i1 <= n && j1 >= 1 && j1 <= n && !visited[i1][j1] && a[i1][j1] == 1) {
+                q.push({ i1,j1 });
+                visited[i1][j1] = true;
+                d[i1][j1] = d[i][j] + 1;
+            }
+        }
+    }
+}
+int main() {
+    nhap();
+    bfs();
+    if (d[u][v] == 0)
+        cout << "-1" << endl;
+    else
+        cout << d[u][v];
+}
+*/
+//Bai 30
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+queue<pair<int,int>>q;
+bool visited[1005][1005];
+int s, t, u, v, n;
+int a[1001][1001];
+int dx[8] = { 2,-2,2,-2,1,-1,1,-1 };
+int dy[8] = { -1,1,1,-1,2,-2,-2,2 };
+int d[1005][1005];// d[i][j]: so buoc ngan nhat den o a[i][j]
+void bfs(int s, int t) {
+    visited[s][t] = true;
+    q.push({ s,t });
+    while (!q.empty()) {
+        pair<int, int>top = q.front();
+        q.pop();
+        for (int k = 0; k < 8; k++) {
+            int i1 = top.first + dx[k];
+            int j1 = top.second + dy[k];
+            if (i1 >= 1 && i1 <= n && j1 >= 1 && j1 <= n && a[i1][j1] == 1 && !visited[i1][j1]) {
+                d[i1][j1] = d[top.first][top.second] + 1;
+                q.push({ i1,j1 });
+                visited[i1][j1] = true;
+            }
+        }
+    }
+}
+int main() {
+    cin >> n >> s >> t >> u >> v;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++)
+            cin >> a[i][j];
+    }
+    bfs(s, t);
+    if (!visited[u][v])
+        cout << "-1" << endl;
+    else
+        cout << d[u][v];
+}
+*/
+//Bai 31 
+/*
+// Can tim cac diem thuoc cung 1 duong thang => dung dfs
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n;
+vector<int>adj[1005];
+int cnt[1005];//cnt[i] : so phan tu duoi dinh i
+void nhap() {
+    cin >> n;
+    for (int i = 1; i <= n - 1; i++) {
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+}
+int dfs(int u, int par) {
+    int below = 1; // chinh no
+    for (int i : adj[u]) {
+        if (i != par) { // Khac cha
+            below += dfs(i, u);
+        }
+    }
+    return cnt[u] = below;
+}
+int main() {
+    nhap();
+    int res = 0;
+    dfs(1, 0);
+    for (int i = 1; i <= n; i++) {
+        res += cnt[i];
+    }
+    cout << res << endl;
+}
+*/
+//Bai 32
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+typedef pair<int, int>ii;
+int n, m;
+char a[1005][1005];
+bool visited[1005][1005];
+int dx[4] = { 1,0,-1,0 };
+int dy[4] = { 0,1,0,-1 };
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            cin >> a[i][j];
+            if (a[i][j] == '#')
+                visited[i][j] = true;
+        }
+    }
+}
+int dem = 0;
+void dfs(int i, int j) {
+    visited[i][j] = true;
+    dem++;
+    for (int k = 0; k < 4; k++) {
+        int i1 = i + dx[k];
+        int j1 = j + dy[k];
+        if (i1 >= 1 && i1 <= n && j1 >= 1 && j1 <= m && a[i1][j1] == '.' && !visited[i1][j1]) {
+            dfs(i1, j1);
+        }
+    }
+}
+int main() {
+    nhap();
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            if (!visited[i][j]) {
+                dem = 0;
+                dfs(i, j);
+                cout << dem << " ";
+            }
+        }
+    }
+}
+*/
+//Bai 33
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, m;
+bool visited[1005];
+vector<int>adj[1005];
+bool check = true;
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+}
+void dfs(int u) {
+    visited[u] = true;
+    for (int i : adj[u]) {
+        if (!visited[i]) {
+            if (adj[i].size() != adj[u].size()) {
+                check = false;
+                return;
+            }
+            dfs(i);
+        }
+    }
+}
+int main() {
+    nhap();
+    for (int i = 1; i <= n; i++) {
+        if (!visited[i])
+            dfs(i);
+    }
+    if (check == true)
+        cout << "YES";
+    else
+        cout << "NO";
+}
+*/
+//Bai 34
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include <cstring>
+using namespace std;
+int k, n, m;
+bool visited[1005];
+vector<int>adj[1005];
+vector<int>p;
+void nhap() {
+    cin >> k >> n >> m;
+    for (int i = 1; i <= k; i++) {
+        int x; cin >> x;
+        p.push_back(x);
+    }
+    for (int i = 1; i <= m; i++) {
+        int x, y;
+        cin >> x >> y;
+        adj[y].push_back(x);
+    }
+}
+void dfs(int u) {
+    visited[u] = true;
+    for (int i : adj[u]) {
+        if (!visited[i])
+            dfs(i);
+    }
+}
+int main() {
+    int cnt = 0;
+    nhap();
+    for (int i = 1; i <= n; i++) {
+        dfs(i);
+        bool check = true;
+        for (int j : p) {
+            if (!visited[j])
+                check = false;
+        }
+        if (check == true) cnt++;
+        memset(visited, false, sizeof(visited));
+    }
+    cout << cnt << endl;
+}
+
+*/
+//Bai 36
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+int n;
+bool visited[1005];
+queue<int>q;
+int height[1005];
+vector<int>adj[1005];
+void nhap() {
+    cin >> n;
+    for (int i = 1; i < n; i++) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+}
+void bfs(int u) {
+    visited[u] = true;
+    q.push(u);
+    while (!q.empty()) {
+        int x = q.front();
+        q.pop();
+        for (int i : adj[x]) {
+            if (!visited[i]) {
+                visited[i] = true;
+                height[i] = height[x] + 1;
+                q.push(i);
+            }
+        }
+    }
+}
+int main() {
+    nhap();
+    bfs(1);
+    for (int i = 1; i <= n; i++)
+        cout << height[i] << ' ';
+}
+*/
+//Bai 37
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<queue>
+#include<vector>
+using namespace std;
+int n, m, timer = 0;
+vector<int>adj[1005];
+bool visited[1005];
+int disc[1005], low[1005];
+bool AP[1005];
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+}
+void dfs(int u, int par){
+    int child = 0;
+    visited[u] = true;
+    disc[u] = low[u] = ++timer;
+    for (int i : adj[u]) {
+        if (i == par) continue;
+        if (!visited[i]) {
+            dfs(i, u);
+            low[u] = min(low[u], low[i]);
+            child++;
+            if (disc[u] <= low[i] && par != -1) {
+                AP[u] = true;
+            }
+        }
+        else {
+            low[u] = min(low[u], disc[i]);
+        }
+    }
+    if (par == -1 && child > 1)
+        AP[u] = true;
+}
+int main() {
+    nhap();
+    dfs(1, -1);
+    int cnt = 0;
+    for (int i = 1; i <= n; i++) {
+        if (AP[i] == true)
+            cnt++;
+    }
+    cout << cnt << endl;
+}
+*/
+//Bai 38
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, m;
+vector<int>adj[1005];
+int check[1005]; // 1 co gian
+bool visited[1005];
+int ans = 0;
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++) {
+        cin >> check[i];
+    }
+    for (int i = 1; i < n; i++) {
+        int x, y; cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+}
+// Nut trung gian la nut co > 1 nut ke
+// Nut goc co the co so nut ke = 1
+// => Nut la la nut co size = 1 va != nut goc
+void dfs(int u, int cnt) {
+    visited[u] = true;
+    if (cnt > m) return;
+    if (adj[u].size() == 1 && u != 1) {
+        ans++;
+        return;
+    }
+    else {
+        for (int i : adj[u]) {
+            if (!visited[i]) {
+                if (check[i] == 1)
+                    dfs(i, cnt + 1);
+                else
+                    dfs(i, 0);
+            }
+        }
+    }
+}
+int main() {
+    nhap();
+    dfs(1, check[1]);
+    cout << ans << endl;
+}
+*/
+//Bai 39
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, m, s;
+vector<int>adj[1005];
+bool visited[1005];
+void nhap() {
+    cin >> n >> m >> s;
+    for (int i = 1; i <= m; i++) {
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(adj[i].begin(), adj[i].end());
+    }
+}
+void dfs(int u) {
+    visited[u] = true;
+    for (int i : adj[u]) {
+        if (!visited[i]) {
+            cout << u << "->" << i << endl;
+            dfs(i);
+        }
+    }
+}
+int main() {
+    nhap();
+    dfs(s);
+}
+*/
+//Bai 40
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<algorithm>
+#include<queue>
+using namespace std;
+int n, m, s;
+vector<int>adj[1005];
+bool visited[1005];
+queue<int>q;
+void nhap() {
+    cin >> n >> m >> s;
+    for (int i = 1; i <= m; i++) {
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+    for (int i = 1; i <= n; i++) {
+        sort(adj[i].begin(), adj[i].end());
+    }
+}
+void bfs(int u) {
+    visited[u] = true;
+    q.push(u);
+    while (!q.empty()) {
+        int top = q.front();
+        q.pop();
+        for (int i : adj[top]) {
+            if (!visited[i]) {
+                visited[i] = true;
+                q.push(i);
+                cout << top << "->" << i << endl;
+            }
+        }
+    }
+}
+int main() {
+    nhap();
+    bfs(s);
+}
+*/
+//Bai 41
+/*
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<math.h>
+using namespace std;
+typedef long long ll;
+ll n, m;
+ll parent[1000005], sz[1000005];
+struct edge {
+    ll x, y, w;
+};
+vector<edge>E;//DS canh
+int cmp(edge a, edge b) {
+    return a.w < b.w;
+}
+void nhap() {
+    cin >> n >> m;
+    for (ll i = 1; i <= m; i++) {
+        ll x, y, z;
+        cin >> x >> y >> z;
+        E.push_back({ x,y,z });
+    }
+    for (ll i = 1; i <= n; i++) {
+        parent[i] = i;
+        sz[i] = 1;
+    }
+}
+int Find(ll u) {
+    if (u == parent[u])
+        return u;
+    else {
+        parent[u] = Find(parent[u]);
+        return parent[u];
+    }
+}
+bool Union(ll u, ll v) {
+    u = Find(u);
+    v = Find(v);
+    if (u == v) return false;
+    else {
+        if (sz[u] < sz[v]) {
+            parent[u] = v;
+            sz[v] += sz[u];
+        }
+        else {
+            parent[v] = u;
+            sz[u] += sz[v];
+        }
+    }
+    return true;
+}
+void Kruskal() {
+    vector<edge>MST;//Luu cay khung
+    sort(E.begin(), E.end(), cmp);
+    ll d = 0; // luu tong chi phi
+    for (edge i : E) {
+        if (MST.size() == n - 1)
+            break;
+        else {
+            if (Union(i.x, i.y)) {
+                MST.push_back(i);
+                d += i.w;
+            }
+        }
+    }
+    if (MST.size() < n - 1) {
+        cout << "IMPOSSIBLE" << endl;
+    }
+    else
+        cout << d << endl;
+}
+int main() {
+    nhap();
+    Kruskal();
+}
+*/
+//Bai 42
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, m;
+int ans = 1;
+int parent[100005], sz[100005];
+void ktao() {
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++) {
+        parent[i] = i;
+        sz[i] = 1;
+    }
+}
+int Find(int u) {
+    if (u == parent[u])
+        return u;
+    else {
+        parent[u] = Find(parent[u]);
+        return parent[u];
+    }
+}
+bool Union(int u, int v) {
+    u = Find(u);
+    v = Find(v);
+    if (u == v)
+        return false;
+    else {
+        if (sz[u] < sz[v]) {
+            parent[u] = v;
+            sz[v] += sz[u];
+            ans = max(ans, sz[v]);
+        }
+        else {
+            parent[v] = u;
+            sz[u] += sz[v];
+            ans = max(ans, sz[u]);
+        }
+    }
+    return true;
+}
+int main() {
+    ktao();
+    for (int i = 0; i < m; i++) {
+        int x, y;
+        cin >> x >> y;
+        if (Union(x, y)) {
+            n--;
+        }
+        cout << n << " " << ans << endl;
+    }
+}
+*/
+//Bai 43
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+char d[505][505];
+int n, m;
+pair<int, int>start,finish;
+int dx[4] = { -1,0,1,0 };
+int dy[4] = { 0,1,0,-1 };
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            cin >> d[i][j];
+            if (d[i][j] == 'S') {
+                start.first = i;
+                start.second = j;
+            }
+            if (d[i][j] == 'T') {
+                finish.first = i;
+                finish.second = j;
+                d[i][j] = '.';
+            }
+        }
+    }
+}
+bool DFS(int i,int j,int cnt,int parent) {
+    if (cnt > 2) return false;
+    if (i == finish.first && j == finish.second) return true;
+    for (int k = 0; k < 4; k++) {
+        int i1 = i + dx[k];
+        int j1 = j + dy[k];
+        if (i1 >= 1 && i1 <= n && j1 >= 1 && j1 <= m && d[i1][j1] == '.') {
+            d[i1][j1] = '*';
+            if (k == parent) {
+                if (DFS(i1, j1, cnt, k))
+                    return true;
+            }
+            else {
+                if (DFS(i1, j1, cnt + 1, k))
+                    return true;
+            }
+            d[i1][j1] = '.';
+        }
+    }
+    return false;
+}
+int main() {
+    nhap();
+    if (DFS(start.first, start.second, -1, 4))
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
+}
+*/
+//Bai 44
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+int n, m, s;
+typedef pair<int, int>ii;
+vector<ii>adj[1005];
+void nhap() {
+    cin >> n >> m >> s;
+    while (m--) {
+        int x, y, w;
+        cin >> x >> y >> w;
+        adj[x].push_back({ y,w });
+        adj[y].push_back({ x,w });
+    }
+}
+void Dijsktra(int s) {
+    priority_queue<ii, vector<ii>, greater<ii>>q;
+    vector<int>dist(n + 1, 1e9 + 7);
+    q.push({ 0,s });
+    dist[s] = 0;
+    while (!q.empty()) {
+        ii top = q.top();
+        q.pop();
+        int w = top.first;
+        int u = top.second;
+        if (dist[u] < w) continue;
+        for (ii v : adj[u]) {
+            int u1 = v.first;
+            int w1 = v.second;
+            if (dist[u1] > dist[u] + w1) {
+                dist[u1] = dist[u] + w1;
+                q.push({ w1,u1 });
+            }
+
+        }
+    }
+    for (int i = 1; i <= n; i++)
+        cout << dist[i] << ' ';
+}
+int main() {
+    nhap();
+    Dijsktra(s);
+}
+*/
+//Bai 45
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+typedef pair<int, int>ii;
+int n, m, q;
+int dist[1005][1005]; // d[i][j] luu duong ngan nhat tu i den j
+vector<ii>adj[1005];
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int x, y, w;
+        cin >> x >> y >> w;
+        adj[x].push_back({ y,w });
+        adj[y].push_back({ x,w });
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (i == j)
+                dist[i][j] = 0;
+            else
+                dist[i][j] = 1e9 + 7;
+        }
+    }
+}
+void Dijsktra(int i) {
+    priority_queue<ii, vector<ii>, greater<ii>>q;
+    q.push({ 0,i });
+    while (!q.empty()) {
+        ii top = q.top();
+        q.pop();
+        int u = top.second;
+        int w = top.first;
+        if (dist[i][u] < w) continue;
+        for (ii v : adj[u]) {
+            int u1 = v.first;
+            int w1 = v.second;
+            if (dist[i][u1] > dist[i][u] + w1) {
+                dist[i][u1] = dist[i][u] + w1;
+                q.push({ w1,u1 });
+            }
+        }
+    }
+}
+int main() {
+    nhap();
+    for (int i = 1; i <= n; i++)
+        Dijsktra(i);
+    cin >> q;
+    while (q--) {
+        int x, y; cin >> x >> y;
+        cout << dist[x][y] << endl;
+    }
+}
+*/
+//Bai 46
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+int n, m;
+int dist[505][505], a[505][505];
+int dx[4] = { 1,-1,0,0 };
+int dy[4] = { 0,0,1,-1 };
+typedef pair<int, pair<int, int>>iii;
+void nhap() {
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            cin >> a[i][j];
+            dist[i][j] = 1e9;
+        }
+    }
+}
+void Dijsktra(int s, int t) {
+    priority_queue<iii, vector<iii>, greater<iii>>q;
+    dist[s][t] = a[s][t];
+    q.push({ a[s][t], {s,t} });
+    while (!q.empty()) {
+        iii top = q.top();
+        q.pop();
+        int w = top.first;
+        int i = top.second.first;
+        int j = top.second.second;
+        if (dist[i][j] < w) continue;
+        //relaxation
+        for (int k = 0; k < 4; k++) {
+            int imoi = i + dx[k];
+            int jmoi = j + dy[k];
+            if (imoi >= 1 && imoi <= n && jmoi >=1 && jmoi <= m && dist[imoi][jmoi] > dist[i][j] + a[imoi][jmoi]) {
+                dist[imoi][jmoi] = dist[i][j] + a[imoi][jmoi];
+                q.push({ dist[imoi][jmoi],{imoi,jmoi} });
+            }
+        }
+    }
+    cout << dist[n][m];
+}
+int main() {
+    nhap();
+    Dijsktra(1, 1);
+}
+*/
