@@ -1,0 +1,2097 @@
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+int nt(int n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0)
+			return 0;
+	}
+	return n > 1;
+}
+int main() {
+	int n; cin >> n;
+	if (nt(n))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+long long a[10000001];
+void sang() {
+	for (int i = 0; i < 10000001; i++)
+		a[i] = 1;
+	a[0] = 0, a[1] = 0;
+	for (int i = 2; i < sqrt(10000001); i++) {
+		if (a[i] == 1) {
+			for (int j = i * i; j < 10000001; j = j + i) {
+				a[j] = 0;
+			}
+		}
+	}
+}
+int main() {
+	int n; cin >> n;
+	sang();
+	for (int i = 2; i <= n; i++) {
+		if (a[i] == 1)
+			cout << i << " ";
+	}
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+int prime[1000001];
+void sieve() {
+	for (int i = 0; i < 1000001; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 0;
+	for (int i = 2; i <= sqrt(1000001); i++) {
+		if (prime[i] == 1) {
+			for (int j = i * i; j <= 1000001; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+}
+int main() {
+	sieve();
+	int q;
+	cin >> q;
+	while (q--) {
+		int n; cin >> n;
+		if (prime[n] == 1)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+const int maxn = 10000001;
+int prime[maxn];
+void sang() {
+	for (int i = 0; i < maxn; i++)
+		prime[i] = 1;
+	prime[0] = prime[1] = 0;
+	for (int i = 2; i <= sqrt(maxn); i++) {
+		if (prime[i] == 1) {
+			for (int j = i * i; j <= maxn; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+}
+int check(int n) {
+	while (n > 0) {
+		int tmp = n % 10;
+		if (tmp != 2 && tmp != 3 && tmp != 5 && tmp != 7)
+			return 0;
+		n /= 10;
+	}
+	return 1;
+}
+int main() {
+	sang();
+	int a, b;
+	cin >> a >> b;
+	int cnt = 0;
+	for (int i = a; i <= b; i++) {
+		if (prime[i] == 1) {
+			if (check(i))
+				cnt++;
+		}
+	}
+	cout << cnt << endl;
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+const int maxn = 10000001;
+int prime[maxn];
+void sang() {
+	for (int i = 0; i < maxn; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 0;
+	for (int i = 2; i <= sqrt(maxn); i++) {
+		if (prime[i] == 1) {
+			for (int j = i * i; j <= maxn; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+}
+int main() {
+	int q;
+	cin >> q;
+	sang();
+	while (q--) {
+		int n;
+		cin >> n;
+		for (int i = 2; i <= n / 2; i++) {
+			if (prime[i] == 1 && prime[n - i] == 1) {
+				cout << i << " " << n - i << endl;
+			}
+		}
+	}
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+int nt(int n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0)
+			return 0;
+	}
+	return n > 1;
+}
+int check(int n) {
+	int sum = 0;
+	while (n > 0) {
+		int res = n % 10;
+		if (res != 2 && res != 3 && res != 5 && res != 7)
+			return 0;
+		sum += res;
+		n /= 10;
+	}
+	if (nt(sum) == 0)
+		return 0;
+	return 1;
+}
+int main() {
+	int a, b;
+	cin >> a >> b;
+	int cnt = 0;
+	for (int i = a; i <= b; i++) {
+		if (check(i) && nt(i))
+			cnt++;
+	}
+	cout << cnt << endl;
+}
+*/
+//Bai 7
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+int gcd(int a, int b) {
+	if (b == 0)
+		return a;
+	return gcd(b, a % b);
+}
+int main() {
+	int a, b;
+	cin >> a >> b;
+	for (int i = a; i <= b; i++) {
+		for (int j = i + 1; j <= b; j++) {
+			if (gcd(i, j) == 1)
+				cout << "(" << i << "," << j << ")" << endl;
+		}
+	}
+}
+*/
+//Bai 8
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+const int maxn = 1000001;
+int prime[maxn];
+void sang() {
+	for (int i = 0; i <= maxn; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 0;
+	for (int i = 2; i <= sqrt(maxn); i++) {
+		if (prime[i] == 1) {
+			for (int j = i * i; j <= maxn; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+}
+
+int main()
+{
+	long long n;
+	cin >> n;
+	sang();
+	for (long long i = 2; i <= sqrt(n); i++)
+	{
+		if (prime[i] == 1)
+			cout << i * i << " ";
+	}
+}
+*/
+//Bai 9
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+typedef long long ll;
+const int maxn = 1000001;
+ll prime[maxn];
+void sang() {
+	for (int i = 0; i <= maxn; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 0;
+	for (int i = 2; i <= sqrt(maxn); i++) {
+		if (prime[i] == 1) {
+			for (int j = i * i; j <= maxn; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+}
+int main() {
+	ll n; cin >> n;
+	int cnt = 0;
+	sang();
+	for (ll i = 2; i <= sqrt(n); i++) {
+		if (prime[i] == 1)
+			cnt++;
+	}
+	cout << cnt << endl;
+}
+*/
+//Bai 10
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+int main() {
+	int q; cin >> q;
+	long long res = 1;
+	while (q--) {
+		int x, n;
+		cin >> x >> n;
+		res = res % 1000000007 * (n + 1) % 1000000007;
+	}
+	cout << res << endl;
+}
+*/
+//Bai 11
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+int a[100000];
+void find() {
+	for (int i = 0; i <= 100000; i++) {
+		a[i] = i;
+	}
+	for (int i = 2; i <= 100000; i++) {
+		if (i % 2 == 0)
+			a[i] = 2;
+		else
+			for (int j = 3; j <= sqrt(a[i]); j++) {
+				if (a[i] % j == 0) {
+					a[i] = j;
+					break;
+				}
+			}
+	}
+	//cac so nguyen to thi k tim duoc j nen a[i] = i
+}
+int main(){
+	int n;
+	cin >> n;
+	find();
+	for (int i = 1; i <= n; i++) {
+		cout << a[i] << endl;
+	}
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+const int maxn = 1000001;
+int a[maxn];
+void sang() {
+	for (int i = 1; i < maxn; i++) {
+		a[i] = i;
+	}
+	for (int i = 2; i <= sqrt(maxn); i++) {
+		if (a[i] == i) {
+			for (int j = i * i; j < maxn; j += i) {
+				if (a[j] == j) {
+					a[j] = i;
+				}
+			}
+		}
+	}
+}
+int main() {
+	int n;
+	cin >> n;
+	sang();
+	for (int i = 1; i <= n; i++) {
+		cout << a[i] << endl;
+	}
+}
+*/
+//Bai 12
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+void pt(long long n) {
+	int cnt = 0;
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			int cnt = 0;
+			while (n % i == 0) {
+				n /= i;
+				cnt++;
+			}
+			cout << i << "^" << cnt;
+			if (n != 1)
+				cout << " * ";
+		}
+	}
+	if (n != 1)
+		cout << n << "^1";		
+}
+int main() {
+	long long n; cin >> n;
+	pt(n);
+}
+*/
+//Bai 13
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+long long pt(long long n,int p) {
+	long long cnt = 0;
+	for (long long i = p; i <= n; i *= p) {
+		cnt += n / i;
+	}
+	return cnt;
+}
+int main() {
+	long long n;
+	int p;
+	cin >> n >> p;
+	cout << pt(n, p) << endl;
+}
+*/
+//Bai 14
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+typedef long long ll;
+const int MOD = 1e9 + 7;
+int main(){
+	long long n;
+	cin>>n;
+	long long ans=0;
+	for(long long i=5;i<=n;i*=5){
+		ans+=n/i;
+		ans%=(long long)(1e9+7);
+	}
+	cout<<ans<<endl;
+}
+//2*5 moi tao ra 0 ma so lan xuat hien cua 5 luon nho hon 5, can xet so lan xuat hien cua 5
+*/
+//Bai 15
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+typedef long long ll;
+const int MOD = 1e9 + 7;
+int check(ll n) {
+	int ans = 0;
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			int cnt = 0;
+			while (n % i == 0) {
+				cnt++;
+				n /= i;
+			}
+			if (cnt > 1)
+				return 0;
+			else
+				ans++;
+		}
+	}
+	if (n != 1)ans++;
+	if (ans == 3)
+		return 1;
+	else
+		return 0;
+}
+int main() {
+	ll n; cin >> n;
+	if (check(n))
+		cout << "1" << endl;
+	else
+		cout << "0" << endl;
+}
+*/
+//Bai 16
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int nt(ll n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0)
+			return 0;
+	}
+	return n > 1;
+}
+int sumts(ll n) {
+	int sumts = 0;
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			while (n % i == 0) {
+				int tmp = i;
+				while ( tmp > 0) {
+					sumts += tmp % 10;
+					tmp /= 10;
+				}
+				n /= i;
+			}
+		}
+	}
+	if (n != 1) {
+		int tmp = n;
+		while (tmp > 0) {
+			sumts += tmp % 10;
+			tmp /= 10;
+		}
+	}
+	return sumts;
+}
+int sum(ll n) {
+	int sum = 0;
+	while (n > 0) {
+		sum += n % 10;
+		n /= 10;
+	}
+	return sum;
+}
+int main() {
+	int n;
+	cin >> n;
+	if (nt(n))
+		cout << "NO" << endl;
+	else {
+		if (sumts(n) == sum(n))
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
+}
+*/
+//Bai 17
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int find(int n) {
+	int ans = 0;
+	for (int i = 2; i <= sqrt(n); i++) {
+		while (n % i == 0) {
+			ans = max(ans, i);
+			n /= i;
+		}
+	}
+	if (n != 1)
+		ans = max(ans, n);
+	return ans;
+}
+int main() {
+	int t; cin >> t;
+	while (t--) {
+		int n; cin >> n;
+		cout << find(n) << endl;
+	}
+}
+*/
+//Bai 18
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int check(int n) {
+	int cnt = 0;
+	for (int i = 2; i <= sqrt(n); i++) {
+		int ans = 0;
+		if (n % i == 0) {
+			while (n % i == 0) {
+				ans++;
+				n /= i;
+			}
+		}
+		cnt = max(cnt, ans);
+	}
+	if (cnt < 2)
+		return 0;
+	else
+		return 1;
+}
+int main() {
+	int a, b;
+	cin >> a >> b;
+	for (int i = a; i <= b; i++) {
+		if (check(i))
+			cout << i << " ";
+	}
+}
+*/
+//Bai 19
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int check(ll n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			int ans = 0;
+			while (n % i == 0) {
+				ans++;
+				n /= i;
+			}
+			if (ans < 2)
+				return 0;
+		}
+	}
+	if (n != 1)
+		return 0;
+	return 1;
+}
+int main() {
+	ll a, b;
+	cin >> a >> b;
+	for (ll i = a; i <= b; i++) {
+		if (check(i))
+			cout << i << " ";
+	}
+}
+*/
+//Bai 20
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+typedef long long ll;
+int main()
+{
+	ll n; cin >> n;
+	ll tmp = sqrt(n);
+	if (tmp*tmp == n)
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 21
+/*
+#include<iostream>
+#include<math.h>
+#include<vector>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll a[1000001];
+int main() {
+	ll l, r; cin >> l >> r;
+	for (ll i = sqrt(l - 1) + 1; i <= sqrt(r); i++)
+		cout << i * i << " ";
+}
+*/
+//Bai 22
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int main() {
+	ll a, b; cin >> a >> b;
+	ll cnt = ll(sqrt(b)) - ll(sqrt(a - 1));
+	cout << cnt << endl;
+}
+*/
+//Bai 23
+/*
+#include<iostream>
+#include<algorithm>
+#include<math.h>
+using namespace std;
+typedef long long ll;
+int main() {
+	ll n; cin >> n;
+	ll cnt = 0;
+	for (int i = 1; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			cnt += i;
+			if (n / i != i)
+				cnt += n / i;
+		}
+	}
+	cout << cnt << " ";
+}
+*/
+//Bai 24 **
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int main() {
+	ll cnt = 1;
+	ll n; cin >> n;
+	for (int i = 2; i <= sqrt(n); i++) {
+		ll res = 0;
+		if (n % i == 0) {
+			while (n % i == 0) {
+				res++;
+				n /= i;
+			}
+			cnt *= (res + 1);
+		}
+	}
+	if (n != 1)
+		cnt *= 2;
+	cout << cnt << endl;
+}
+*/
+//Bai 25
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int main() {
+	ll n;
+	cin >> n;
+	if (ll(sqrt(n)) * ll(sqrt(n)) == n)cout << "YES" << endl;
+	else cout << "NO" << endl;
+}
+*/
+//Bai 26
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+typedef long long ll;
+vector<ll>v;
+int check(ll n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0)return 0;
+	}
+	return 1;
+}
+void find() {
+	for (int i = 0; i < 33; i++) {
+		if (check(i)) {
+			ll tmp = pow(2, i) - 1;
+			if (check(tmp)) {
+				v.push_back(tmp * (pow(2, i - 1)));
+			}
+		}
+	}
+}
+int main() {
+	ll n; cin >> n;
+	find();
+	int ok = 0;
+	for (int i = 0; i < v.size(); i++) {
+		if (n == v[i]) {
+			cout << "YES" << endl;
+			ok = 1;
+		}
+	}
+	if(ok==0)
+		cout << "NO" << endl;
+}
+*/
+//Bai 27
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<string>
+using namespace std;
+typedef long long ll;
+int tn(ll n) {
+	string s = to_string(n);
+	string t = s;
+	reverse(t.begin(), t.end());
+	return t == s;
+}
+int pt(ll n) {
+	int cnt = 0;
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			cnt++;
+			while (n % i == 0) {
+				n /= i;
+			}
+		}
+	}
+	if (n != 1)
+		cnt++;
+	if (cnt >= 3)return 1;
+	return 0;
+}
+int main() {
+	ll m, n; cin >> m >> n;
+	int ok = 0;
+	for (ll i = m; i <= n; i++) {
+		if (tn(i)&&pt(i)) {
+			ok = 1;
+			cout << i << " ";
+		}
+	}
+	if (ok == 0)cout << "-1" << endl;
+}
+*/
+//Bai 28
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+int check(ll n) {
+	string s = to_string(n);
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] != '6' && s[i] != '0' && s[i] != '8')
+			return 0;
+	}
+	return 1;
+}
+int main() {
+	ll n; cin >> n;
+	if (check(n))
+		cout << "1" << endl;
+	else
+		cout << "0" << endl;
+}
+*/
+//Bai 29
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+int check1(ll n) {
+	string s = to_string(n);
+	string t = s;
+	reverse(t.begin(),t.end());
+	if (t == s)return 1;
+	return 0;
+}
+int check2(ll n) {
+	ll sum = 0;
+	int ok = 0;
+	while (n != 0) {
+		int tmp = n % 10;
+		if (tmp == 6)
+			ok = 1;
+		sum += tmp;
+		n /= 10;
+	}
+	if (ok == 0)return 0;
+	if (sum % 10 != 8)return 0;
+	return 1;
+}
+int main() {
+	int a, b; cin >> a >> b;
+	for (int i = a; i <= b; i++) {
+		if (check1(i) && check2(i))
+			cout << i << " ";
+	}
+}
+*/
+//Bai 30
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+ll a[10000000];
+void sang() {
+	a[0] = a[1] = 1;
+	for (int i = 2; i <= sqrt(10000000); i++) {
+		if (a[i] == 0) {
+			for (int j = i * i; j < 10000000; j+=i) {
+				a[j] = 1;
+			}
+		}
+	}
+}
+int check(ll n) {
+	string s = to_string(n);
+	for (int i = 0; i < s.size() - 1; i++) {
+		if (s[i] > s[s.size() - 1])
+			return 0;
+	}
+	return 1;
+}
+int main() {
+	ll n; cin >> n;
+	sang();
+	int cnt = 0;
+	for (int i = 2; i <= n; i++) {
+		if (a[i] == 0 && check(i))
+		{
+			cout << i << " ";
+			cnt++;
+		}
+	}
+	cout << endl << cnt << endl;
+}
+*/
+//Bai 31
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int main() {
+	ll n; cin >> n;
+	ll res = n;
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			res = (res - res / i); {
+				while (n % i == 0) 
+					n /= i;
+			}
+		}
+	}
+	if (n != 1) {
+		res = res - res / n;
+	}
+	cout << res << endl;
+}
+*/
+//Bai 32
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+void find(ll n, ll k) {
+	ll cnt = 0;
+	int ok = 0;
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			while (n % i == 0) {
+				cnt++;
+				if (cnt == k) {
+					ok = 1;
+					cout << i << endl;
+					return;
+				}
+				n /= i;
+			}
+		}
+	}
+	if (n != 1) {
+		cnt++;
+		if (cnt == k) {
+			cout << n << endl;
+			ok = 1;
+		}
+	}
+	if (ok == 0)
+		cout << "-1";
+}
+int main() {
+	ll n, k; cin >> n >> k;
+	find(n, k);
+}
+*/
+//Bai 33
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<map>
+#include<string>
+#include<vector>
+using namespace std;
+typedef long long ll;
+int main() {
+	ll n; cin >> n;
+	vector<char>v;
+	string s = to_string(n);
+	map<char, ll>mp;
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] == '2' || s[i] == '3' || s[i] == '5' || s[i] == '7') {
+			mp[s[i]]++;
+			if (mp[s[i]] == 1)
+				v.push_back(s[i]);
+		}
+	}
+	for (auto it : mp) {
+		cout << it.first << " " << it.second << endl;
+	}
+	cout << endl;
+	for (char x : v) {
+		if (mp[x] != 0) {
+			cout << x << " " << mp[x] << endl;
+			mp[x] = 0;
+		}
+	}
+}
+*/
+//Bai 34
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll gcd(ll a, ll b) {
+	if (b == 0)return a;
+	return gcd(b, a % b);
+}
+ll bcnn(ll a, ll b) {
+	ll tmp =  gcd(a, b);
+	return (a / tmp) * b ;
+}
+int main() {
+	ll x, y, z, n;
+	cin >> x >> y >> z >> n;
+	ll tmp = bcnn(x, bcnn(y, z));
+	ll kq = ll((pow(10, n - 1) + tmp - 1) / tmp) * tmp;
+	if (kq >= pow(10, n))
+		cout << "-1";
+	else
+		cout << kq << endl;
+}
+*/
+//Bai 35
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll gcd(ll a, ll b) {
+	if (b == 0)return a;
+	return gcd(b, a % b);
+}
+ll lcm(ll a, ll b) {
+	return (a / gcd(a, b)) * b;
+}
+int main() {
+	ll a, b; cin >> a >> b;
+	cout << gcd(a, b) << " " << lcm(a, b) << endl;
+}
+*/
+//Bai 36 **
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll mod = 1e9 + 7;
+ll c[10001][10001];
+void tohop() {
+	for (int i = 0; i <= 1000; i++) {
+		for (int j = 0; j <= i; j++) {
+			if (i == j || j == 0)c[i][j] = 1;
+			else {
+				c[i][j] = c[i - 1][j - 1] + c[i - 1][j];
+				c[i][j] %= mod;
+			}
+		}
+	}
+}
+int main() {
+	int n; cin >> n;
+	tohop();
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j <= i; j++) {
+			cout << c[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+*/
+//Bai 37
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll mod = 1e9 + 7;
+int main() {
+	ll a, b; cin >> a >> b;
+	a %= mod;
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+			res%= mod;
+			b--;
+		}
+		a *= a;
+		a %= mod;
+		b /= 2;
+	}
+	cout<<res<<endl;
+}
+*/
+//Bai 38 **
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+int check(int n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0)return 0;
+	}
+	return n > 1;
+}
+//Kiem tra snt p xuat hien bao nhieu lan trong n!
+ll uocso(int n,int p) {
+	// 10!=10*9*8*7*6*5*4*3*2
+	//kiem tra p=2, 2 xuat hien 5 lan, 4 xuat hien 2 , 8 xuat hien 1
+	ll res = 0;
+	for (int i = p; i <= n; i *= p) {
+		res += n / i;
+		res %= MOD;
+	}
+	return res;
+}
+int main() {
+	int n; cin >> n;
+	ll res = 1;
+	for (int i = 2; i <= n; i++) {
+		if (check(i)) {
+			res *= (uocso(n, i) + 1);
+			res %= MOD;
+		}
+	}
+	cout << res << endl;
+}
+*/
+//Bai 39
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int main() {
+	ll n; cin >> n;
+	ll suml = 0, sumc = 0;
+	if (n % 2 == 0) {
+		sumc = (n + 2) * ((n - 2) / 2 + 1) / 2;
+		suml = n * ((n - 2) / 2 + 1) / 2;
+		cout << sumc - suml;
+	}
+	else {
+		sumc = (n + 1) * ((n - 3) / 2 + 1) / 2;
+		suml = (n + 1) * ((n - 1) / 2 + 1) / 2;
+		cout << sumc - suml;
+	}
+}
+*/
+//Bai 40
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll powmod(ll a,ll n) {
+	ll res = 1;
+	while (n != 0) {
+		if (n % 2 != 0) {
+			res *= a;
+			res %= 10;
+		}
+		a *= a;
+		a %= 10;
+		n /= 2;
+	}
+	return res % 10;
+}
+int main() {
+	ll n; cin >> n;
+	cout << powmod(1378, n);
+}
+*/
+//Bai 41
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+int check(string s) {
+	if (s[0] == '0' || s[s.size() - 1] == '0')return 0;
+	if ((s[s.size() - 1] - '0' != 2 * (s[0] - '0')) && ((s[0] - '0') != 2 * (s[s.size() - 1] - '0')))
+		return 0;
+	for (int i = 1; i <= s.size() - 2; i++) {
+		if (s[i] != s[s.size() - 1 - i])
+			return 0;
+	}
+	return 1;
+}
+int main() {
+	string s; cin >> s;
+	if (check(s))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 42
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int main() {
+	int n; cin >> n;
+	for (int i = 1; i <= n; i++) {
+		ll tmp = i * i;
+		ll res = tmp * (tmp - 1) / 2;
+		ll temp = 4 * (i - 1) * (i - 2);
+		cout << res - temp << endl;
+	}
+}
+*/
+//Bai 43 To hop chinh la tam giac Pascal
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll a[1001][1001];
+void tohop() {
+	for (int i = 0; i < 1001; i++) {
+		for (int j = 0; j <= i; j++) {
+			if (j == 0 || i == j)
+				a[i][j] = 1;
+			else {
+				a[i][j] = a[i - 1][j - 1] + a[i - 1][j];
+				a[i][j] %= MOD;
+			}
+		}
+	}
+}
+int main() {
+	int n, m; 
+	cin >> n >> m;
+	tohop();
+	cout << a[n - 1][m - 1];
+}
+*/
+//Bai 44 **
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll a[1001][1001];
+void tohop() {
+	for (int i = 0; i < 1001; i++) {
+		for (int j = 0; j <= i; j++) {
+			if (j == 0 || i == j)
+				a[i][j] = 1;
+			else {
+				a[i][j] = a[i - 1][j - 1] + a[i - 1][j];
+			}
+		}
+	}
+}
+int main() {
+	int n, m;
+	cin >> n >> m;
+	tohop();
+	cout << a[n + m - 1][n - 1];
+}
+*/
+//Bai 45
+/*
+1111=11*100+11
+11111=111*100+11
+moi so co cac chu so la 1 deu duoc bieu dien theo 111 va 11
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+void check(ll n) {
+	int tmp = n % 111;
+	if (tmp % 11 == 0)
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+int main() {
+	ll n; cin >> n;
+	check(n);
+}
+*/
+//Bai 46 **
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll powmod(ll n, ll k) {
+	n %= MOD;
+	ll res = 1;
+	while (k != 0) {
+		if (k % 2 != 0) {
+			res *= n;
+			res %= MOD;
+		}
+		n *= n;
+		n %= MOD;
+		k /= 2;
+	}
+	return res;
+}
+int main() {
+	ll n, k;
+	cin >> n >> k;
+	int cnt = 0;
+	ll res = 0;
+	while (k != 0) {
+		int t = k % 2;
+		if (t != 0) {
+			res += powmod(n, cnt);
+			res %= MOD;
+		}
+		cnt++;
+		k /= 2;
+	}
+	cout << res << endl;
+}
+*/
+//Bai 47
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int maxn = 1e6 + 1;
+int* cnt = new int[maxn];
+int main() {
+	int n; cin >> n;
+	int* a = new int[n];
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+		cnt[a[i]]++;//dem so lan xuat hien cua cac so trong mang
+	}
+	int res = *max_element(a, a + n);
+	for (int i = res; i >= 1; i--) {// gcd <= phan tu lon nhat trong mang
+		int ans = 0;
+		for (int j = 0; j <= res; j += i) {
+			ans += cnt[j];// dem bao nhieu so co uoc la i
+			if (ans >= 2)
+			{
+				cout << i << endl;
+				return 0;
+			}
+		}
+	}
+}
+*/
+//Bai 48
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+//a^(b^c)
+//a % MOD, (b^c)%(MOD-1) 
+ll powmod(ll a, ll b, ll m) {
+	a %= m;
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+			res %= m;
+		}
+		a *= a;
+		a %= m;
+		b /= 2;
+	}
+	return res;
+}
+int main() {
+	int q; cin >> q;
+	while (q--) {
+		ll a, b, c;
+		cin >> a >> b >> c;
+		ll r = powmod(b, c, MOD - 1);
+		ll res = powmod(a, r, MOD);
+		cout << res << endl;
+	}
+}
+*/
+//Bai 49 Hoan vi lap
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+#include<map>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+int maxn = 1e6 + 1;
+ll* a = new ll[maxn];
+ll powmod(ll a, ll b, ll m) {
+	a %= m;
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+			res %= m;
+		}
+		a *= a;
+		a %= m;
+		b /= 2;
+	}
+	return res;
+}
+void gt() {
+	a[0] = 1;
+	for (int i = 1; i < maxn; i++) {
+		a[i] = a[i - 1] * i;
+		a[i] %= MOD;
+	}
+}
+int main() {
+	gt();
+	string s; cin >> s;
+	map<char, int>mp;
+	for (int i = 0; i < s.size(); i++) {
+		mp[s[i]]++;
+	}
+	ll sum = 1;
+	for (auto it : mp) {
+		if (it.second > 1) {
+			sum *= a[it.second];
+			sum %= MOD;
+		}
+	}
+	ll res = powmod(sum, MOD - 2, MOD);
+	cout << ((a[s.size()] % MOD) * (res % MOD)) % MOD << endl;
+}
+*/
+//Bai 51
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll x, y, d;
+void precision(ll a, ll b, ll d) {
+	if (b == 0) {
+		x = 1; y = 0; d = a;
+	}
+	else {
+		precision(b, a % b, d);
+		ll tmp = x;
+		x = y;
+		y = tmp - a / b * y;
+	}
+}
+int main() {
+	ll a, b, p; cin >> a >> b >> p;
+	precision(a, b, p);
+	if ((x + y) % 2 == 0)
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 52
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll x, y, d;
+void precision(ll a, ll b) {
+	if (b == 0) {
+		x = 1; y = 0; d = a;
+	}
+	else {
+		precision(b, a % b);
+		ll tmp = x;
+		x = y;
+		y = tmp - y * (a / b);
+	}
+}
+int main() {
+	ll a, b;
+	cin >> a >> b;
+	precision(a, b);
+	if (d != 1)
+		cout << "-1";
+	else
+		cout << (x % b + b) % b;
+}
+*/
+//Bai 53
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll powmod(ll a, ll b, ll m) {
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+			res %= m;
+		}
+		a *= a;
+		a %= m;
+		b /= 2;
+	}
+	return res;
+}
+int main() {
+	ll a; cin >> a ;
+	cout << powmod(a, MOD - 2, MOD);
+}
+*/
+//Bai 54
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int main() {
+	int n; cin >> n;
+	int k1, k2, k3, k4;
+	cin >> k1 >> k2 >> k3 >> k4;
+	ll res = 1;
+	ll tmp = 1;
+	for (int i = 2; i <= n; i++) {
+		res *= i;
+	}
+	for (int i = 2; i <= k1; i++)tmp *= i;
+	for (int i = 2; i <= k2; i++)tmp *= i;
+	for (int i = 2; i <= k3; i++)tmp *= i;
+	for (int i = 2; i <= k4; i++)tmp *= i;
+	cout << res / tmp;
+}
+*/
+//Bai 55
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int maxn = 1e6 + 1;
+ll MOD = 1e9 + 7;
+ll* gt = new ll[maxn];
+void giaithua() {
+	gt[0] = 1;
+	for (int i = 1; i < maxn; i++) {
+		gt[i] = gt[i - 1] * i;
+		gt[i] %= MOD;
+	}
+}
+ll powmod(ll a, ll b, ll m) {
+	a %= m;
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+			res %= m;
+		}
+		a *= a;
+		a %= m;
+		b /= 2;
+	}
+	return res;
+}
+int main() {
+	giaithua();
+	ll n; cin >> n;
+	int k[4];
+	for (int i = 0; i < 4; i++) {
+		cin >> k[i];
+	}
+	ll res = 1;
+	for (int i = 0; i < 4; i++) {
+		res *= gt[k[i]];
+		res %= MOD;
+	}
+	ll tmp = powmod(res, MOD - 2, MOD);
+	cout << ((gt[n] % MOD) * (tmp % MOD)) % MOD;
+}
+*/
+//Bai 56 *****
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<queue>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+vector<ll>v;
+queue<ll>q;
+void so_tot(ll a,ll b) {
+	v.push_back(a);
+	v.push_back(b);
+	q.push(a);
+	q.push(b);
+	while (true) {
+		ll top = q.front();
+		if (top > 1e7)break;
+		v.push_back(top * 10 + a);
+		v.push_back(top * 10 + b);
+		q.pop();
+		q.push(top * 10 + a);
+		q.push(top * 10 + b);
+	}
+}
+ll gt[1000001];
+void giaithua() {
+	gt[0] = 1;
+	for (int i = 1; i <= 1e6; i++) {
+		gt[i] = gt[i - 1] * i;
+		gt[i] %= MOD;
+	}
+}
+ll powmod(ll a, ll b, ll c) {
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+			res %= c;
+		}
+		a *= a;
+		b /= 2;
+		a %= c;
+	}
+	return res;
+}
+ll sum(ll a, ll m) {
+	return powmod(a, m - 2, m);
+}
+ll tuyetvoi(ll n, ll x, ll y) {
+	return (gt[n] % MOD) * (((sum(gt[x], MOD)) * sum(gt[y], MOD)) % MOD) % MOD;
+}
+
+// x + y = n => x = n - y
+// x * a + y * b = m
+//y = (n * a - m)/(a - b) 
+ll gpt(ll a,ll  b, ll m, ll n) {
+	ll tmp = b - a;
+	if ((m - a * n >= 0) && (m - a * n) % tmp == 0) {
+		ll y = (m - n * a) / tmp;
+		ll x = n - y;
+		if (x >= 0 && y >= 0) {
+			return tuyetvoi(n, x, y);
+		}
+	}
+	return 0;
+}
+int main() {
+	ll a, b, n;
+	cin >> a >> b >> n;
+	so_tot(a, b);
+	giaithua();
+	
+	ll res = 0;
+	for (ll x : v) {
+		res += gpt(a, b, x, n);
+		res %= MOD;
+	}
+	cout << res << endl;
+}
+*/
+//Bai 57
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll powmod(ll a, ll b, ll m) {
+	a %= m;
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+			res %= m;
+		}
+		a *= a;
+		a %= m;
+		b /= 2;
+	}
+	return res;
+}
+int main() {
+	ll a, b, c, m;
+	cin >> a >> b >> c >> m;
+	ll res = (powmod(a, b, m) * ((powmod(c, m - 2, m)) % m)) % m;
+	cout << res << endl;
+}
+*/
+//Bai 58
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+int check(ll n) {
+	string s = to_string(n);
+	for (char x : s) {
+		if (x != '4' && x != '7')
+			return 0;
+	}
+	return 1;
+}
+int pt(ll n) {
+	for (int i = 1; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			if (check(i)||check(n/i))
+				return 1;
+		}
+	}
+	return 0;
+}
+int main() {
+	ll n; cin >> n;
+	if (pt(n))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 59
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll find(ll x, ll n) {
+	ll res = 0;
+	for (int i = ((x - 1) / n) + 1 ; i <= sqrt(x); i++) {
+		if (x % i == 0 && i * i != x)
+			res += 2;
+		else if (i * i == x)
+			res++;
+	}
+	return res;
+}
+int main() {
+	ll n, x;
+	cin >> n >> x;
+	cout << find(x, n);
+}
+*/
+//Bai 60
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<map>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+map<ll, ll>mp;
+void pt(int n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			while (n % i == 0) {
+				mp[i]++;
+				n /= i;
+			}
+		}
+	}
+	if (n != 1)
+		mp[n]++;
+}
+int main() {
+	int n; cin >> n;
+	while (n--) {
+		int x; cin >> x;
+		pt(x);
+	}
+	ll res = 1;
+	for (auto it : mp) {
+		res *= (it.second + 1);
+		res %= MOD;
+	}
+	cout << res << endl;
+}
+*/
+//Bai 61 : Dem so uoc su dung sang 
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<map>
+using namespace std;
+typedef long long ll;
+int maxn = 1000001;
+int a[1000001];
+ll MOD = 1e9 + 7;
+void sang() {
+	for (int i = 2; i <= maxn; i++) {
+		a[i] = i;
+	}
+	for (int i = 2; i <= sqrt(maxn); i++) {
+		if (a[i] == i) {
+			for (int j = i * i; j <= maxn; j += i) {
+				if (a[j] == j)
+					a[j] = i;
+			}
+		}
+	}
+}
+int main() {
+	ll res = 1;
+	map<ll, ll>mp;
+	sang();
+	int n; cin >> n;
+	while (n--) {
+		int x; cin >> x;
+		while (x != 1) {
+			mp[a[x]]++;
+			x /= a[x];
+		}
+	}
+	for (auto it : mp) {
+		res *= it.second + 1;
+		res %= MOD;
+	}
+	cout << res << endl;
+}
+*/
+//Bai 62
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll powmod(ll a, ll b, ll m) {
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+			res %= m;
+		}
+		a *= a;
+		a %= m;
+		b /= 2;
+	}
+	return res;
+}
+ll a[10000001];
+void gt() {
+	a[0] = 1;
+	for (ll i = 1; i < 10000001; i++) {
+		a[i] = a[i - 1] * i;
+		a[i] %= MOD;
+	}
+}
+int main() {
+	gt();
+	ll n, k;
+	cin >> n >> k;
+	cout << a[n] * ((powmod(a[k], MOD - 2, MOD) * powmod(a[n - k], MOD - 2, MOD)) % MOD) % MOD;
+}
+*/
+//Bai 64
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll fibo[93];
+void fb() {
+	fibo[0] = 0;
+	fibo[1] = 1;
+	for (int i = 2; i < 93; i++) {
+		fibo[i] = fibo[i - 1] + fibo[i - 2];
+	}
+}
+int check(ll n) {
+	fb();
+	for (int i = 0; i < 93; i++) {
+		if (fibo[i] == n)
+			return 1;
+	}
+	return 0;
+}
+int main() {
+	ll n; cin >> n;
+	if (check(n))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 65 **
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+void nhan(ll a[2][2], ll b[2][2]) {
+	ll c[2][2];
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
+			c[i][j] = 0;
+			for (int k = 0; k < 2; k++) {
+				c[i][j] += a[i][k] * b[k][j];
+				c[i][j] %= MOD;
+			}
+		}
+	}
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
+			a[i][j] = c[i][j];
+		}
+	}
+}
+void pow( ll n) {
+	ll a[2][2] = { {1,1},{1,0} };
+	ll res[2][2] = { {1,0},{0,1} };
+	while (n != 0) {
+		if (n % 2 != 0) {
+			nhan(res, a);
+		}
+		nhan(a, a);
+		n /= 2;
+	}
+	cout << res[1][0];
+}
+int main() {
+	ll n; cin >> n;
+	pow(n - 1);
+}
+*/
+//Bai 66 *
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int main() {
+	ll n, x;
+	cin >> n >> x;
+	if (x >= 30) // 2^x <= 10^9
+		cout << n << endl;
+	else {
+		ll tmp = pow(2, x);
+		cout << n % tmp;
+	}
+}
+*/
+//Bai 67
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll powmod(ll p, ll x) {
+	p %= 10;
+	ll res = 1;
+	while (x != 0) {
+		if (x % 2 != 0) {
+			res *= p;
+			res %= 10;
+		}
+		p *= p;
+		x /= 2;
+		p %= 10;
+	}
+	return res;
+}
+int main() {
+	ll p, x;
+	cin >> p >> x;
+	cout << powmod(p, x) << endl;
+}
+*/
+//Bai 68
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+int main() {
+	int n; cin >> n;
+	ll* a = new ll[n];
+	ll res = 1;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+		res *= a[i];
+		res %= MOD;
+	}
+	cout << res << endl;
+}
+*/
+//Bai 69
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<map>
+using namespace std;
+typedef long long ll;
+map<ll, ll>mp;
+void pt(ll n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			while (n % i == 0) {
+				mp[i]++;
+				n /= i;
+			}
+		}
+	}
+	if (n != 1)
+		mp[n]++;
+}
+ll powmod(ll a, ll b) {
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+		}
+		a *= a;
+		b /= 2;
+	}
+	return res;
+}
+int main() {
+	ll n; cin >> n;
+	pt(n);
+	ll res = 1;
+	for (auto it : mp) {
+		if (it.second % 2 != 0) {
+			res = res * powmod(it.first, it.second + 1);
+		}
+		else
+			res = res * powmod(it.first, it.second);
+	}
+	cout << res << endl;
+}
+*/
+//Bai 70
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+int main() {
+	int n;
+	cin >> n;
+	ll res = 0;
+	while (n--) {
+		int x; cin >> x;
+		res = res * 10 + x;
+		res %= MOD;
+	}
+	cout << res;
+}
+*/
+//Bai 71
+#include<iostream>
+#include<math.h>
+#include<algorithm>
