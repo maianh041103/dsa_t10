@@ -1,0 +1,1368 @@
+//Quay lui voi xau nhi phan
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, X[100];
+void Try(int i) {
+	for (int j = 0; j <= 1; j++) {
+		X[i] = j;
+		if (i == n) {
+			for (int k = 1; k <= n; k++)
+				cout << X[k];
+			cout << endl;
+		}
+		else
+			Try(i + 1);
+	}
+}
+int main() {
+	cin >> n;
+	Try(1);
+}
+*/
+//Quay lui voi to hop
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, X[1000], k;
+// X[i] > X[i-1]
+void Try(int i) {
+	for (int j = X[i - 1] + 1; j <= n - k + i; j++) {
+		X[i] = j;
+		if (i == k) {
+			for (int h = 1; h <= k; h++)
+				cout << X[h];
+			cout << endl;
+		}
+		else
+			Try(i + 1);
+
+	}
+}
+int main() {
+	cin >> n >> k;
+	Try(1);
+}
+*/
+//Quay lui voi hoan vi
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, X[1000];
+bool used[1000]; // Danh dau so da duyet qua
+//Dieu kien hoan vi la khong co 2 chu so nao giong nhau
+void Try(int i) {
+	for (int j = 1; j <= n; j++) {
+		if (used[j] == false) {
+			X[i] = j;
+			used[j] = true;
+			if (i == n) {
+				for (int j = 1; j <= n; j++)
+					cout << X[j];
+				cout << endl;
+			}
+			else
+				Try(i + 1);
+			used[j] = false;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	Try(1);
+}
+*/
+//Quay lui voi hoan vi lap
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, X[1000];
+void Try(int i) {
+	for (int j = 1; j <= n; j++) {
+		X[i] = j;
+		if (i == n) {
+			for (int k = 1; k <= n; k++)
+				cout << X[k];
+			cout << endl;
+		}
+		else {
+			Try(i + 1);
+		}
+
+	}
+}
+int main() {
+	cin >> n;
+	Try(1);
+}
+*/
+//Quay lui phan hoach
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, X[100], k;
+// 1<= X[i] <= X[i-1]
+void Try(int i,int sum) {
+	for (int j = X[i - 1]; j >= 1; j--) {
+		// sum = X[1] + X[2] + ... + X[n]
+		if (sum <= n) {
+			X[i] = j;
+			sum += X[i];
+			if (sum == n) {
+				for (int j = 1; j <= i; j++)
+					cout << X[j] << " ";
+				cout << endl;
+			}
+			else
+				Try(i + 1, sum);
+			sum -= X[i];// Neu sum == n thi sum-=X[i] de thay bang nhom khac
+		}
+	}
+}
+int main() {
+	cin >> n;
+	X[0] = n;
+	Try(1, 0);
+}
+*/
+//Dat N con hau vao ban co N*N
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int X[100], n;
+bool cot[100], xuoi[100], nguoc[100];
+void Try(int i) {
+	for (int j = 1; j <= n; j++) {
+		if (cot[j] == 0 && xuoi[n + i - j] == 0 && nguoc[i + j - 1] == 0) {
+			X[i] = j; // hang i cot j
+			cot[j] = xuoi[n + i - j] = nguoc[i + j - 1] = 1;
+			if (n == i) {
+				for (int k = 1; k <= n; k++) {
+					cout << "Hang : " << k << " Cot " << X[k] << endl;
+				}
+				cout << endl;
+			}
+			else
+				Try(i + 1);
+			cot[j] = xuoi[n + i - j] = nguoc[i + j - 1] = 0;
+		}
+	}
+}
+int main() {
+	n = 5;
+	Try(1);
+}
+*/
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, k, s;
+int X[1000];
+int cnt;
+// X[i]>X[i-1]
+void Try(int i, int sum) {
+	for (int j = X[i - 1] + 1; j <= n - k + i; j++) {
+		X[i] = j;
+		if (i == k) {
+			for (int h = 1; h <= k; h++) {
+				sum += X[h];
+			}
+			if (sum == s)
+				cnt++;
+			sum = 0;
+		}
+		else
+			Try(i + 1, sum);
+	}
+}
+int main() {
+	cin >> n >> k >> s;
+	Try(1, 0);
+	cout << cnt << endl;
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[100][100];
+bool check = false;
+void Try(int i,int j, string s) {
+	if (i == n && j == n) {
+		check = true;
+		cout << s << endl;
+		return;
+	}
+	if (i + 1 <= n && j <= n && a[i + 1][j]!=0) {
+		s += "D";
+		a[i + 1][j] = 0;
+		Try(i + 1, j, s);
+		//backtrack
+		a[i + 1][j] = 1;
+		s.pop_back();
+	}
+	if (j + 1 <= n && i <= n && a[i][j + 1] != 0) {
+		s += "R";
+		a[i][j + 1] = 0;
+		Try(i, j + 1, s);
+		a[i][j + 1] = 1;
+		s.pop_back();
+	}
+}
+int main() {
+	string s = "";
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++)
+			cin >> a[i][j];
+	}
+	Try(1, 1, s);
+	if (check == false)
+		cout << "-1";
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int dx[4] = {-1,0,1,0};
+int dy[4] = {0,1,0,-1};
+char dz[4] = { 'U','R','D','L' };
+int n;
+bool check = false;
+int a[100][100];
+vector<string>v;
+void Try(int i, int j, string s) {
+	if (i == n && j == n) {
+		v.push_back(s);
+		check = true;
+		return;
+	}
+	int ix, iy;
+	for (int k = 0; k < 4; k++) {
+		ix = i + dx[k];
+		iy = j + dy[k];
+		if (ix <= n && iy <= n && a[ix][iy] == 1) {
+			a[ix][iy] = 0;
+			s += dz[k];
+			Try(ix, iy, s);
+			//backtrack
+			a[ix][iy] = 1;
+			s.pop_back();
+		}
+	}
+}
+int main() {
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			cin >> a[i][j];
+		}
+	}
+	string s = "";
+	if (a[1][1] == 1) {
+		a[1][1] = 0;// Quay lai vi tri a[1][1]
+		Try(1, 1, s);
+		if (check == false) {
+			cout << "-1" << endl;
+			return 0;
+		}
+		else {
+			sort(v.begin(), v.end());
+			for (auto it : v)
+				cout << it << endl;
+			return 0;
+		}
+	}
+	else {
+		cout << "-1" << endl;
+		return 0;
+	}
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, sum, idx, tg;
+int X[103], a[103];
+void Try(int i, int sum, int idx) {
+	for (int j = idx; j <= n;j++) {
+		//sum=X[1]+X[2]+...+X[i-1]
+		if (sum + a[j] <= tg) {
+			X[i] = a[j];
+			idx = j;
+			sum += X[i];
+			if (sum == tg) {
+				cout << "[";
+				for (int k = 1; k <= i; k++) {
+					if (k != i)
+						cout << X[k] << " ";
+					else
+						cout << X[k];
+				}
+				cout << "]" << endl;
+			}
+			else {
+				Try(i + 1, sum, idx + 1);
+			}
+			sum -= X[i];// neu sum == tg thi tru di X[i] de xet tiep
+		}
+	}
+}
+int main() {
+	cin >> n >> tg;
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	sort(a + 1, a + n + 1);
+	Try(1, 0, 1);
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int m, n;
+int a[15][15];
+int cnt = 0;
+void Try(int i, int j) {
+	if (i == m  && j == n ) {
+		cnt++;
+		return;
+	}
+	if (i + 1 <= m  && j <= n) {
+		Try(i + 1, j);
+	}
+	if (i <= m  && j + 1 <= n ) {
+		Try(i, j + 1);
+	}
+}
+int main() {
+	cin >> m >> n;
+	for (int i = 1; i <= m; i++) {
+		for (int j = 1; j <= n; j++) {
+			cin >> a[i][j];
+		}
+	}
+	Try(1, 1);
+	cout << cnt << endl;
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int X[100], cot[100], xuoi[100], nguoc[100];
+int cnt = 0, n;
+void Try(int i) {
+	for (int j = 1; j <= n; j++) {
+		if (cot[j] == 0 && xuoi[n + i - j] == 0 && nguoc[i + j - 1] == 0) {
+			X[i] = j; // hang i cot j
+			cot[j] = xuoi[n + i - j] = nguoc[i + j - 1] = 1;
+			if (n == i) {
+				cnt++;
+			}
+			else
+				Try(i + 1);
+			cot[j] = xuoi[n + i - j] = nguoc[i + j - 1] = 0;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	Try(1);
+	cout << cnt << endl;
+}
+*/
+//Bai 7
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int a[9][9];
+int sum = 0, res = 0;
+int X[100], cot[100], nguoc[100], xuoi[100];
+void Try(int i) {
+	for (int j = 1; j <= 8; j++) {
+		if (cot[j] == 0 && xuoi[8 + i - j] == 0 && nguoc[i + j - 1] == 0) {
+			X[i] = j; //Hang i cot j
+			cot[j] = xuoi[8 + i - j] = nguoc[i + j - 1] = 1;
+			if (i == 8) {
+				for (int k = 1; k <= 8; k++) {
+					sum += a[k][X[k]];
+				}
+				res = max(res, sum);
+				sum = 0;
+			}
+			else {
+				Try(i + 1);
+				//backtrack
+			}
+			cot[j] = xuoi[8 + i - j] = nguoc[i + j - 1] = 0;
+		}
+	}
+}
+int main() {
+	for (int i = 1; i <= 8; i++) {
+		for (int j = 1; j <= 8; j++) {
+			cin >> a[i][j];
+		}
+	}
+	Try(1);
+	cout << res;
+}
+*/
+//Bai 8
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, k, a[100], sum = 0;
+int ok = 0;
+bool X[100] = { false };
+void Try(int i, int tong, int dem) {
+	if (dem == k) {
+		ok = 1;
+		return;
+	}
+	for (int j = 1; j <= n; j++) {
+		if (X[j] == false) {
+			if (tong + a[j] <= sum) {
+				X[j] = true;
+				tong += a[j];
+				if (tong == sum)
+					Try(i + 1, 0, dem + 1);
+				else if (tong < sum)
+					Try(i + 1, tong, dem);
+				X[j] = false;
+				tong -= a[j];
+			}
+		}
+	}
+}
+void nhap() {
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i];
+		sum += a[i];
+	}
+	if (sum % k != 0) {
+		cout << "0" << endl;
+		return;
+	}
+	sum /= k;
+	Try(1, 0, 0);
+	cout << ok << endl;
+}
+int main() {
+	cin >> n >> k;
+	nhap();
+}
+*/
+//Bai 9
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll a[40], s, x[40];
+int n, cnt = 0, k;
+int final = false;
+void nhap() {
+	for (int i = 1; i <= k; i++) {
+		x[i] = i;
+	}
+}
+void next() {
+	int i = k;
+	while (i >= 1 && x[i] == n - k + i) {
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		x[i]++;
+		for (int j = i + 1; j <= k; j++) {
+			x[j] = x[j - 1] + 1;
+		}
+	}
+}
+int main() {
+	cin >> n >> s;
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	sort(a + 1, a + n + 1, greater<int>());
+	for (int j = 1; j <= n; j++) {
+		k = j;
+		nhap();
+		while (!final) {
+			ll sum = 0;
+			for (int i = 1; i <= k; i++) {
+				sum += a[x[i]];
+			}
+			if (sum == s) {
+				cout << k << endl;
+				return 0;
+			}
+			next();
+		}
+		final = false;
+	}
+	cout << "-1" << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, s, t[100], sum = 0, X[100], k;
+bool check = false;
+void nhap() {
+	for (int i = 1; i <= k; i++)
+		X[i] = i;
+}
+void Try(int i) {
+	for (int j = X[i - 1] + 1; j <= n - k + i; j++) {
+		X[i] = j;
+		if (i == k) {
+			for (int h = 1; h <= k; h++) {
+				sum += t[X[h]];
+			}
+			if (sum == s) {
+				check = true;
+			}
+			sum = 0;
+		}
+		else
+			Try(i + 1);
+	}
+}
+int main() {
+	cin >> n >> s;
+	for (int i = 1; i <= n; i++)
+		cin >> t[i];
+	for (int i = 1; i <= n; i++) {
+		k = i;
+		nhap();
+		Try(1);
+		if (check == true) {
+			cout << k << endl;
+			return 0;
+		}
+	}
+	if (check == false)
+		cout << "-1" << endl;
+}
+*/
+//Bai 10
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, c[20][20], res = 9999999, cmin = 999;
+bool visited[20];// danh dau nhung thanh pho da di qua
+int X[20];//danh dau thanh pho vua di qua
+void nhap() {
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			cin >> c[i][j];
+			if (c[i][j] != 0) 
+				cmin = min(cmin, c[i][j]);// Gia tien nho nhat de di tu thanh pho i den j
+		}
+	}
+}
+void Try(int i, int cost) {
+	for (int j = 2; j <= n; j++) {
+		if (!visited[j]) {
+			visited[j] = true;
+			X[i] = j;
+			cost += c[X[i - 1]][j];
+			if (i == n) {
+				cost += c[1][X[i]];
+				res = min(res, cost);
+			}
+			// da di qua i thanh pho
+			// con (n - i) thanh pho => tong so tp can di qua : (n - i) + 1 vi con quay lai tp 1
+			else if (cost + (n - i + 1) * cmin < res) { // TH tot nhat khi di (n-i+1) tp con lai
+				// Kiem tra xem trong TH tot nhat < res khong vi thuc te cost sau khi di n tp >= cost gia su
+				Try(i + 1, cost);
+			}
+			//backtrack
+			cost -= c[X[i - 1]][j];
+			visited[j] = false;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	nhap();
+	X[1] = 1;
+	Try(2, 0);
+	cout << res << endl;
+}
+*/
+//Bai 11
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+#include<vector>
+using namespace std;
+int n, a[100], X[100];
+vector<string>tmp;
+void Try(int i,int pos) {
+	for (int j = pos; j <= n; j++) {
+		if (a[j] > X[i - 1]) {
+			X[i] = a[j];
+			if (i >= 2) {
+				string s = "";
+				for (int j = 1; j <= i; j++) {
+					s += to_string(X[j]) + " ";
+				}
+				tmp.push_back(s);
+			}
+			Try(i + 1, j + 1);
+		}
+	}
+}
+int main() {
+	cin >> n;
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	Try(1, 1);
+	sort(tmp.begin(), tmp.end());
+	for (auto it : tmp) {
+		cout << it << endl;
+	}
+}
+*/
+//Bai 12
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[100];
+bool final = false;
+void sinh() {
+	int i = n;
+	while (i >= 1 && a[i] == 1) {
+		a[i] = 0;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i] = 1;
+	}
+}
+int main() {
+	cin >> n;
+	int b[100];
+	int sum = 0;
+	for (int i = 1; i <= n; i++) {
+		cin >> b[i];
+		sum += b[i];
+	}
+	while (!final) {
+		int sum1 = 0;
+		for (int i = 1; i <= n; i++) {
+			if (a[i] == 0)
+				sum1 += b[i];
+		}
+		if (sum1 * 2 == sum) {
+			cout << "1" << endl;
+			return 0;
+		}
+		sinh();
+	}
+	cout << "0" << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[100], b[100], sum, s = 0;
+bool check = false;
+void Try(int i) {
+	for (int j = 0; j <= 1; j++) {
+		a[i] = j;
+		if (i == n) {
+			for(int k = 1; k <= n; k++) {
+				if(a[k] == 0)
+					s += b[k];
+			}
+			if (s*2 == sum)
+				check = true;
+			s = 0;
+		}
+		else {
+			Try(i + 1);
+		}
+		
+	}
+}
+int main() {
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		cin >> b[i];
+		sum += b[i];
+	}
+	Try(1);
+	if (check == true)
+		cout << "1" << endl;
+	else
+		cout << "0" << endl;
+}
+*/
+//Bai 13
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<set>
+using namespace std;
+typedef long long ll;
+set<int>st;
+int cnt = 0;
+int a[100], n;
+bool final = false;
+void nhap() {
+	for (int i = 1; i <= n; i++)
+		a[i] = i;
+}
+void sinh() {
+	int i = n - 1;
+	while (i >= 1 && a[i] > a[i + 1]) {
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		int j = n;
+		while (a[i] > a[j])
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1);
+	}
+}
+bool check(int a[100]) {
+	for (int i = 1; i < n; i++) {
+		if (abs(a[i] - a[i + 1]) == 1)
+			return false;
+	}
+	return true;
+}
+int main() {
+	cin >> n;
+	nhap();
+	while (!final) {
+		if (check(a)) {
+			for (int i = 1; i <= n; i++) {
+				cout << a[i];
+			}
+			cout << endl;
+		}
+		sinh();
+	}
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[100];
+bool X[100];
+void nhap() {
+	for (int i = 1; i <= n; i++) {
+		a[i] = i;
+	}
+}
+bool check(int a[100]) {
+	for (int i = 1; i < n; i++) {
+		if (abs(a[i] - a[i + 1]) == 1)
+			return false;
+	}
+	return true;
+}
+void Try(int i) {
+	for (int j = 1; j <= n; j++) {
+		if (X[j] == false) {
+			X[j] = true;
+			a[i] = j;
+			if (i == n) {
+				if (check(a)) {
+					for (int k = 1; k <= n; k++)
+						cout << a[k];
+					cout << endl;
+				}
+			}
+			else
+				Try(i + 1);
+			//backtrack
+			X[j] = false;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	nhap();
+	Try(1);
+}
+*/
+//Bai 14
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<string>
+using namespace std;
+int n, a[100], s;
+int X[100];
+bool check = false;
+vector<string>v;
+void Try(int i, int sum, int pos) {
+	for (int j = pos; j <= n; j++) {
+		if (sum + a[j] <= s) {
+			sum += a[j];
+			X[i] = a[j];
+			if (sum == s) {
+				check = true;
+				string tmp = "";
+				tmp += "{";
+				for (int k = 1; k <= i; k++) {
+					tmp += to_string(X[k]);
+					if (k != i)
+						tmp += " ";
+				}
+				tmp += "}";
+				v.push_back(tmp);
+			}
+			else {
+				Try(i + 1, sum, j);
+			}
+			//backtrack
+			sum -= a[j];
+		}
+	}
+}
+int main() {
+	cin >> n >> s;
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	sort(a + 1, a + n + 1);
+	Try(1, 0, 1);
+	if (check == false)
+		cout << "-1" << endl;
+	else {
+		cout << v.size() << endl;
+		for (auto it : v)
+			cout << it << endl;
+	}
+}
+*/
+
+
+
+
+//<------Sinh bang quay lui------>
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, X[100];
+void Try(int i) {
+	for (int j = 0; j <= 1; j++) {
+		X[i] = j;
+		if (i == n) {
+			for (int i = 1; i <= n; i++) {
+				if (X[i] == 0)
+					cout << 'B';
+				else
+					cout << 'A';
+			}
+			cout << endl;
+		}
+		else {
+			Try(i + 1);
+		}
+	}
+}
+int main() {
+	cin >> n;
+	Try(1);
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, k, a[100];
+void nhap() {
+	for (int i = 1; i <= k; i++)
+		a[i] = i;
+}
+void Try(int i) {
+	for (int j = a[i - 1] + 1; j <= n - k + i; j++) {
+		a[i] = j;
+		if (i == k) {
+			for (int h = 1; h <= k; h++)
+				cout << a[h];
+			cout << endl;
+		}
+		else
+			Try(i + 1);
+	}
+}
+int main() {
+	nhap();
+	cin >> n >> k;
+	Try(1);
+}
+*
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[100];
+bool used[100];
+void Try(int i) {
+	for (int j = n; j >= 1; j--) {
+		if (used[j] == false) {
+			used[j] = true;
+			a[i] = j;
+			if (i == n) {
+				for (int k = 1; k <= n; k++)
+					cout << a[k];
+				cout << endl;
+			}
+			else
+				Try(i + 1);
+			//backtrack
+			used[j] = false;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	Try(1);
+}
+*/
+//Bai 7
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[20];
+string s[20];
+bool used[20];
+void Try(int i) {
+	for (int j = 1; j <= n; j++) {
+		if (used[j] == false) {
+			a[i] = j;
+			used[j] = true;
+			if (i == n) {
+				for (int k = 1; k <= n; k++) {
+					cout << s[a[k]] << " ";
+				}
+				cout << endl;
+			}
+			else
+				Try(i + 1);
+			used[j] = false;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	for (int i = 1; i <= n; i++)
+		cin >> s[i];
+	sort(s + 1, s + n + 1);
+	Try(1);
+}
+*/
+//Bai 10
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, k, X[100];
+void Try(int i){
+	for (int j = 1; j <= n; j++) {
+		X[i] = j;
+		if (i == k) {
+			for (int h = 1; h <= k; h++)
+				cout << X[h];
+			cout << endl;
+		}
+		else {
+			Try(i + 1);
+		}
+	}
+}
+int main() {
+	cin >> n >> k;
+	Try(1);
+}
+*/
+//Bai 11
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+#include<vector>
+using namespace std;
+int n, X[100];
+string s;
+vector<string>v;
+//X[i]<=X[i-1]
+void Try(int i, int sum) {
+	for (int j = X[i - 1]; j >= 1; j--) {
+		if (sum + j <= n) {
+			X[i] = j;
+			sum += X[i];
+			if(sum == n) {
+				string s = "";
+				for (int k = 1; k <= i; k++) {
+					s += to_string(X[k]);
+					if (k != i)
+						s += "+";
+				}
+				v.push_back(s);
+			}
+			else {
+				Try(i + 1, sum);
+			}
+			sum -= X[i];
+		}
+	}
+}
+int main() {
+	cin >> n;
+	X[0] = n;
+	Try(1, 0);
+	cout << v.size() << endl;
+	for (auto it : v)
+		cout << it << endl;
+}
+*/
+//Bai 12
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+#include<vector>
+using namespace std;
+int n, k;
+int a[100];
+string s;
+vector<string>v1, v2;
+bool check1(string s) {
+	int cnt = 0;
+	for (int i = 0; i <= n; i++) {
+		if (s[i] == '1')
+			cnt++;
+	}
+	if (cnt == k)
+		return true;
+	return false;
+}
+bool check2(string s) {
+	// k bit 1 lien tiep , chu khong nhat thiet can k bit 1
+	int res = 0, dem = 0;
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] == '1')
+			dem++;
+		else
+			dem = 0;
+		if (dem == k)
+			res++;
+		else if (dem > k)
+			return false;
+	}
+	if (res == 1)
+		return true;
+	else
+		return false;
+}
+void Try(int i) {
+	for (int j = 0; j <= 1; j++) {
+		s += to_string(j);
+		if (s.size() == n) {
+			if (check1(s))
+				v1.push_back(s);
+			if (check2(s))
+				v2.push_back(s);
+		}
+		else
+			Try(i + 1);
+		s.pop_back();
+	}
+}
+int main() {
+	cin >> n >> k;
+	Try(1);
+	for (auto it : v1)
+		cout << it << " ";
+	cout << endl;
+	for (auto it : v2)
+		cout << it << " ";
+	cout << endl;
+}
+*/
+//Bai 13
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+#include<vector>
+using namespace std;
+int n, k;
+string s;
+vector<string>v;
+int a[100];
+void nhap() {
+	for (int i = 1; i <= k; i++)
+		a[i] = i;
+}
+void Try(int i) {
+	int j = k;
+	for (int j = a[i - 1] + 1; j <= n - k + i; j++) {
+		a[i] = j;
+		if (i == k) {
+			string s = "";
+			for (int h = 1; h <= k; h++) {
+				s += to_string(a[h]) + " ";
+			}
+			v.push_back(s);
+		}
+		else {
+			Try(i + 1);
+		}
+	}
+}
+int main() {
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		nhap();
+		k = i;
+		Try(1);
+	}
+	sort(v.begin(), v.end());
+	for (auto it : v)
+		cout << it << endl;
+}
+*/
+//Bai 14
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+int n;
+int X[100];
+int a[1000];
+bool check(int a[1000]) {
+	if (a[1] == 6)
+		return false;
+	if (a[n] == 8)
+		return false;
+	for (int i = 1; i < n; i++) {
+		if (a[i] == 8 && a[i + 1] == 8)
+			return false;
+	}
+	
+	for (int i = 1; i <= n - 3; i++) {
+		bool ok = true;
+		for (int k = 0; k < 4; k++) {
+			if (a[i + k] == 8)
+				ok = false;
+		}
+		if (ok == true)
+			return false;
+	}
+	
+	return true;
+}
+void Try(int i) {
+	for (int j = 0; j <= 1; j++) {
+		X[i] = j;
+		if (i == n) {
+			for (int k = 1; k <= n; k++) {
+				if (X[k] == 0)
+					a[k] = 6;
+				else
+					a[k] = 8;
+			}
+			if (check(a)) {
+				for (int k = 1; k <= n; k++)
+					cout << a[k];
+				cout << endl;
+			}
+		}
+		else {
+			Try(i + 1);
+		}
+	}
+}
+int main() {
+	cin >> n;
+	Try(1);
+}
+*/
+//Bai 15
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+#include<set>
+using namespace std;
+int n;
+char X[100];
+string s;
+bool used[100];
+void Try(int i) {
+	for (int j = 0; j < s.size(); j++) {
+		if (used[j] == false) {
+			X[i] = s[j];
+			used[j] = true;
+			if (i == s.size() - 1) {
+				for (int k = 0; k < s.size(); k++)
+					cout << X[k];
+				cout << endl;
+			}
+			else
+				Try(i + 1);
+			used[j] = false;
+		}
+	}
+}
+int main() {
+	string tmp;
+	cin >> tmp;
+	set<char>st;
+	for (int i = 0; i < tmp.size(); i++)
+		st.insert(tmp[i]);
+	for (auto it : st)
+		s += it;
+	Try(0);
+}
+*/
+//Bai 30
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, s, X[100];
+int w[100], v[100];
+int p = 0, gt = 0, res = 0;
+void Try(int i) {
+	for (int j = 0; j <= 1; j++) {
+		X[i] = j;
+		if (i == n) {
+			for (int k = 1; k <= n; k++) {
+				if (X[k] == 1) {
+					p += w[k];
+					gt += v[k];
+				}
+			}
+			if (p <= s)
+				res = max(res, gt);
+			p = 0, gt = 0;
+		}
+		else
+			Try(i + 1);
+	}
+}
+int main() {
+	cin >> n >> s;
+	for (int i = 1; i <= n; i++)
+		cin >> w[i];
+	for (int i = 1; i <= n; i++)
+		cin >> v[i];
+	Try(1);
+	cout << res << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, s, X[100];
+int w[100], v[100];
+int p = 0, gt = 0, res = 0;
+void Try(int i, int pos, int sump , int sumgt ) {
+	for (int j = pos; j <= n; j++) {
+		if (sump + w[j] <= s) {
+			sump += w[j];
+			sumgt += v[j];
+			res = max(res, sumgt);
+			if (sump < s)
+				Try(i + 1, j + 1, sump, sumgt);
+			else
+				Try(i + 1, j + 1, 0, 0);
+			sump -= w[j];
+			sumgt -= v[j];
+		}
+	}
+}
+int main() {
+	cin >> n >> s;
+	for (int i = 1; i <= n; i++)
+		cin >> w[i];
+	for (int i = 1; i <= n; i++)
+		cin >> v[i];
+	Try(1, 1, 0, 0);
+	cout << res << endl;
+}
+*/
