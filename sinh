@@ -1,0 +1,1621 @@
+//Sinh xau 
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[100];
+bool final = false;
+void khoitao() {
+	for (int i = 1; i <= n; i++) a[i] = 0;
+}
+void sinh() {
+	//Di tim bit dau tien bang B duyet tu n
+	int i = n;
+	while (i >= 1 && a[i] == 1) {
+		a[i] = 0;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else
+		a[i] = 1;
+}
+int main() {
+	cin >> n;
+	khoitao();
+	while (!final) {
+		for (int i = 1; i <= n; i++)
+			cout << a[i];
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Sinh to hop chap k cua n
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, k, a[100];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= k; i++) a[i] = i;
+	//Khoi tao mang gom k phan tu dau tien cua tap n phan tu
+}
+void sinh() {
+	int i = k;
+	while (i >= 1 && a[i] == n - k + i) {
+		//duyet tu cuoi mang k phan tu, tim phan tu dau tien chua = max
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i]++;
+		for (int j = i + 1; j <= k; j++) {
+			a[j] = a[j - 1] + 1;
+			//Cac phan tu sau i tang len 1 don vi so voi so dung truoc no
+		}
+	}
+}
+int main() {
+	cin >> n >> k;
+	ktao();
+	while (!final) {
+		for (int i = 1; i <= k; i++)
+			cout << a[i] << " ";
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Sinh hoan vi
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[100];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = i;
+}
+//326541
+void sinh() {
+	int i = n - 1;
+	while (i >= 1 && a[i] > a[i + 1]) 
+		i--;
+	if (i == 0)
+		final = true;
+	else {
+		int j = n;
+		while (a[j] < a[i])
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1);
+	}
+}
+int main() {
+	cin >> n;
+	ktao();
+	while (!final) {
+		for (int i = 1; i <= n; i++)
+			cout << a[i] << " ";
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Sinh phan hoach
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n,dem;
+int a[100];
+bool final = false;
+void ktao() {
+	dem = 1;
+	a[1] = n;
+}
+void sinh() {
+	// Tim so khac 1 dau tien
+	int i = dem;
+	while (i >= 1 && a[i] == 1) {
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		int tmp = dem - i + 1;
+		// dem - i : so luong so 1 da bo qua
+		a[i]--;
+		dem = i;// coi day con i phan tu
+		int q = tmp / a[i], r = tmp % a[i];
+		for (int j = 0; j < q; j++) {
+			dem++;
+			a[dem] = a[i];
+		}
+		if (r != 0) {
+			dem++;
+			a[dem] = r;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	ktao();
+	while (!final) {
+		for (int i = 1; i <= dem; i++)
+			cout << a[i] << " ";
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Sinh toan tu
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int main() {
+	//2^2 : 000100
+	int n; cin >> n;
+	for (int i = 0; i < (1 << n); i++) {
+		//1<<n : pow(2^n)
+		//Duyet tu so tu 0 den 2^n - 1
+		//Toan tu & chuyen cac so tu he thap phan sang nhi phan roi and
+		for (int j = 0; j < n; j++) {
+			if (i & (1 << j)) {
+				cout << '1';
+			}
+			else
+				cout << '0';
+		}
+		cout << endl;
+	}
+}
+*/
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n;
+bool final = false;
+void sinh(string s) {
+	int i = s.size() - 1;
+	while (i >= 0 && s[i] == '1') {
+		s[i] = '0';
+		i--;
+	}
+	if (i == -1)
+		cout << s << endl;
+	else {
+		s[i] = '1';
+		cout << s << endl;
+	}
+}
+int main() {
+	string s; cin >> s;
+	sinh(s);
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, k, a[10002];
+using namespace std;
+void next(int a[]) {
+	int i = k;
+	while (i >= 1 && a[i] == n - k + i) {
+		i--;
+	}
+	if (i == 0) {
+		for (int i = 1; i <= k; i++)
+			cout << i << " ";
+	}
+	else {
+		a[i]++;
+		for (int j = i + 1; j <= n; j++) {
+			a[j] = a[j - 1] + 1;
+		}
+		for (int j = 1; j <= k; j++)
+			cout << a[j] << " ";
+	}
+}
+int main() {
+	cin >> n >> k;
+	for (int i = 1; i <= k; i++)
+		cin >> a[i];
+	next(a);
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[1002];
+void sinh(int a[]) {
+	int i = n - 1;
+	while (i >= 1 && a[i] > a[i + 1]) {
+		i--;
+	}
+	if (i == 0) {
+		for (int j = 1; j <= n; j++)
+			cout << j << " ";
+	}
+	else {
+		int j = n;
+		while (a[j] < a[i])// tim phan tu nho nhat lon hon a[i]
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1);
+		for (int k = 1; k <= n; k++)
+			cout << a[k] << " ";
+	}
+}
+int main() {
+	cin >> n;
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	sinh(a);
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n; char a[100];
+bool final = false;
+void khoitao() {
+	for (int i = 1; i <= n; i++) a[i] = 'B';
+}
+void sinh() {
+	//Di tim bit dau tien bang B duyet tu n
+	int i = n;
+	while (i >= 1 && a[i] == 'A') {
+		a[i] = 'B';
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else
+		a[i] = 'A';
+}
+int main() {
+	cin >> n;
+	khoitao();
+	while (!final) {
+		for (int i = 1; i <= n; i++)
+			cout << a[i];
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, k, a[10000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= k; i++)
+		a[i] = i;
+}
+void sinh() {
+	int i = k;
+	while (i >= 1 && a[i] == n - k + i) {
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i]++;
+		for (int j = i + 1; j <= n; j++)
+			a[j] = a[j - 1] + 1;
+	}
+}
+int main() {
+	cin >> n >> k;
+	ktao();
+	while (!final) {
+		for (int i = 1; i <= k; i++) {
+			cout << a[i];
+		}
+		sinh();
+		cout << endl;
+	}
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, a[2000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = i;
+}
+void sinh() {
+	int i = n - 1;
+	while (i >= 1 && a[i] > a[i + 1])
+		i--;
+	if (i == 0)
+		final = true;
+	else {
+		int j = n;
+		while (a[j] < a[i])
+			j--;
+		swap(a[j], a[i]);
+		sort(a + i + 1, a + n + 1);
+	}
+}
+int main() {
+	cin >> n;
+	ktao();
+	vector<vector<int>>v;
+	while (!final) {
+		vector<int>tmp(a + 1, a + n + 1);
+		v.push_back(tmp);
+		sinh();
+	}
+	for (int i = v.size() - 1; i >= 0; i--) {
+		for (int j = 0; j < v[i].size(); j++)
+			cout << v[i][j];
+		cout << endl;
+	}
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[10000];
+//134285679
+bool final = false;
+void ktao() {
+	for (int j = 1; j <= n; j++) {
+		a[j] = n - j + 1;
+	}
+}
+void sinh() {
+	int i = n-1;
+	while (i >= 1 && a[i] < a[i + 1])
+		i--;
+	if (i == 0)
+		final = true;
+	else {
+		int j = n;
+		while (a[j] > a[i])
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1, greater<int>());
+	}
+}
+int main() {
+	cin >> n;
+	ktao();
+	while (!final) {
+		for (int i = 1; i <= n; i++)
+			cout << a[i];
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Bai 7
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n;
+//52431
+string a[2000];
+bool final = false;
+void sinh() {
+	int i = n - 1;
+	while (i >= 1 && a[i] > a[i + 1]) {
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		int j = n;
+		while (a[i] > a[j])
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1);
+	}
+}
+int main() {
+	cin >> n;
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	sort(a + 1, a + n + 1);
+	while (!final) {
+		for (int i = 1; i <= n; i++)
+			cout << a[i] << " ";
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Bai 8
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, a[2000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = i;
+}
+void sinh() {
+	int i = n - 1;
+	while (i >= 1 && a[i] > a[i + 1])
+		i--;
+	if (i == 0)
+		final = true;
+	else{
+		int j = n;
+		while (a[i] > a[j])
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1);
+	}
+}
+int main() {
+	cin >> n;
+	ktao();
+	int* tmp = new int[n + 2];
+	for (int i = 1; i <= n; i++)
+		cin >> tmp[i];
+	int cnt = 1;
+	while (!final) {
+		bool check = true;
+		for (int i = 1; i <= n; i++) {
+			if (a[i] != tmp[i])
+				check = false;
+		}
+		if (check == true)
+			cout << cnt;
+		else {
+			cnt++;
+		}
+		sinh();
+	}
+}
+*/
+//Bai 9
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+typedef long long ll;
+using namespace std;
+int n, k, a[100];
+bool final;
+ll gt(int x) {
+	ll res = 1;
+	for (int i = 2; i <= x; i++)
+		res *= i;
+	return res;
+}
+ll kcn(int n,int k) {
+	return gt(n) / (gt(k) * gt(n - k));
+}
+void ktao() {
+	for (int i = 1; i <= k; i++) a[i] = i;
+}
+void sinh() {
+	int i = k;
+	while (i >= 1 && a[i] == n - k + i) {
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i]++;
+		for (int j = i + 1; j <= k; j++)
+			a[j] = a[j - 1] + 1;
+	}
+}
+int main() {
+	cin >> n >> k;
+	ktao();
+	int* res = new int[k + 1];
+	for (int i = 1; i <= k; i++) {
+		cin >> res[i];
+	}
+	int cnt = 1;
+	while (!final) {
+		bool check = true;
+		for (int i = 1; i <= k; i++) {
+			if (res[i] != a[i]) {
+				check = false;
+				break;
+			}
+		}
+		if (check == true) {
+			cout << kcn(n,k) - cnt + 1 << endl;
+			return 0;
+		}
+		sinh();
+		cnt++;
+	}
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, k, a[100];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= k; i++) a[i] = i;
+}
+void sinh() {
+	int i = k;
+	while (i >= 1 && a[i] == n - k + i) {
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i]++;
+		for (int j = i + 1; j <= k; j++)
+			a[j] = a[j - 1] + 1;
+	}
+}
+int main() {
+	cin >> n >> k;
+	ktao();
+	vector<vector<int>>v;
+	// vector de luu cac vector ket qua
+	int b[100];
+	for (int i = 0; i < k; i++)
+		cin >> b[i];
+	while (!final) {
+		vector<int>tmp(a + 1, a + k + 1);
+		v.push_back(tmp);
+		sinh();
+	}
+	int cnt = 0;
+	for (int i = v.size() - 1; i >= 0; i--) {
+		cnt++;
+		bool check = true;
+		for (int j = 0; j < k; j++) {
+			if (v[i][j] != b[j]) {
+				check = false;
+				break;
+			}
+		}
+		if (check == true)
+			cout << cnt << endl;
+	}
+}
+*/
+//Bai 10
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, k, a[10000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= k; i++)
+		a[i] = 1;
+}
+void sinh() {
+	int i = k;
+	while (i >= 1 && a[i] == n)
+		i--;
+	if (i == 0)
+		final = true;
+	else {
+		a[i]++;
+		for (int j = i + 1; j <= k; j++)
+			a[j] = 1;
+	}
+}
+int main() {
+	cin >> n >> k;
+	ktao();
+	while (!final) {
+		for (int i = 1; i <= k; i++)
+			cout << a[i];
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Bai 11
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<string>
+using namespace std;
+int n, a[10000], dem, cnt = 0;
+bool final = false;
+void ktao() {
+	a[1] = n;
+	dem = 1;
+}
+void sinh() {
+	int i = dem;
+	while (i >= 1 && a[i] == 1)
+		i--;
+	if (i == 0)
+		final = true;
+	else {
+		a[i]--;
+		int tmp = dem - i + 1;
+		dem = i;
+		int q = tmp / a[i], r = tmp % a[i];
+		while (q--) {
+			dem++;
+			a[dem] = a[i];
+		}
+		if (r!=0) {
+			dem++;
+			a[dem] = r;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	ktao();
+	vector<vector<string>>v(10000);
+	while (!final) {
+		string s;
+		for (int i = 1; i <= dem; i++) {
+			s += to_string(a[i]);
+			if (i != dem)
+				s += "+";
+		}
+		v[cnt].push_back(s);
+		cnt++;
+		sinh();
+		s = "";
+	}
+	cout << cnt << endl;
+	for (int i = 0; i < cnt; i++) {
+		for (int j = 0; j < v[i].size(); j++)
+			cout << v[i][j];
+		cout << endl;
+	}
+}
+*/
+//Bai 12
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<string>
+using namespace std;
+int n, k, a[1000];
+bool final = false;
+vector<string>v1;
+vector<string>v2;
+int check1() {
+	int cnt = 0;
+	for (int i = 1; i <= n; i++) {
+		if (a[i] == 1)
+			cnt++;
+	}
+	if (cnt == k)
+		return 1;
+	return 0;
+}
+int check2() {
+	int dem = 0;
+	int res = 0;
+	for (int i = 1; i <= n; i++) {
+		if (a[i] == 1) {
+			++dem;
+		}
+		else dem = 0;
+
+		if (dem == k) {
+			++res;
+		}
+		else if (dem > k) return 0;
+	}
+	return res == 1;
+}
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = 0;
+}
+void sinh() {
+	int i = n;
+	while (i >= 1 && a[i] == 1) {
+		a[i] = 0;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i] = 1;
+	}
+}
+int main() {
+	cin >> n >> k;
+	ktao();
+	while (!final) {
+		if (check1()){
+			string s = "";
+			for (int i = 1; i <= n; i++)
+				s += to_string(a[i]);
+			v1.push_back(s);
+		}
+		if (check2()){
+			string s = "";
+			for (int i = 1; i <= n; i++)
+				s += to_string(a[i]);
+			v2.push_back(s);
+		}
+		sinh();
+	}
+	for (int i = 0; i < v1.size(); i++)
+		cout << v1[i] << " ";
+	cout << endl;
+	for (int i = 0; i < v2.size(); i++)
+		cout << v2[i] << " ";
+	cout << endl;
+}
+*/
+//Bai 13
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int n, a[1000], k;
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= k; i++)
+		a[i] = i;
+}
+void sinh() {
+	int i = k;
+	while (i >= 1 && a[i] == n - k + i) 
+		i--;
+	if (i == 0)
+		final = true;
+	else {
+		a[i]++;
+		for (int j = i + 1; j <= k; j++) {
+			a[j] = a[j - 1] + 1;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	vector<vector<int>>v;
+	for (k = 1; k <= n; k++) {
+		final = false;
+		ktao();
+		while (!final) {
+			vector<int>tmp;
+			for (int i = 1; i <= k; i++) {
+				tmp.push_back(a[i]);
+			}
+			v.push_back(tmp);
+			sinh();
+		}
+	}
+	sort(v.begin(), v.end());
+	for (int i = 0; i < v.size(); i++) {
+		for (int j = 0; j < v[i].size(); j++)
+			cout << v[i][j] << " ";
+		cout << endl;
+	}
+}
+*/
+//Bai 14
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[100000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = 6;
+}
+int check1(int a[100000]) {
+	if (a[1] == 8 && a[n] == 6)
+		return 1;
+	return 0;
+}
+int check2(int a[1000000]) {
+	for (int i = 1; i <= n - 1; i++) {
+		if (a[i] == 8 && a[i + 1] == 8)
+			return 0;
+	}
+	for (int i = 1; i <= n - 3; i++) {
+		if (a[i] == 6 && a[i + 1] == 6 && a[i + 2] == 6 && a[i + 3] == 6)
+			return 0;
+	}
+	return 1;
+}
+void sinh() {
+	int i = n;
+	while (n >= 1 && a[i] == 8) {
+		a[i] = 6;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i] = 8;
+	}
+}
+int main() {
+	cin >> n;
+	ktao();
+	while (!final) {
+		if (check1(a) && check2(a)) {
+			for (int i = 1; i <= n; i++)
+				cout << a[i];
+			cout << endl;
+		}
+		sinh();
+	}
+}
+*/
+//Bai 15
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<set>
+using namespace std;
+string s;
+bool final = false;
+void sinh() {
+	int i = s.size() - 2;
+	while (i >= 0 && s[i] > s[i + 1]) {
+		i--;
+	}
+	if (i == -1)
+		final = true;
+	else {
+		int j = s.size();
+		while (s[i] > s[j])
+			j--;
+		swap(s[i], s[j]);
+		sort(s.begin() + i + 1, s.end());
+	}
+}
+int main() {
+	string a;
+	cin >> a;
+	set<char>st;
+	for (int i = 0; i < a.size(); i++)
+		st.insert(a[i]);
+	for (auto it : st) {
+		s += it;
+	}
+	sort(s.begin(), s.end());
+	while (!final) {
+		cout << s << endl;
+		sinh();
+	}
+}
+*/
+//Bai 16
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<set>
+using namespace std;
+int n, k, a[10000];
+bool final = false;
+int main() {
+	cin >> n >> k;
+	set<int>st;
+	for (int i = 1; i <= k; i++) {
+		cin >> a[i];
+		st.insert(a[i]);
+	}
+	int i = k;
+	while (i >= 1 && a[i] == n - k + i) {
+		i--;
+	}
+	if (i == 0) {
+		cout << k << endl;
+		return 0;
+	}
+	else {
+		a[i]++;
+		for (int j = i + 1; j <= n; j++)
+			a[j] = a[j - 1] + 1;
+	}
+	for (int j = 1; j <= k; j++)
+		st.insert(a[j]);
+	cout << st.size() - k;
+}
+*/
+//Bai 17
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+string s;
+bool final = false;
+int main() {
+	cin >> s;
+	int i = s.size() - 2;
+	while (i >= 0 && s[i] >= s[i + 1])
+		i--;
+	if (i == -1) {
+		cout << "NOT EXIST" << endl;
+		return 0;
+	}
+	else {
+		int j = s.size() - 1;
+		while (s[i] >= s[j])
+			j--;
+		swap(s[i], s[j]);
+		sort(s.begin() + i + 1 , s.end() );
+	}
+	cout << s << endl;
+}
+*/
+//Bai 18
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+ll res[301];
+string s;
+int n;
+bool final = false;
+void ktao() {
+	s = string(n, '0');
+}
+void sinh() {
+	int i = n - 1;
+	while (i >= 0 && s[i] == '8') {
+		s[i] = '0';
+		i--;
+	}
+	if (i == -1)
+		final = true;
+	else
+		s[i] = '8';
+}
+int main() {
+	n = 19;
+	ktao();
+	res[1] = 8;
+	while (!final) {
+		ll tmp = stoll(s);
+		for (int j = 2; j <= 300; j++) {
+			if (tmp % j == 0 && res[j] == 0) {
+				res[j] = tmp;
+			}
+		}
+		sinh();
+	}
+	int q; cin >> q;
+	while (q--) {
+		int x; cin >> x;
+		cout << res[x] << endl;
+	}
+}
+*/
+//Bai 19
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[10000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = 0;
+}
+void sinh() {
+	int i = n;
+	while (i >= 1 && a[i] == 1) {
+		a[i] = 0;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i] = 1;
+	}
+}
+int check(int a[]) {
+	for (int i = 1; i <= n; i++) {
+		if (a[i] != a[n - i + 1]) {
+			return 0;
+		}
+	}
+	return 1;
+}
+int main() {
+	cin >> n;
+	ktao();
+	while (!final) {
+		if (check(a)) {
+			for (int i = 1; i <= n; i++)
+				cout << a[i];
+			cout << endl;
+		}
+		sinh();
+	}
+}
+*/
+//Bai 20
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<string>
+using namespace std;
+int n, a[10000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = 0;
+}
+void sinh() {
+	int i = n;
+	while (i >= 1 && a[i] == 1) {
+		a[i] = 0;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i] = 1;
+	}
+}
+int main() {
+	int k; cin >> k;
+	vector<string>v;
+	for (int i = 1; i <= k/2; i++) {
+		n = i; // chu y neu cho n chay trong vong for thi k duoc
+		ktao();
+		final = false;
+		while (!final) {
+			string s = "";
+			for (int i = 1; i <= n; i++)
+				s += to_string(a[i]);
+			for (int i = n; i >= 1; i--)
+				s += to_string(a[i]);
+			v.push_back(s);
+			sinh();
+		}
+	}
+	sort(v.begin(), v.end());
+	for (auto x : v)
+		cout << x << endl;
+}
+*/
+//Bai 21
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int n, a[1000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = 0;
+}
+void sinh() {
+	int i = n;
+	while (i >= 1 && a[i] == 1) {
+		a[i] = 0;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i] = 1;
+	}
+}
+int main() {
+	cin >> n;
+	ll kl[1000];
+	for (int i = 1; i <= n; i++)
+		cin >> kl[i];
+	ktao();
+	
+	ll res = 1e18;
+	while (!final) {
+		ll sum1 = 0, sum2 = 0;
+		for (int i = 1; i <= n; i++) {
+			if (a[i] == 0)
+				sum1 += kl[i];
+			else
+				sum2 += kl[i];
+		}
+		res = min(abs(sum1 - sum2), res);
+		sinh();
+	}
+	cout << res << endl;
+}
+*/
+//Bai 22
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<string>
+using namespace std;
+int n, a[10000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = 6;
+}
+void sinh() {
+	int i = n;
+	while (i >= 1 && a[i] == 8) {
+		a[i] = 6;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i] = 8;
+	}
+}
+int main() {
+	int q; cin >> q;
+	vector<string>v;
+	for (int i = 1; i <= 9; i++) {
+		n = i;
+		ktao();
+		final = false;
+		while (!final) {
+			string s = "";
+			for (int j = 1; j <= n; j++) 
+				s += to_string(a[j]);
+			for (int j = n; j >= 1; j--)
+				s += to_string(a[j]);
+			v.push_back(s);
+			sinh();
+		}
+	}
+	for (int i = 0; i < q; i++)
+		cout << v[i] << " ";
+}
+*/
+//Bai 23
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<set>
+using namespace std;
+int n, a[1000];
+bool final = false;
+void sinh() {
+	int i = n - 1;
+	while (i >= 1 && a[i] <= a[i + 1])
+		i--;
+	if (i == 0)
+		final = true;
+	else {
+		int j = n;
+		while (a[i] <= a[j])
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1, greater<int>());
+	}
+}
+int main() {
+	set<int>st;
+	int k; cin >> k;
+	int b[1000];
+	for (int i = 1; i <= k; i++) {
+		cin >> b[i];
+		st.insert(b[i]);
+	}
+	n = st.size();
+	int cnt = 1;
+	for (auto x : st) {
+		a[cnt] = x;
+		cnt++;
+	}
+	sort(a + 1, a + n + 1, greater<int>());
+	while (!final) {
+		for (int i = 1; i <= n; i++)
+			cout << a[i] << " ";
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Bai 24
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+int n, k;
+int a[1000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= k; i++)
+		a[i] = 0;
+}
+void sinh() {
+	int i = k;
+	while (i >= 1 && a[i] == n) {
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i]++;
+		for (int j = i + 1; j <= k; j++)
+			a[j] = 0;
+	}
+}
+int main() {
+	char x; cin >> x;
+	n = x - 'A';
+	cin >> k;
+	ktao();
+	while (!final) {
+		for (int i = 1; i <= k; i++) {
+			char c = 'A' + a[i];
+			cout << c;
+		}
+		cout << endl;
+		sinh();
+	}
+}
+*/
+//Bai 25
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+int n, k, a[1000], b[1000];
+bool final1 = false;
+bool final2 = false;
+void ktao1() {
+	for (int i = 1; i <= n; i++)
+		a[i] = i - 1;
+}
+void ktao2() {
+	for (int i = 1; i <= n; i++)
+		b[i] = 1;
+}
+void sinh1() {
+	int i = n - 1;
+	while (i >= 1 && a[i] > a[i + 1])
+		i--;
+	if (i == 0)
+		final1 = true;
+	else {
+		int j = n;
+		while (a[i] > a[j])
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1);
+	}
+}
+void sinh2() {
+	int i = n;
+	while (i >= 1 && b[i] == n)
+		i--;
+	if (i == 0)
+		final2 = true;
+	else {
+		b[i]++;
+		for (int j = i + 1; j <= n; j++)
+			b[j] = 1;
+	}
+}
+int main() {
+	cin >> n;
+	ktao1();
+	while (!final1) {
+		string s = "";
+		for (int i = 1; i <= n; i++) {
+			s += 'A' + a[i];
+		}
+		ktao2();
+		final2 = false;
+		while (!final2) {
+			cout << s;
+			for (int i = 1; i <= n; i++) {
+				cout << b[i];
+			}
+			cout << endl;
+			sinh2();
+		}
+		sinh1();
+	}
+}
+*/
+//Bai 26
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[1000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = i - 1;
+}
+void sinh() {
+	int i = n - 1;
+	while (i >= 1 && a[i] > a[i + 1])
+		i--;
+	if (i == 0)
+		final = true;
+	else {
+		int j = n;
+		while (a[i] > a[j])
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1);
+	}
+}
+int main() {
+	char c; cin >> c;
+	n = c - 'A' + 1;
+	ktao();
+	while (!final) {
+		if (c == 'D') {
+			if (a[1] == 0 || a[n] == 0) {
+				for (int i = 1; i <= n; i++) {
+					char x = 'A' + a[i];
+					cout << x;
+				}
+				cout << endl;
+			}
+		}
+		else {
+			int res, tmp;
+			for (int i = 1; i <= n; i++) {
+				if (a[i] == 0)
+					res = i;
+				if (a[i] == 4)
+					tmp = i;
+			}
+			if (res == 1 && tmp == n || res == n && tmp == 1 || abs(res - tmp) == 1) {
+				for (int i = 1; i <= n; i++) {
+					char x = 'A' + a[i];
+					cout << x;
+				}
+				cout << endl;
+			}
+		}
+		sinh();
+	}
+}
+*/
+//Bai 27
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[1000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = i;
+}
+void sinh() {
+	int i = n - 1;
+	while (i >= 1 && a[i] > a[i + 1])
+		i--;
+	if (i == 0)
+		final = true;
+	else {
+		int j = n;
+		while (a[i] > a[j])
+			j--;
+		swap(a[i], a[j]);
+		sort(a + i + 1, a + n + 1);
+	}
+}
+int check() {
+	for (int i = 1; i <= n - 1; i++) {
+		if (abs(a[i] - a[i + 1]) == 1)
+			return 0;
+	}
+	return 1;
+}
+int main() {
+	cin >> n;
+	ktao();
+	while (!final) {
+		if (check()) {
+			for (int i = 1; i <= n; i++) {
+				cout << a[i];
+			}
+			cout << endl;
+		}
+		sinh();
+	}
+}
+*/
+//Bai 28
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int main() {
+	int a[5];
+	for (int i = 1; i <= 4; i++)
+		cin >> a[i];
+	int sum = a[1];
+	for (int i = 2; i <= 4; i++)
+		sum += abs(a[i]);
+	cout << sum;
+}
+*/
+//Bai 29
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, a[1000];
+bool final = false;
+void ktao() {
+	for (int i = 1; i <= n; i++)
+		a[i] = 0;
+}
+void sinh() {
+	int i = n;
+	while (i >= 1 && a[i] == 1) {
+		a[i] = 0;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i] = 1;
+	}
+}
+bool check() {
+	if (a[0] == 1)
+		return false;
+	if (a[n] == 0)
+		return false;
+	int cnt1 = 0, cnt0 = 0;
+	for (int i = 1; i <= n; i++) {
+		if (a[i] == 0) cnt0++;
+		else
+			cnt1++;
+		if (cnt1 > cnt0) // so ngoac ) luon nho hon so ngoac (
+			return false;
+	}
+	if (cnt1 != cnt0)
+		return false;
+	return true;
+}
+int main() {
+	cin >> n;
+	ktao();
+	int ok = 0;
+	while (!final) {
+		if(check()) {
+			ok = 1;
+			for (int i = 1; i <= n; i++) {
+				if (a[i] == 0)
+					cout << "(";
+				else
+					cout << ")";
+			}
+			cout << endl;
+		}
+		sinh();
+	}
+	if (ok == 0)
+		cout << "NOT FOUND";
+}
+*/
+//Bai 30
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int n, s, p[1000], gt[1000], a[1000];
+bool final = false;
+void sinh() {
+	int i = n;
+	while (i >= 1 && a[i] == 1) {
+		a[i] = 0;
+		i--;
+	}
+	if (i == 0)
+		final = true;
+	else {
+		a[i] = 1;
+	}
+}
+int main() {
+	cin >> n >> s;
+	for (int i = 1; i <= n; i++)
+		cin >> p[i];
+	for (int i = 1; i <= n; i++)
+		cin >> gt[i];
+	int res = 0;
+	while (!final) {
+		int kl = 0;
+		int g = 0;
+		for (int i = 1; i <= n; i++) {
+			if (a[i] == 1) {
+				kl += p[i];
+				g += gt[i];
+			}
+		}
+		if (kl <= s)
+			res = max(res, g);
+		sinh();
+	}
+	cout << res << endl;
+}
+*/
+//Bai 31
