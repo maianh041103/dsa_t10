@@ -1,0 +1,214 @@
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll a[1000001];
+void tinh() {
+	a[0] = 1;
+	for (int i = 1; i <= 1000000; i++) {
+		a[i] = a[i-1] * i;
+		a[i] %= MOD;
+	}
+}
+int main() {
+	int t; cin >> t;
+	tinh();
+	while (t--) {
+		int x; cin >> x;
+		cout << a[x] << endl;
+	}
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll a[1000001];
+ll MOD = 1e9 + 7;
+void nhan(ll x[2][2], ll y[2][2]) {
+	ll z[2][2];
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
+			z[i][j] = 0;
+			for (int k = 0; k < 2; k++) {
+				z[i][j] += x[i][k] * y[k][j];
+				z[i][j] %= MOD;
+			}
+		}
+	}
+
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++)
+			x[i][j] = z[i][j];
+	}
+}
+ll lt(int n) {
+	ll res[2][2] = { {1,0},{0,1} };
+	ll x[2][2] = { {1,1 }, { 1,0 }};
+	while (n != 0) {
+		if (n % 2 != 0) {
+			nhan(res, x);
+		}
+		nhan(x, x);
+		n /= 2;
+	}
+	return res[1][0];
+}
+int main() {
+	a[0] = 1, a[1] = 1;
+	for (int i = 2; i <= 1000000; i++) {
+		a[i] = lt(i);
+	}
+	int t; cin >> t;
+	while (t--) {
+		int x; cin >> x;
+		cout << a[x] << endl;
+	}
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll a[1000001];
+ll MOD = 1e9 + 7;
+int main() {
+	a[0] = 0, a[1] = 0, a[2] = 1;
+	for (int i = 3; i <= 1000000; i++) {
+		a[i] = a[i - 1] + a[i - 2] + a[i - 3];
+		a[i] %= MOD;
+	}
+	int t; cin >> t;
+	while (t--) {
+		int x; cin >> x;
+		cout << a[x] << endl;
+	}
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int a[1000001];
+int cnt[1000001];
+typedef long long ll;
+void sang() {
+	a[0] = a[1] = 1;
+	for (int i = 2; i <= sqrt(1000001); i++) {
+		if (a[i] == 0) {
+			for (int j = i * i; j < 1000001; j+=i) {
+				a[j] = 1;
+			}
+		}
+	}
+}
+void dnt() {
+	sang();
+	int dem = 0;
+	for (int i = 1; i <= 1000000; i++) {
+		if (a[i] == 0) {
+			dem++;
+		}
+		cnt[i] = dem;
+
+	}
+}
+int main() {
+	dnt();
+	int t; cin >> t;
+	while (t--) {
+		int x; cin >> x;
+		cout << cnt[x] << endl;
+	}
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int a[1000001];
+int cnt[1000001];
+int dem = 0;
+void sang() {
+	a[0] = a[1] = 1;
+	for (int i = 2; i <= sqrt(1000001); i++) {
+		if (a[i] == 0) {
+			for (int j = i * i; j <= 1000000; j += i) {
+				a[j] = 1;
+			}
+		}
+	}
+}
+void tinh() {
+	sang();
+	for (int i = 0; i <= 1000001; i++) {
+		if (a[i] == 0)
+			dem++;
+		cnt[i] = dem;
+	}
+}
+int main() {
+	tinh();
+	int t; cin >> t;
+	while (t--) {
+		int l, r;
+		cin >> l >> r;
+		cout << cnt[r] - cnt[l - 1] << endl;
+	}
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int a[1000001];
+ll t[1000001];
+ll MOD = 1e9 + 7;
+void sang() {
+	a[0] = a[1] = 1;
+	for (int i = 2; i <= sqrt(1000001); i++) {
+		for (int j = i * i; j <= 1000001; j += i) {
+			if (a[i] == 0) {
+				a[j] = 1;
+			}
+		}
+	}
+}
+void tich() {
+	sang();
+	t[0] = t[1] = 0;
+	ll tmp = 1;
+	for (int i = 2; i <= 1000000; i++) {
+		if (a[i] == 0) {
+			tmp *= i;
+			tmp %= MOD;
+		}
+		t[i] = tmp;
+	}
+}
+int main() {
+	tich();
+	int q; cin >> q;
+	while (q--) {
+		int x; cin >> x;
+		cout << t[x] << endl;
+	}
+}
+*/
