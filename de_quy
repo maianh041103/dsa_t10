@@ -1,0 +1,682 @@
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll sum(ll n) {
+	if (n == 0)
+		return 0;
+	return n + sum(n - 1);
+}
+int main() {
+	ll n; cin >> n;
+	cout << sum(n) << endl;
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll sum(ll n) {
+	if (n == 0)
+		return 0;
+	return n * n + sum(n - 1);
+}
+int main() {
+	ll n; cin >> n;
+	cout << sum(n) << endl;
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll sum(ll n) {
+	if (n == 0)
+		return 0;
+	return pow(n, 3) + sum(n - 1);
+}
+int main() {
+	ll n; cin >> n;
+	cout << sum(n) << endl;
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll sum(ll n) {
+	if (n == 1)
+		return pow(-1, 1) * 1;
+	return pow(-1, n) * n + sum(n - 1);
+}
+int main() {
+	ll n; cin >> n;
+	cout << sum(n) << endl;
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int gt(int n) {
+	if (n == 0)
+		return 1;
+	return n * gt(n - 1);
+}
+int main() {
+	int n; cin >> n;
+	cout << gt(n) << endl;
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+using namespace std;
+int fibo(int n) {
+	if (n == 1) return 0;
+	else if (n == 2) return 1;
+	return fibo(n - 1) + fibo(n - 2);
+}
+int main() {
+	int n; cin >> n;
+	cout << fibo(n) << endl;
+}
+*/
+//Bai 7 *
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll ckn(int n, int k) {
+	if (k == 0 || k == n) return 1;
+	return ckn(n - 1, k - 1) + ckn(n - 1, k);
+}
+int main() {
+	int n, k; cin >> n >> k;
+	cout << ckn(n, k) << endl;
+}
+*/
+//Bai 8
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll gcd(ll a, ll b) {
+	if (b == 0) return a;
+	return gcd(b, a%b);
+}
+ll lcm(ll a, ll b) {
+	ll tmp = gcd(a, b);
+	return (a / tmp) * (b / tmp) * tmp;
+}
+int main() {
+	ll a, b; cin >> a >> b;
+	cout << gcd(a, b) << " " << lcm(a, b) << endl;
+}
+*/
+//Bai 9 *
+/*
+#include<iostream>
+#include<algorithm>
+#include<math.h>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll lt(ll a, ll b) {
+	ll res = 1;
+	while (b != 0) {
+		if (b % 2 != 0) {
+			res *= a;
+			res %= MOD;
+		}
+		a *= a;
+		a %= MOD;
+		b /= 2;
+	}
+	return res;
+}
+int main() {
+	ll a, b; cin >> a >> b;
+	cout << lt(a, b) << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll MOD = 1e9 + 7;
+ll nlt(ll a, ll b) {
+	if (b == 0)
+		return 1;
+	ll tmp = nlt(a, b / 2);
+	if (b % 2 == 0)
+		return ((tmp % MOD) * (tmp % MOD)) % MOD;
+	else
+		return (((tmp % MOD) * (tmp % MOD)) % MOD) * a % MOD;
+}
+int main() {
+	ll a, b; cin >> a >> b;
+	cout << nlt(a, b) << endl;
+}
+*/
+//Bai 10
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<iomanip>
+using namespace std;
+double sum(int n) {
+	if (n == 1)
+		return 1;
+	return double(1 / (n*1.0)) + double(sum(n - 1));
+}
+int main() {
+	int n; cin >> n;
+	cout << setprecision(3) << fixed <<(double)sum(n);
+}
+*/
+//Bai 11 *
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+string np(ll n) {
+	if (n == 0)
+		return "0";
+	else if (n == 1)
+		return "1";
+	return
+		np(n / 2) + to_string(n % 2);
+}
+int main() {
+	ll n; cin >> n;
+	cout << np(n) << endl;
+}
+*/
+//Bai 12 *
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+void he16(ll n) {
+	string hex = "0123456789ABCDEF";
+	if (n == 0)
+		return;
+	he16(n / 16);
+	cout << hex[n % 16];
+}
+int main() {
+	ll n; cin >> n;
+	if (n == 0)
+		cout << "0" << endl;
+	else
+		he16(n);
+}
+*/
+//Bai 13
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll sum(ll n) {
+	if (n == 0)
+		return 0;
+	return n % 10 + sum(n / 10);
+}
+int main() {
+	ll n; cin >> n;
+	cout << sum(n) << endl;
+}
+*/
+//Bai 14
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int ans = 0;
+void cs(ll n) {
+	if (n == 0) return;
+	ans++;
+	cs(n / 10);
+}
+int main() {
+	ll n; cin >> n;
+	if (n == 0) {
+		cout << "1" << endl;
+	}
+	else {
+		cs(n);
+		cout << ans << endl;
+	}
+}
+*/
+//Bai 15
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int ans = 0;
+void find(ll n) {
+	if (n == 0)
+		return;
+	ans = n % 10;
+	find(n / 10);
+}
+int main() {
+	ll n; cin >> n;
+	find(n);
+	cout << ans << endl;
+}
+*/
+//Bai 16
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll n;
+ll mi = 9, ma = 0;
+void ts(ll n) {
+	if (n == 0)
+		return;
+	mi = min(n % 10, mi);
+	ma = max(n % 10, ma);
+	ts(n / 10);
+}
+int main() {
+	ll n; cin >> n;
+	ts(n);
+	cout << ma << " " << mi << endl;
+}
+*/
+//Bai 17
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+void tp(ll n) {
+	if (n == 0)
+		return;
+	tp(n / 10);
+	cout << n % 10 << " ";
+}
+void pt(ll n) {
+	if (n == 0)
+		return;
+	cout << n % 10 << " ";
+	pt(n / 10);
+}
+int main() {
+	ll n; cin >> n;
+	if (n == 0) {
+		cout << "0" << endl;
+		cout << "0" << endl;
+	}
+	else {
+		tp(n);
+		cout << endl;
+		pt(n);
+	}
+}
+*/
+//Bai 18
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll c = 0, l = 0;
+void sum(ll n) {
+	if (n == 0)
+		return;
+	int tmp = n % 10;
+	if (tmp % 2 == 0)
+		c += tmp;
+	else
+		l += tmp;
+	sum(n / 10);
+}
+int main() {
+	ll n; cin >> n;
+	sum(n);
+	cout << c << endl;
+	cout << l << endl;
+}
+*/
+//Bai 19
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int check(ll n) {
+	if (n == 0)
+		return 1;
+	int tmp = n % 10;
+	if (tmp % 2 != 0)
+		return 0;
+	return check(n / 10);
+}
+int main() {
+	ll n; cin >> n;
+	if (check(n)) cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 20 cam hoi lai
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int ans;
+void acl(int n) {
+	ans = 0;
+	while (n != 1) {
+		if (n % 3 == 0) {
+			ans++;
+			n /= 3;
+		}
+		else if (n % 2 == 0) {
+			ans++;
+			n /= 2;
+		}
+		else {
+			ans++;
+			n--;
+		}
+	}
+}
+int main() {
+	int n; cin >> n;
+	acl(n);
+	cout << ans << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int MOD = 1e9 + 7;
+int thaotac(int n) {
+	if (n == 1)
+		return 0;
+	int x = MOD, y = MOD, z = MOD;
+	if (n % 2 == 0) 
+		x = 1 + thaotac(n / 2);
+	if (n % 3 == 0)
+		y = 1 + thaotac(n / 3);
+	if (n > 1)
+		z = 1 + thaotac(n - 1);
+	return min({ x,y,z });
+}
+int main() {
+	int n; cin >> n;
+	cout << thaotac(n);
+}
+*/
+//Bai 21 *
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+bool check(int a[], int l, int r) {
+	if (l >= r) return true;
+	if (a[l] != a[r])return false;
+	return check(a, l + 1, r - 1);
+}
+int main() {
+	int n; cin >> n;
+	int* a = new int[n];
+	for (int i = 0; i < n; i++) cin >> a[i];
+	if (check(a, 0, n - 1)) cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 22
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+void tp(int a[], int n) {
+	if (n == 1) {
+		cout << a[n] << " ";
+		return;
+	}
+	tp(a, n - 1);
+	cout << a[n] << " ";
+}
+void pt(int a[], int n) {
+	if (n == 1) {
+		cout << a[n] << " ";
+		return;
+	}
+	cout << a[n] << " ";
+	pt(a, n - 1);
+}
+int main() {
+	int n; cin >> n;
+	int* a = new int[n + 1];
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	tp(a, n);
+	cout << endl;
+	pt(a, n);
+}
+*/
+//Bai 23
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+bool check(int a[], int n) {
+	if (n == 0)return true;
+	if (a[n] % 2 != 0)return false;
+	return check(a, n - 1);
+}
+int main() {
+	int n; cin >> n;
+	int* a = new int[n + 1];
+	for (int i = 1; i <= n; i++) cin >> a[i];
+	if (check(a, n)) cout << "YES" << endl;
+	else cout << "NO" << endl;
+}
+*/
+//Bai 24
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+bool check(int a[], int n) {
+	if (n == 1)return true;
+	if (a[n] <= a[n - 1])return false;
+	return check(a, n - 1);
+}
+int main() {
+	int n; cin >> n;
+	int* a = new int[n + 1];
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i];
+	}
+	if (check(a, n))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 25
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+bool check(int a[], int x, int l, int r) {
+	if (l > r) return false;
+	int m = (l + r) / 2;
+	if (a[m] > x)
+		return check(a, x, m + 1, r);
+	else if (a[m] < x)
+		return check(a, x, l, m - 1);
+	else
+		return true;
+}
+int main() {
+	int n; cin >> n;
+	int* a = new int[n + 1];
+	for (int i = 0; i < n; i++)cin >> a[i];
+	int x; cin >> x;
+	if (check(a, x, 0, n - 1))cout << "1" << endl;
+	else
+		cout << "0" << endl;
+}
+*/
+//Bai 26
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int ans = -1;
+void lower_bound(int a[], int l, int r, int x) {
+	if (l > r) { 
+		return;
+	}
+	int m = (l + r) / 2;
+	if (a[m] < x)
+		lower_bound(a, m + 1, r, x);
+	else {
+		ans = m;
+		lower_bound(a, l, m - 1, x);
+	}
+}
+int main() {
+	int n; cin >> n;
+	int* a = new int[n + 1];
+	for (int i = 0; i < n; i++) cin >> a[i];
+	int x; cin >> x;
+	lower_bound(a, 0, n - 1, x);
+	if (ans == -1)
+		cout << n << endl;
+	else
+		cout << ans << endl;
+}
+*/
+//Bai 27
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int res = -1;
+int upperBound(int a[], int l, int r, int x) {
+	if (l > r) return res;
+	int m = (l + r) / 2;
+	if (a[m] <= x)
+		return upperBound(a, l, m - 1, x);
+	else {
+		res = m;
+		return upperBound(a, m + 1, r, x);
+	}
+}
+int main() {
+	int n; cin >> n;
+	int* a = new int[n + 1];
+	for (int i = 0; i < n; i++) cin >> a[i];
+	int x; cin >> x;
+	if (upperBound(a, 0, n - 1, x) == -1)
+		cout << n << endl;
+	else
+		cout << upperBound(a, 0, n - 1, x);
+}
+*/
+//Bai 28
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int low = -1, upp = -1;
+int lowerBound(int a[], int l, int r, int x) {
+	if (l > r) return low;
+	int m = (l + r) / 2;
+	if (a[m] < x)
+		return lowerBound(a, m + 1, r, x);
+	else if (a[m] == x) {
+		low = m;
+		return lowerBound(a, l, m - 1, x);
+	}
+	else
+		return lowerBound(a, l, m - 1, x);
+}
+int upperBound(int a[], int l, int r, int x) {
+	if (l > r) return upp;
+	int m = (l + r) / 2;
+	if (a[m] < x)
+		return upperBound(a, m + 1, r, x);
+	else if (a[m] == x) {
+		low = m;
+		return upperBound(a, m + 1, r, x);
+	}
+	else
+		return upperBound(a, l, m - 1, x);
+}
+int main() {
+	int n; cin >> n;
+	int* a = new int[n + 1];
+	for (int i = 0; i < n; i++) cin >> a[i];
+	int x; cin >> x;
+	int l = lowerBound(a, 0, n - 1, x);
+	int r = upperBound(a, 0, n - 1, x);
+	if (l == -1 && r == -1)
+		cout << "0";
+	else {
+		cout << r << " " << l << endl;
+		cout << r - l;
+	}
+
+}
