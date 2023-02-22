@@ -1,0 +1,2041 @@
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	string s;
+	getline(cin, s);
+	int c = 0, cs = 0, d = 0;
+	for (char x : s) {
+		if (isdigit(x))
+			cs++;
+		else if (isalpha(x))
+			c++;
+		else
+			d++;
+	}
+	cout << c << " " << cs << " " << d << endl;
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	string s;
+	getline(cin, s);
+	for (char &x : s) {
+		if (isalpha(x))
+			x = toupper(x);
+	}
+	cout << s << endl;
+	for (char &x : s) {
+		if (isalpha(x))
+			x = tolower(x);
+	}
+	cout << s << endl;
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<map>
+using namespace std;
+int main() {
+	string s;
+	cin >> s;
+	map<char, int>mp;
+	char a[100000];
+	int cnt = 0;
+	for (char x : s) {
+		a[cnt++] = x;
+		mp[x]++;
+	}
+	for (auto it : mp) {
+		cout << it.first << " " << it.second << endl;
+	}
+	cout << endl;
+	for (int i = 0; i < cnt; i++) {
+		if (mp[a[i]] != 0) {
+			cout << a[i] << " " << mp[a[i]] << endl;
+			mp[a[i]] = 0;
+		}
+	}
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<map>
+using namespace std;
+int main() {
+	string s; cin >> s;
+	map<char, int>mp;
+	for (char x : s) {
+		mp[x]++;
+	}
+	pair<char, int> min, max;
+
+	min.second = 100000;
+	max.second = 0;
+	for (auto it : mp) {
+		if (it.second<=min.second) {
+			min = it;
+		}
+		if (it.second >= max.second) {
+			max = it;
+		}
+	}
+	cout << max.first << " " << max.second << endl;
+	cout << min.first << " " << min.second << endl;
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<set>
+using namespace std;
+int main() {
+	string s1, s2;
+	cin >> s1 >> s2;
+	set<char>st1;
+	set<char>st2;
+	for (char x : s1) {
+		st1.insert(x);
+	}
+	for(char x:s2){
+		st2.insert(x);
+	}
+	for (char x : st1) {
+		if (st2.find(x) != st2.end())
+			cout << x;
+	}
+	cout << endl;
+	set<char>st3;
+	for (char x : st2) {
+		if (st1.find(x) == st1.end())
+			st1.insert(x);
+	}
+	for (char x : st1)
+		cout << x;
+	cout << endl;
+}
+*/
+//Bai 6 *
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<map>
+using namespace std;
+int main() {
+	string s1, s2;
+	cin >> s1 >> s2;
+	map<char, int>mp1;
+	map<char, int>mp2;
+	for (char x : s1) {
+		mp1[x] = 1;
+		mp2[x] = 2;
+	}
+	for (char x : s2) {
+		mp1[x] = 0;
+		if (mp2[x] != 2) {
+			mp2[x] = 1;
+		}
+	}
+	for (auto it : mp1) {
+		if (it.second == 1)
+			cout << it.first;
+	}
+	cout << endl;
+	for (auto it : mp2) {
+		if (it.second == 1)
+			cout << it.first;
+	}
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<set>
+using namespace std;
+int main() {
+	string s1, s2;
+	cin >> s1 >> s2;
+	set<char>st1, st2;
+	for (char x : s1) {
+		st1.insert(x);
+	}
+	for (char x : s2) {
+		st2.insert(x);
+	}
+	for (auto it : st1) {
+		if (st2.find(it) == st2.end())
+			cout << it;
+	}
+	cout << endl;
+	for (auto it : st2) {
+		if (st1.find(it) == st1.end())
+			cout << it;
+	}
+}
+*/
+//Bai 7
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int dx(string s) {
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] != s[s.size() - i - 1])
+			return 0;
+	}
+	return 1;
+}
+int main() {
+	string s;
+	cin >> s;
+	if (dx(s))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 8
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<set>
+using namespace std;
+int main() {
+	string s; cin >> s;
+	set<int>st;
+	for (char &x : s) {
+		x = tolower(x);
+		st.insert(x);
+	}
+	if (st.size() == 26)
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 9
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+using namespace std;
+int main() {
+	string s; getline(cin, s);
+	int cnt = 0;
+	string tmp;
+	stringstream ss(s);
+	while (ss >> tmp) {
+		cnt++;
+	}
+	cout << cnt << endl;
+}
+*/
+//Bai 10
+/*
+#include<iostream>
+#include<math.h>
+#include<map>
+#include<string>
+#include<sstream>
+#include<vector>
+using namespace std;
+int main() {
+	string s;
+	getline(cin, s);
+	string tmp;
+	map<string, int>mp;
+	vector<string>v;
+	stringstream ss(s);
+	while (ss >> tmp) {
+		mp[tmp]++;
+		v.push_back(tmp);
+	}
+	for (auto it:mp) {
+		cout << it.first << " ";
+	}
+	cout << endl;
+	for (int i = 0; i < v.size(); i++) {
+		if (mp[v[i]] != 0) {
+			cout << v[i] << " ";
+			mp[v[i]] = 0;
+		}
+	}
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+#include<set>
+#include<vector>
+using namespace std;
+int main() {
+	string s;
+	getline(cin, s);
+	stringstream ss(s);
+	string tmp;
+	vector<string>v;
+	set<string>st;
+	while (ss >> tmp) {
+		if (st.find(tmp) == st.end())
+			v.push_back(tmp);
+		st.insert(tmp);
+	}
+	for (auto it : st) {
+		cout << it << " ";
+	}
+	cout << endl;
+	for (auto it : v)
+		cout << it << " ";
+}
+*/
+//Bai 11
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<vector>
+#include<sstream>
+#include<algorithm>
+using namespace std;
+int cmp(string a, string b) {
+	if (a.size() == b.size())
+		return a < b;
+	else
+		return a.size() < b.size();
+}
+int cmp1(string a, string b) {
+	return a < b;
+}
+int main() {
+	string s; getline(cin, s);
+	string tmp;
+	stringstream ss(s);
+	vector<string>v1;
+	while (ss >> tmp) {
+		v1.push_back(tmp);
+	}
+	sort(v1.begin(), v1.end(), cmp1);
+	for (string s : v1) {
+		cout << s << " ";
+	}
+	cout << endl;
+	sort(v1.begin(), v1.end(), cmp);
+	for (string s : v1) {
+		cout << s << " ";
+	}
+	cout << endl;
+}
+*/
+//Bai 12 *
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+#include<set>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int cmp(string a, string b) {
+	return a.length() < b.length();
+}
+int tn(string s) {
+	for (int i = 0; i < s.length(); i++) {
+		if (s[i] != s[s.length() - 1 - i])
+			return 0;
+	}
+	return 1;
+}
+int main() {
+	string s; getline(cin, s);
+	stringstream ss(s);
+	string tmp;
+	set<string>st;
+	vector<string>v;
+	while (ss >> tmp) {
+		if (tn(tmp)) {
+			if (st.find(tmp) == st.end())
+				v.push_back(tmp);
+			st.insert(tmp);
+		}
+	}
+	stable_sort(v.begin(), v.end(), cmp);
+	for (string x : v)
+		cout << x << " ";
+}
+*/
+//Bai 13
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+#include<map>
+#include<sstream>
+#include<vector>
+using namespace std;
+int main() {
+	string s; getline(cin, s);
+	map<string, int>mp;
+	stringstream ss(s);
+	string tmp;
+	vector<string>v;
+	while (ss >> tmp) {
+		v.push_back(tmp);
+		mp[tmp]++;
+	}
+	for (auto it : mp) {
+		cout << it.first << " " << it.second << endl;
+	}
+	cout << endl;
+	for (int i = 0; i < v.size(); i++) {
+		if (mp[v[i]] != 0) {
+			cout << v[i] << " " << mp[v[i]] << endl;
+		}
+		mp[v[i]] = 0;
+	}
+}
+*/
+//Bai 14
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+#include<map>
+#include<vector>
+using namespace std;
+int main() {
+	string s;
+	getline(cin, s);
+	map<string, int>mp;
+	stringstream ss(s);
+	string tmp;
+	while (ss >> tmp) {
+		mp[tmp]++;
+	}
+	pair<string, int>max, min;
+	max.second = 0;
+	min.second = 100000;
+	for (auto it : mp) {
+		if (max.second <= it.second) {
+			max = it;
+		}
+		if (it.second <= min.second) {
+			min = it;
+		}
+	}
+	cout << max.first << " " << max.second << endl;
+	cout << min.first << " " << min.second << endl;
+}
+*/
+//Bai 15
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int check(string s, string t) {
+	for (int i = 0; i < s.length() - t.length() + 1 ; i++) {
+		if (t == s.substr(i, t.length()))
+			return 1;
+	}
+	return 0;
+}
+int main() {
+	string s, t;
+	getline(cin, s);
+	getline(cin, t);
+	if (check(s, t))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	string s, t;
+	getline(cin, s);
+	getline(cin, t);
+	if (s.find(t) != -1) {
+		cout << "YES" << endl;
+	}
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 16
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+using namespace std;
+void chuanHoa(string& ns,string& ten) {
+	if (ns[2] != '/')
+		ns = '0' + ns;
+	if (ns[5] != '/')
+		ns = ns.insert(3, "0");
+	stringstream ss(ten);
+	string tmp;
+	string res;
+	while (ss >> tmp) {
+		res += toupper(tmp[0]);
+		for (int i = 1; i < tmp.length(); i++) {
+			res += tolower(tmp[i]);
+		}
+		res += " ";
+	}
+	ten = res;
+}
+int main() {
+	string ns, ten;
+	getline(cin, ten);
+	cin >> ns;
+	chuanHoa(ns, ten);
+	cout << ten << endl;
+	cout << ns << endl;
+}
+*/
+//Bai 17
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+#include<vector>
+using namespace std;
+void chuanHoa(string& ten) {
+	stringstream ss(ten);
+	string tmp;
+	string res1 = "";
+	string res2 = "";
+	vector<string>v;
+	while (ss >> tmp) {
+		v.push_back(tmp);
+	}
+	string cnt;
+	for (int i = 0; i < v.size() - 1; i++) {
+		res1 += toupper(v[i][0]);
+		for (int j = 1; j < v[i].size(); j++)
+			res1 += tolower(v[i][j]);
+		res1 += ' ';
+	}
+	res1.pop_back();
+	cnt = res1;
+	res1 += ", ";
+	for (int i = 0; i < v[v.size() - 1].size(); i++)
+		res1 += toupper(v[v.size() - 1][i]);
+	cout << res1 << endl;
+	for (int i = 0; i < v[v.size() - 1].size(); i++)
+		res2 += toupper(v[v.size() - 1][i]);
+	res2 = res2 + ", " + cnt;
+	cout << res2 << endl;
+}
+int main() {
+	string s;
+	getline(cin, s);
+	chuanHoa(s);
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+#include<vector>
+using namespace std;
+void chuanHoa(string& s) {
+	stringstream ss(s);
+	string tmp;
+	string res1 = "", res2 = "";
+	vector<string>v;
+	while (ss >> tmp) {
+		tmp[0] = toupper(tmp[0]);
+		for (int i = 1; i < tmp.size(); i++) {
+			tmp[i] = tolower(tmp[i]);
+		}
+		v.push_back(tmp);
+	}
+	for (int i = 0; i < v.size() - 1; i++) {
+		res1 += v[i] + " ";
+	}
+	res1.pop_back();
+	res2 = res1;
+	res1 += ", ";
+	for (int i = 0; i < tmp.size(); i++) {
+		tmp[i] = toupper(tmp[i]);
+	}
+	res1 += tmp;
+	res2 = tmp + ", " + res2;
+	cout << res1 << endl;
+	cout << res2 << endl;
+}
+int main() {
+	string s; getline(cin, s);
+	chuanHoa(s);
+}
+*/
+//Bai 18 *
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+#include<vector>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	cin.ignore();
+	while (n--) {
+		string tong;
+		getline(cin, tong);
+		stringstream ss(tong);
+		string tmp;
+		vector<string> v;
+		while (ss >> tmp) {
+			for (char& x : tmp) {
+				x = tolower(x);
+			}
+			v.push_back(tmp);
+		}
+		string email = "";
+		string mk = "";
+		email += v[v.size() - 2];
+		for (int i = 0; i < v.size() - 2; i++) {
+			email += v[i][0];
+		}
+		email += "@xyz.edu.vn";
+		cout << email << endl;
+		string ns = v[v.size() - 1];
+		for (int i = 0; i < ns.length(); i++) {
+			if (i == 0 || i == 3) {
+				if (ns[i] == '0')
+					mk += "";
+				else
+					mk += ns[i];
+			}
+			else if (ns[i] == '/')
+				mk += "";
+			else
+				mk += ns[i];
+		}
+		cout << mk << endl;
+	}
+}
+*/
+//Bai 19
+/*
+#include<iostream>
+#include<math.h>
+#include<map>
+#include<vector>
+#include<string>
+#include<sstream>
+using namespace std;
+int main() {
+	map<string, int>mp;
+	int n;
+	cin >> n;
+	cin.ignore();
+	while (n--) {
+		string s;
+		getline(cin, s);
+		string tmp;
+		vector<string>v;
+		stringstream ss(s);
+		while (ss >> tmp) {
+			for (char& x : tmp)
+				x = tolower(x);
+			v.push_back(tmp);
+		}
+		string ten, ns;
+		string email = v[v.size() - 2];
+		string mk = "";
+		for (int i = 0; i < v.size() - 2; i++) {
+			email += v[i][0];
+		}
+		mp[email]++;
+		if (mp[email] > 1)
+			cout << email << mp[email] << "@xyz.edu.vn" << endl;
+		else
+			cout << email << "@xyz.edu.vn" << endl;
+		ns = v[v.size() - 1];
+		for (int i = 0; i < ns.size(); i++) {
+			if (i == 0 || i == 3) {
+				if (ns[i] == '0')
+					mk += "";
+				else
+					mk += ns[i];
+			}
+			else if (ns[i] == '/') {
+				mk += "";
+			}
+			else
+				mk += ns[i];
+		}
+		cout << mk << endl;
+	}
+}
+*/
+//Bai 20 *
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+using namespace std;
+int check(string s)
+{
+	int a[7];
+	a[1] = s.find('p');
+	if (a[2] >= s.length())
+		return 0;
+	else
+		a[2] = s.find('y', a[1] + 1);
+	if (a[2] >= s.length())
+		return 0;
+	else
+		a[3] = s.find('t', a[2] + 1);
+	if (a[3] >= s.length())
+		return 0;
+	else
+		a[4] = s.find('h', a[3] + 1);
+	if (a[4] >= s.length())
+		return 0;
+	else
+		a[5] = s.find('o', a[4] + 1);
+	if (a[5] >= s.length())
+		return 0;
+	else
+		a[6] = s.find('n', a[5] + 1);
+	if (a[6] >= s.length())
+		return 0;
+
+	return 1;
+}
+int main()
+{
+	string s;
+	cin >> s;
+	if (check(s))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int check(string s) {
+	string t = "python";
+	int j = 0;
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] == t[j])
+			j++;
+		if (j == 6)
+			return 1;
+	}
+	return 0;
+}
+int main() {
+	string s; cin >> s;
+	if (check(s))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 21
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<vector>
+#include<map>
+#include<sstream>
+using namespace std;
+void chuanHoa(string& s, string& t) {
+	for (int i = 0; i < s.length(); i++) {
+		s[i] = tolower(s[i]);
+	}
+	for (int i = 0; i < t.length(); i++) {
+		t[i] = tolower(t[i]);
+	}
+}
+int main() {
+	string s, t;
+	getline(cin, s);
+	getline(cin, t);
+	chuanHoa(s, t);
+	stringstream ss1(s);
+	stringstream ss2(t);
+	string tmp, cnt;
+	map<string, int>mp;
+	while (ss1 >> tmp) {
+		mp[tmp] = 1;
+	}
+	while (ss2 >> cnt) {
+		if (mp[cnt] == 1)
+			mp[cnt] = 2;
+	}
+	for (auto it : mp) {
+		if (it.second == 2)
+			cout << it.first << " ";
+	}
+}
+*/
+//Bai 22
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+#include<map>
+using namespace std;
+void chuanHoa(string &s, string &t) {
+	for (int i = 0; i < s.length(); i++) {
+		s[i] = tolower(s[i]);
+	}
+	for (int i = 0; i < t.length(); i++) {
+		t[i] = tolower(t[i]);
+	}
+}
+int main() {
+	string s, t;
+	getline(cin, s);
+	getline(cin, t);
+	chuanHoa(s, t);
+	map<string, int>mp;
+	stringstream ss1(s);
+	stringstream ss2(t);
+	string tmp, cnt;
+	while (ss1 >> tmp) {
+		mp[tmp] = 1;
+	}
+	while (ss2 >> cnt) {
+		if (mp[cnt] == 1)
+			mp[cnt] = 0;
+	}
+	for (auto it : mp) {
+		if (it.second == 1)
+			cout << it.first << " ";
+	}
+}
+*/
+//Bai 23 *
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+#include<vector>
+#include<sstream>
+using namespace std;
+bool cmp(string a, string b) {
+	return a + b > b + a;
+}
+//Vi Du : ba b    
+int main() {
+	int n; cin >> n;
+	string s; cin.ignore(); getline(cin, s);
+	stringstream ss(s);
+	string tmp;
+	vector<string>v;
+	while (ss >> tmp) {
+		v.push_back(tmp);
+	}
+	sort(v.begin(), v.end(), cmp);
+	for (int i = 0; i < v.size(); i++) {
+		cout << v[i];
+	}
+}
+*/
+//Bai 24
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<map>
+using namespace std;
+typedef long long ll;
+int main() {
+	string s; cin >> s;
+	map<char, ll>mp;
+	ll res = s.size();
+	for (int i = 0; i < s.size(); i++) {
+		mp[s[i]]++;
+	}
+	for (auto it : mp) {
+		if (it.second > 1) {
+			res += (it.second * (it.second - 1) / 2);
+		}
+	}
+	cout << res << endl;
+}
+*/
+//Bai 25
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<vector>
+using namespace std;
+void find_max(int m, int s) {
+	if (s > 9 * m)
+		cout << "NOT FOUND";
+	else {
+		int max;
+		int cnt_max = 0;
+		while (cnt_max < m) {
+			if (s < 9) {
+				max = s;
+			}
+			else
+				max = 9;
+			s = s - max;
+			cout << max;
+			cnt_max++;
+		}
+	}
+} 
+void find_min(int m, int s) {
+	vector<int>v;
+	if (s <= 9 * m) {
+		int min;
+		int cnt_min = 0;
+		while (cnt_min < m - 1) {
+			if (s - 1 < 9)
+				min = s - 1;
+			else
+				min = 9;
+			s = s - min;
+			v.push_back(min);
+			cnt_min++;
+		}
+		v.push_back(s);
+		for (int i = v.size() - 1; i >= 0; i--) {
+			cout << v[i];
+		}
+		cout << endl;
+	}
+}
+int main() {
+	int m, s;
+	cin >> m >> s;
+	find_min(m, s);
+	find_max(m, s);
+}
+*/
+//Bai 26
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	string s;
+	cin >> s;
+	string tmp = "";
+	tmp += s[0];
+	string res = "";
+	for (int i = 1; i < s.length() ; i++) {
+		if (s[i] == s[i - 1]) {
+			tmp += s[i];
+		}
+		else {
+			if (res.size() < tmp.size() || (res.size() == tmp.size() && res < tmp)) {
+				res = tmp;
+			}
+			tmp = "";
+			tmp = s[i];
+
+		}
+	}
+	if (res.size() < tmp.size() || (res.size() == tmp.size() && res < tmp)) {
+		res = tmp;
+	}
+	cout << res << endl;
+}
+*/
+//Bai 27
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	string s; cin >> s;
+	string tmp = "";
+	tmp += s[0];
+	string res = "";
+	for (int i = 1; i < s.length(); i++) {
+		if (s[i] != s[i - 1])
+			tmp += s[i];
+		else {
+			if (tmp.size() > res.size() || (tmp.size() == res.size() && tmp > res)) {
+				res = tmp;
+			}
+			tmp = "";
+			tmp += s[i];
+		}
+	}
+	if (tmp.size() > res.size() || (tmp.size() == res.size() && tmp > res)) {
+		res = tmp;
+	}
+	cout << res << endl;
+}
+*/
+//Bai 28
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<sstream>
+using namespace std;
+int main() {
+	string s; cin >> s;
+	string max;
+	string res;
+	int ok = 0;
+	int check = 0;
+	for (int i = 0; i < s.length(); i++) {
+		if (isdigit(s[i])) {
+			if (s[i] != '0') {
+				ok = 1;
+				check = 1;
+			}
+			if (ok == 1)
+				max += s[i];
+		}
+		else {
+			if (res.size() < max.size() || (res.size() == max.size() && res < max))
+				res = max;
+			max = "";
+			ok = 0;
+		}
+	}
+	if (res.size() < max.size() || (res.size() == max.size() && res < max))
+		res = max;
+	if (check == 0)
+		cout << "0" << endl;
+	else
+		cout << res << endl;
+}
+*/
+//Bai 29
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+typedef long long ll;
+int main() {
+	ll sum = 0;
+	string s; cin >> s;
+	string tmp = "";
+	for (int i = 0; i < s.size(); i++) {
+		if (isdigit(s[i])) {
+			while (isdigit(s[i])&&i<s.size()) {
+				tmp += s[i];
+				i++;
+			}
+			sum += stoll(tmp);
+			tmp = "";
+		}
+	}
+	cout << sum;
+}
+*/
+//Bai 30
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+#include<vector>
+using namespace std;
+void del0(string& s) {
+	while (s[0] == '0' && s.size() > 1)
+		s = s.substr(1);
+}
+bool cmp(string a, string b) {
+	return a + b > b + a;
+}
+int main() {
+	string s; cin >> s;
+	vector<string>v;
+	string tmp = "";
+	for (int i = 0; i < s.size(); i++) {
+		if (isdigit(s[i])) {
+			while (isdigit(s[i]) && i < s.size()) {
+				tmp += s[i];
+				i++;
+			}
+			del0(tmp);
+			v.push_back(tmp);
+			tmp = "";
+		}
+	}
+	sort(v.begin(), v.end(), cmp);
+	for (string x : v) {
+		cout << x;
+	}
+}
+*/
+//Bai 31
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	int sum = 0;
+	string s; cin >> s;
+	string tmp = "";
+	for (char x : s) {
+		tmp += x;
+		sum += stoi(tmp);
+		tmp = "";
+		//sum+=x-'0';
+	}
+	cout << sum << endl;
+}
+*/
+//Bai 32
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int nt(int n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0)
+			return 0;
+	}
+	return n > 1;
+}
+int check(string s) {
+	for (int i = 0; i < s.size(); i++) {
+		if (!nt(s[i]-'0'))
+			return 0;
+	}
+	return 1;
+}
+int sum(string s) {
+	int t = 0;
+	for (char x : s) {
+		t += x - '0';
+	}
+	if (nt(t))
+		return 1;
+	else
+		return 0;
+}
+int main() {
+	string s; cin >> s;
+	if (check(s) && sum(s))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 33
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int tn(string s) {
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] != s[s.size() - i - 1])
+			return 0;
+	}
+	return 1;
+}
+int check(string s) {
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] == '6')
+			return 1;
+	}
+	return 0;
+}
+int main() {
+	string s; cin >> s;
+	if (tn(s) && check(s))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 34
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int kg(string s) {
+	for (int i = 1; i < s.size(); i++) {
+		if (s[i] < s[i - 1])
+			return 0;
+	}
+	return 1;
+}
+int kt(string s) {
+	for (int i = 1; i < s.size(); i++) {
+		if (s[i] > s[i - 1])
+			return 0;
+	}
+	return 1;
+}
+int main() {
+	string s; cin >> s;
+	if (kg(s) || kt(s))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 35
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int check3(string s) {
+	int sum = 0;
+	for (int i = 0; i < s.size(); i++) {
+		sum += s[i] - '0';
+	}
+	if (sum % 3 == 0)
+		return 1;
+	else
+		return 0;
+}
+int main() {
+	string s; cin >> s;
+	if ((s[s.size() - 1]-'0') % 2 == 0 && check3(s))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 36
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int check(string s) {
+	if (s.size() == 1) {
+		if (s == "0" || s == "4" || s == "8")
+			return 1;
+		else
+			return 0;
+	}
+	else {
+		int x = stoi(s.substr(s.size() - 2));
+		if (x % 4 == 0)
+			return 1;
+		else
+			return 0;
+	}
+}
+int main() {
+	string s; cin >> s;
+	if (check(s))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 37
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int check3(string s) {
+	int sum = 0;
+	for (char x : s) {
+		sum += x - '0';
+	}
+	if (sum % 3 == 0)
+		return 1;
+	else
+		return 0;
+}
+int main() {
+	string s; cin >> s;
+	if (check3(s) && (s[s.size() - 1] == '5' || s[s.size() - 1] == '0'))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 38
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	string s; cin >> s;
+	if (s.size() < 2) {
+		if (s == "0")
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
+	else {
+		string tmp = s.substr(s.size() - 2);
+		int temp = stoi(tmp);
+		if (tmp == "00" || temp % 25 == 0)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
+}
+*/
+//Bai 39
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	string s; cin >> s;
+	int sumc = 0, suml = 0;
+	for (int i = 0; i < s.size(); i++) {
+		if (i % 2 == 0) {
+			sumc += s[i] - '0';
+		}
+		else
+			suml += s[i] - '0';
+	}
+	if (abs((sumc - suml) % 11 == 0))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 40
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	int a[1001];
+	a[0] = 1;
+	for (int i = 1; i <= 1000; i++) {
+		if (i % 4 == 0)
+			a[i] = 6;
+		else if (i % 4 == 1)
+			a[i] = 2;
+		else if (i % 4 == 2)
+			a[i] = 4;
+		else
+			a[i] = 8;
+	}
+	string s; cin >> s;
+	string tmp = "";
+	for (int i = s.size() - 1; i >= 0; i--) {
+		tmp += s[i];
+	}
+	int sum = 0;
+	for (int i = 0; i < tmp.size(); i++) {
+		if (tmp[i] == '1')
+			sum += a[i];
+	}
+	if (sum % 5 == 0) {
+		cout << "YES" << endl;
+	}
+	else
+		cout << "NO" << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+typedef long long ll;
+ll powmod5(int n, int k) {
+	n %= 5;
+	ll res = 1;
+	while (k) {
+		if (k % 2) {
+			res *= n;
+			res %= 5;
+		}
+		n *= n;
+		n %= 5;
+		k /= 2;
+	}
+	return res;
+}
+int main() {
+	string s; cin >> s;
+	string tmp;
+	int ans = 0;
+	for (int i = s.size(); i >= 0; i--) {
+		tmp += s[i];
+	}
+	for (int i = 0; i < tmp.size(); i++) {
+		if (tmp[i] == '1')
+			ans += powmod5(2, i);
+	}
+	if (ans % 5 == 0)
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 41
+/*
+#include<algorithm>
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int check(string s,int k) {
+	string tmp(s.size(), '0');
+	if (tmp == s)
+		return 1;
+	reverse(s.begin(), s.end());
+	if (s.size() <= k)
+		return 0;
+	else {
+		for (int i = 0; i < k; i++) {
+			if (s[i] == '1')
+				return 0;
+		}
+	}
+	return 1;
+}
+int main() {
+	string s; cin >> s;
+	int k; cin >> k;
+	if (check(s, k))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 42
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll check(string n, ll m) {
+	ll res = 0;
+	for (char x : n) {
+		res = ((res * 10) + (x - '0') % m) % m;
+	}
+	return res;
+}
+int main() {
+	string s; cin >> s;
+	ll m; cin >> m;
+	cout << check(s, m);
+}
+*/
+//Bai 43
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll mod(string n, ll m) {
+	ll res = 0;
+	for (char x : n) {
+		res = ((res * 10) + (x - '0') % m) % m;
+	}
+	return res;
+}
+ll gcd(string s, ll b) {
+	if (b == 0)return stoll(s);
+	else
+		return (gcd(to_string(b), mod(s, b)));
+}
+int main() {
+	string s; cin >> s;
+	ll a; cin >> a;
+	cout << gcd(s, a);
+}
+*/
+//Bai 44
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+const ll MOD = 1e9 + 7;
+ll modCalc(string n, ll m) {
+	ll res = 0;
+	for (char x : n) {
+		res = ((res * 10) + (x - '0') % m) % m;
+	}
+	return res;
+}
+ll powmod(string s, ll m) {
+	ll res = 1;
+	ll tmp = modCalc(s, MOD);
+	while (m != 0) {
+		if (m % 2 != 0) {
+			res *= tmp;
+			res %= MOD;
+		}
+		tmp *= tmp;
+		tmp %= MOD;
+		m /= 2;
+	}
+	return res;
+}
+int main() {
+	string s; cin >> s;
+	ll m; cin >> m;
+	cout << powmod(s, m) << endl;
+}
+*/
+//Bai 45
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll modCalc(string n, ll m) {
+	ll res = 0;
+	for (char x : n) {
+		res = ((res * 10) + (x - '0') % m) % m;
+	}
+	return res;
+}
+int main() {
+	string n; cin >> n;
+	ll tmp = modCalc(n, 4);
+	if (tmp % 4 == 0)cout << "6" << endl;
+	else if (tmp % 4 == 1)cout << "8" << endl;
+	else if (tmp % 4 == 2)cout << "4" << endl;
+	else cout << "2" << endl;
+}
+*/
+//Bai 46
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll modCalc(string s, ll m) {
+	ll res = 0;
+	for (char x : s) {
+		res = ((res * 10) + (x - '0')) % m;
+	}
+	return res;
+}
+int main() {
+	string s; cin >> s;
+	int res = 1;
+	ll tmp = modCalc(s, 4);
+	if (tmp == 0)
+		cout << "4" << endl;
+	else
+		cout << "0" << endl;
+}
+*/
+//Bai 47
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+ll gcd(ll a,ll b) {
+	if (b == 0)
+		return a;
+	return gcd(b, a % b);
+}
+int main() {
+	ll a, x, y;
+	cin >> a >> x >> y;
+	gcd(x, y);
+	for (int i = 0; i < gcd(x, y); i++) {
+		cout << a;
+	}
+}
+*/
+//Bai 48
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+//289 -> 19 -> 10 -> 1
+//khong phai so dep
+int sum(string s) {
+	int sum = 0;
+	for (int i = 0; i < s.length(); i++) {
+		sum += s[i] - '0';
+	}
+	return sum;
+}
+int main() {
+	string s; cin >> s;
+	int res = sum(s);
+	while (res > 9) {
+		res = sum(to_string(res));
+	}
+	if (res == 9)
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
+}
+*/
+//Bai 49
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+int main() {
+	string s; cin >> s;
+	while (s.find("111") != -1) {
+		int res = s.find("111");
+		s.erase(res, 3);
+	}
+	if (s.size() == 0)
+		cout << "EMPTY" << endl;
+	else
+		cout << s << endl;
+}
+*/
+//Bai 50
+/*
+//4!=3!*2!*2!
+//6!-5!*3!
+//8=7!*2!*2!*2!
+//9=7!*9*8=7!*3!*3!*2!
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+int main() {
+	string s;
+	cin >> s;
+	string tmp = "";
+	for(char x:s){
+		if (x == '4')
+			tmp += "322";
+		else if (x == '6')
+			tmp += "53";
+		else if (x == '8')
+			tmp += "7222";
+		else if (x == '9')
+			tmp += "7332";
+		else if (x == '1' || x == '0')
+			tmp += "";
+		else
+			tmp += x;
+	}
+	sort(tmp.begin(), tmp.end(), greater<int>());
+	cout << tmp << endl;
+}
+*/
+//Bai 51
+/*
+#include<iostream>
+#include<string>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+void check(int n, string s) {
+	int cnt[4] = { 0 };
+	for (char x : s) {
+		if (isupper(x))
+			cnt[0]++;
+		else if (islower(x))
+			cnt[1]++;
+		else if (isdigit(x))
+			cnt[2]++;
+		else
+			cnt[3]++;
+	}
+	int res = 0;
+	for (int i = 0; i <= 3; i++) {
+		if (cnt[i] != 0)
+			res++;
+	}
+	if (n >= 6 && res == 4)
+		cout << "0" << endl;
+	else
+		cout << max(6 - n, 4 - res);
+}
+int main() {
+	int n; cin >> n;
+	string s; cin >> s;
+	check(n, s);
+}
+*/
+//Bai 52
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+#include<sstream>
+using namespace std;
+int tach(string s) {
+	int res = 0;
+	int ok = 0;
+	for (int i = 0; i < s.size(); i++) {
+		if (ok == 0) {
+			if (islower(s[i])) {
+				ok = 1;
+				res = 1;
+			}
+		}
+		if (ok == 1) {
+			if (isupper(s[i]))
+				res++;
+		}
+	}
+	return res;
+}
+int main() {
+	string s; cin >> s;
+	cout << tach(s);
+}
+*/
+//Bai 53
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+#include<vector>
+#include<map>
+using namespace std;
+string remove(string s,char c) {
+	string tmp;
+	for (char x : s) {
+		if (x != c)
+			tmp += x;
+	}
+	return tmp;
+}
+bool check(string &s) {
+	if (s.size() <= 1)
+		return 1;
+	for (int i = 1; i < s.size(); i++) {
+		if (s[i] == s[i - 1]) {
+			s = remove(s, s[i]);
+			return 0;
+		}
+	}
+	return 1;
+}
+int process(string s, char x, char y) {
+	string tmp;
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] == x || s[i] == y)
+			tmp += s[i];
+	}
+	if (check(tmp))
+		return tmp.size();
+	return 0;
+}
+int alternate(string s) {
+	map<char, int>mp;
+	vector<char>v;
+	for (char x : s) {
+		mp[x]++;
+	}
+	int ans = 0;
+	for (auto it : mp) {
+		v.push_back(it.first);
+	}
+	for (int i = 0; i < v.size() - 1 ; i++) {
+		for (int j = i + 1; j < v.size(); j++) {
+			ans = max(ans, process(s, v[i], v[j]));
+		}
+	}
+	return ans;
+}
+int main() {
+	int n; cin >> n;
+	string s; cin >> s;
+	cout << alternate(s);
+}
+*/
+//Bai 54
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	int n, k; cin >> n;
+	string s;
+	cin.ignore();
+	getline(cin, s);
+	cin >> k;
+	k %= 26;
+	for (int i = 0;i<s.size();i++) {
+		if (isalpha(s[i])) {
+			if (islower(s[i]) && s[i] > 'z' - k) {
+				s[i] = s[i] + k - 26;
+			}
+			else if (isupper(s[i]) && s[i] > 'Z' - k) {
+				s[i] = s[i] + k - 26;
+			}
+			else
+				s[i] = s[i] + k;
+		}
+	}
+	cout << s << endl;
+}
+*/
+//Bai 55
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	string s;
+	cin >> s;
+	int cnt = 0;
+	for (int i = 0; i < s.size()-2; i+=3) {
+		if (s[i] != 'S')cnt++;
+		if (s[i + 1] != 'O')cnt++;
+		if (s[i + 2] != 'S')cnt++;
+	}
+	cout << cnt << endl;
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+using namespace std;
+int main() {
+	string s; cin >> s;
+	string t;
+	int cnt = 0;
+	for (int i = 0; i < s.size() / 3; i++) {
+		t += "SOS";
+	}
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] != t[i])
+			cnt++;
+	}
+	cout << cnt;
+}
+*/
+//Bai 56
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+int check(string s) {
+	char t[10];
+	string h = "hackerrank";
+	for (int i = 0; i < 10; i++)
+		t[i] = h[i];
+	int j = 0;
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] == t[j]) {
+			j++;
+		}
+		if (j == 10)
+			return 1;
+	}
+	return 0;
+}
+int main() {
+	int q; cin >> q;
+	while (q--) {
+		string s; cin >> s;
+		if (check(s))cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
+}
+*/
+//Bai 57
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+#include<set>
+#include<vector>
+using namespace std;
+typedef long long ll;
+int main() {
+	string s; cin >> s;
+	set<ll>st;
+	vector<ll>v(s.size());
+	v[0] = s[0] - 'a' + 1;
+	for (int i = 1; i < s.length(); i++) {
+		if (s[i] == s[i - 1])
+			v[i] = v[i - 1] + (s[i] - 'a' + 1);
+		else
+			v[i] = s[i] - 'a' + 1;
+		st.insert(v[i]);
+	}
+	for (ll x : v) {
+		st.insert(x);
+	}
+	int q; cin >> q;
+	while (q--) {
+		ll k; cin >> k;
+		if (st.find(k) == st.end())
+			cout << "No" << endl;
+		else
+			cout << "Yes" << endl;
+	}
+}
+*/
+//Bai 58
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<string>
+using namespace std;
+typedef long long ll;
+int check(string s, int k) {
+	if (s[0] == '0' && s.size() > 1)return 0;
+	ll cur = stoll(s.substr(0, k)) + 1;
+	for (int i = k; i < s.size(); i++) {
+		string res = to_string(cur);
+		string temp = s.substr(i, res.size());
+		if (res != temp)return 0;
+		i += temp.size() - 1;
+		cur++;
+	}
+	return 1;
+}
+void separateNumbers(string s) {
+	for (int i = 1; i <= s.size() / 2; i++) {
+		if (check(s, i)) {
+			cout << "YES " << s.substr(0, i) << endl;
+			return;
+		}
+	}
+	cout << "NO" << endl;
+}
+int main() {
+	int q;
+	cin >> q;
+	while (q--) {
+		string s; cin >> s;
+		separateNumbers(s);
+	}
+}
+*/
+//Bai 59
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+#include<vector>
+using namespace std;
+void check(string s) {
+	vector<int>v;
+	for (int i = 0; i < s.size() - 1; i++)
+		v.push_back(abs(s[i + 1] - s[i]));
+	reverse(s.begin(), s.end());
+	for (int i = 0; i < s.size() - 1; i++) {
+		if (v[i] != abs(s[i + 1] - s[i])) {
+			cout << "Not Funny" << endl;
+			return;
+		}
+	}
+	cout << "Funny" << endl;	
+}
+int main() {
+	int q; cin >> q;
+	while (q--) {
+		string s; cin >> s;
+		check(s);
+	}
+}
+*/
+//Bai 60
+/*
+#include<iostream>
+#include<math.h>
+#include<string>
+#include<algorithm>
+using namespace std;
+int cnt = 0;
+void check(string s) {
+	for (int i = 0; i < s.size(); i++) {
+		int index = s.find("010", i);
+		if (index < s.size()) {
+			s[index + 2] = '1';
+			i = index;
+			cnt++;
+		}
+		else
+			return;
+	}
+}
+int main() {
+	int n; cin >> n;
+	string s; cin >> s;
+	check(s);
+	cout << cnt << endl;
+}
+*/
