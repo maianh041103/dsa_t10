@@ -1,0 +1,222 @@
+//Bai 1
+/*
+#include<iostream>
+#include<math.h>
+#include<vector>
+using namespace std;
+typedef long long ll;
+int main() {
+	vector<ll>v;
+	int n; cin >> n;
+	while (n--) {
+		int m; cin >> m;
+		if (m == 1) {
+			int k; cin >> k;
+			v.push_back(k);
+		}
+		else {
+			if (v.size() != 0)
+				v.pop_back();
+		}
+	}
+	if (v.size() == 0)cout << "EMPTY";
+	else
+		for (int x : v)cout << x << " ";
+}
+*/
+//Bai 2
+/*
+#include<iostream>
+#include<math.h>
+#include<vector>
+using namespace std;
+int main() {
+	vector<int>v;
+	int n; cin >> n;
+	for (int i = 0; i < n; i++) {
+		int x; cin >> x;
+		v.push_back(x);
+	}
+	int m; cin >> m;
+	while (m--) {
+		int k; cin >> k;
+		int index; cin >> index;
+		if (k == 1) {
+			int q; cin >> q;
+			v.insert(v.begin() + index, q);
+		}
+		else {
+			v.erase(v.begin() + index);
+		}
+	}
+	if (v.size() == 0)cout << "EMPTY";
+	else
+		for (int x : v)cout << x << " ";
+}
+*/
+//Bai 3
+/*
+#include<iostream>
+#include<math.h>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main() {
+	vector<int>v;
+	int n; cin >> n;
+	while (n--) {
+		int x; cin >> x;
+		v.push_back(x);
+	}
+	sort(v.begin(), v.end());
+	for (int x : v)cout << x << " ";
+	cout << endl;
+	sort(v.begin(), v.end(), greater<int>());
+	for (int x : v)cout << x << " ";
+}
+*/
+//Bai 4
+/*
+#include<iostream>
+#include<math.h>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	vector<int>v;
+	while (n--) {
+		int x; cin >> x;
+		v.push_back(x);
+	}
+	int l, r; cin >> l >> r;
+	for (auto it = v.begin() + l; it <= v.begin() + r; it++)
+		cout << *it << " ";
+	cout << endl;
+	for (auto it = v.begin() + r; it >= v.begin() + l; it--)
+		cout << *it << " ";
+}
+*/
+//Bai 5
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	vector<int>v;
+	while (n--) {
+		int x; cin >> x;
+		v.push_back(x);
+	}
+	reverse(v.begin(), v.end());
+	for (int x : v)cout << x << " ";
+	cout << endl;
+	int l, r; cin >> l >> r;
+	reverse(v.begin() + l, v.begin() + r + 1);
+	for (int x : v)cout << x << " ";
+}
+*/
+//Bai 6
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+#include<numeric>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	vector<int>v;
+	while (n--) {
+		int x; cin >> x;
+		v.push_back(x);
+	}
+	cout << *min_element(v.begin(), v.end()) << endl;
+	cout << *max_element(v.begin(), v.end()) << endl;
+	cout << accumulate(v.begin(), v.end(), 0) << endl;
+}
+*/
+//Bai 7
+/*
+#include<iostream>
+#include<math.h>
+#include<vector>
+#include<algorithm>
+#include<iomanip>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	vector<pair<int, int>>v;
+	while (n--) {
+		pair<int, int>pa;
+		cin >> pa.first >> pa.second;
+		v.push_back(pa);
+	}
+	for (auto x : v) {
+		double t = pow(x.first, 2) + pow(x.second, 2);
+		cout << setprecision(2) << fixed << sqrt(t) << " ";
+	}
+}
+*/
+//Bai 8
+/*
+#include<iostream>
+#include<math.h>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main() {
+	int n; cin >> n;
+	vector<pair<int, pair<int, int>>>v;
+	while (n--) {
+		pair<int, pair<int, int>>x;
+		cin >> x.first >> x.second.first >> x.second.second;
+		v.push_back(x);
+	}
+	for (auto x : v) {
+		int sum = 0;
+		sum = x.first + x.second.first + x.second.second;
+		cout << sum << " ";
+	}
+}
+*/
+/*
+#include<iostream>
+#include<math.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+typedef long long ll;
+ll cmp(ll a, ll b) {
+	return abs(a) < abs(b);
+}
+ll cmp2(ll a, ll b) {
+	return a < b;
+}
+int main() {
+	ll n, x; cin >> n >> x;
+	vector<ll>v, v1;
+	while (n--) {
+		ll tmp; cin >> tmp;
+		v.push_back(tmp - x);
+		v1.push_back(tmp);
+	}
+	sort(v.begin(), v.end(), cmp);
+	for (ll i : v) cout << i + x << " ";
+	cout << endl;
+	for (ll &i : v1) {
+		if (i % 2 != 0) {
+			i -= 1e10;
+		}
+	}
+	sort(v1.begin(), v1.end(), cmp);
+	for (ll i : v1) {
+		if (i % 2 != 0)
+			i += 1e10;
+		cout << i << " ";
+	}
+}
+*/
